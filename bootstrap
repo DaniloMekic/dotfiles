@@ -76,8 +76,8 @@ case "$1" in
         ;;
     -h|--help)
         echo "Usage: ./bootstrap [option]"
-        echo "  -a, --all   Install everything"
-        echo "  --nvim      Install only Neovim dependencies"
+        echo "      -a, --all   Install everything"
+        echo "      --nvim      Install only Neovim dependencies"
         ;;
     *)
         echo "Invalid option. See --help."
