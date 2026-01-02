@@ -1,15 +1,30 @@
 #!/usr/bin/env bash
 
 # System Dependencies
-sudo pacman -S --needed \
-    foot \
-    keyd
-    mpv \
-    neovim \
-    tmux \
-    vim \
-yay -S \
-    logiops
+bootstrap_system() {
+    sudo pacman -S --needed \
+        foot \
+        keyd \
+        mpv \
+        neovim \
+        tmux \
+        vim
+
+    ## Get yay if it's not installed
+    if ! command -v yay &> /dev/null; then
+        echo "Installing yay"
+        sudo pacman -S --neded git base-devel && \
+        (
+            git clone https://aur.archlinux.org/yay-bin.git /tmp/yay && \
+            cd /tmp/yay && \
+            makepkg -si
+        ) && \
+        rm -rf /tmp/yay
+    fi
+
+    yay -S \
+        logiops
+}
 ## Neovim
 bootstrap_nvim() {
     sudo pacman -S --needed \
@@ -30,20 +45,42 @@ bootstrap_nvim() {
         tree-sitter-cli \
         unzip \
         yazi
-    }
+}
 
 # Configs
-CONFIG=$HOME/.config
-## Symlinks
-mkdir -p $CONFIG/Alacritty/ && ln -sfv $PWD/Alacritty/alacritty.toml "$_"
-ln -sfv $PWD/Bash/.bashrc $HOME/
-ln -sfv $PWD/Bash/.bash_profile $HOME/
-mkdir -p $CONFIG/foot/ && ln -sfv $PWD/foot/foot.ini "$_"
-mkdir -p $CONFIG/hypr/ && ln -sfv $PWD/Hyprland/hyprland.conf "$_"
-mkdir -p $CONFIG/mpv/ && ln -sfv $PWD/mpv/input.conf "$_"
-ln -sfv $PWD/mpv/mpv.conf $CONFIG/mpv/
-ln -sfv $PWD/Neovim/ $CONFIG/nvim
-ln -sfv $PWD/tmux/.tmux.conf $HOME/
-ln -sfv $PWD/Vim/.vimrc $HOME/
-sudo ln -sfv $PWD/LogiOps/logid.cfg /etc/
-sudo ln -sfv $PWD/keyd/default.conf /etc/keyd/
+bootstrap_configs() {
+    CONFIG=$HOME/.config
+    ## Symlinks
+    mkdir -p $CONFIG/Alacritty/ && ln -sfv $PWD/Alacritty/alacritty.toml "$_"
+    ln -sfv $PWD/Bash/.bashrc $HOME/
+    ln -sfv $PWD/Bash/.bash_profile $HOME/
+    mkdir -p $CONFIG/foot/ && ln -sfv $PWD/foot/foot.ini "$_"
+    mkdir -p $CONFIG/hypr/ && ln -sfv $PWD/Hyprland/hyprland.conf "$_"
+    mkdir -p $CONFIG/mpv/ && ln -sfv $PWD/mpv/input.conf "$_"
+    ln -sfv $PWD/mpv/mpv.conf $CONFIG/mpv/
+    ln -sfv $PWD/Neovim/ $CONFIG/nvim
+    ln -sfv $PWD/tmux/.tmux.conf $HOME/
+    ln -sfv $PWD/Vim/.vimrc $HOME/
+    sudo ln -sfv $PWD/LogiOps/logid.cfg /etc/
+    sudo ln -sfv $PWD/keyd/default.conf /etc/keyd/
+}
+
+case "$1" in
+    -a|--all)
+        bootstrap_system
+        bootstrap_nvim
+        bootstrap_configs
+        ;;
+    --nvim)
+        bootstrap_nvim
+        ;;
+    -h|--help)
+        echo "Usage: ./bootstrap [option]"
+        echo "  -a, --all   Install everything"
+        echo "  --nvim      Install only Neovim dependencies"
+        ;;
+    *)
+        echo "Invalid option. See --help."
+        exit 1
+        ;;
+esac
