@@ -10,19 +10,19 @@ bootstrap_system() {
         tmux \
         vim
 
-    ## Get yay if it's not installed
-    if ! command -v yay &> /dev/null; then
-        echo "Installing yay"
-        sudo pacman -S --neded git base-devel && \
+    ## Get paru if it's not installed
+    if ! command -v paru &> /dev/null; then
+        echo "Installing paru"
+        sudo pacman -S --neded base-devel && \
         (
-            git clone https://aur.archlinux.org/yay-bin.git /tmp/yay && \
-            cd /tmp/yay && \
+            git clone https://aur.archlinux.org/paru.git /tmp/paru && \
+            cd /tmp/paru && \
             makepkg -si
         ) && \
-        rm -rf /tmp/yay
+        rm -rf /tmp/paru
     fi
 
-    yay -S \
+    paru -S \
         logiops
 }
 ## Neovim
