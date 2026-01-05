@@ -1,6 +1,6 @@
 # Install
+Neovim loads configuration files from `~/.config/nvim/`.
 ```shell
-$ git clone https://github.com/DaniloMekic/nvim-config.git ~/.config/nvim
 $ chmod +x ~/.config/nvim/install
 $ ~/.config/nvim/install
 ```
