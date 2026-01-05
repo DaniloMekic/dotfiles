@@ -1,3 +1,6 @@
+:filetype on
+:syntax on
+
 " Terminal
 " ANSI Escape Codes for Cursor
 let &t_EI = "\e[2 q"  " NORMAL Mode: Steady Block
@@ -9,8 +12,6 @@ set nocompatible
 set number
 set relativenumber
 set showmode
-
-colorscheme slate
 
 " TAB spaces to WHITESPACE
 set expandtab
@@ -35,7 +36,6 @@ set splitright
 set splitbelow
 set nowrap
 set scrolloff=999
-set termguicolors
 
 " CLI Completions
 set wildmenu
@@ -56,3 +56,12 @@ nnoremap <Leader>w :write<CR>
 nnoremap <Leader>q :call ToggleQuickFixWindow()<CR>
 nnoremap ]b :bnext<CR>
 nnoremap [b :bprevious<CR>
+
+" Colors
+set termguicolors
+packadd! gruvbox-material
+set background=dark
+let g:gruvbox_material_background = "hard"
+let g:gruvbox_material_foreground = "material"
+let g:gruvbox_material_enable_bold = 0
+colorscheme gruvbox-material

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Install Gruvbox Material colorscheme and generate doc tags
+git clone --depth 1 https://github.com/sainnhe/gruvbox-material.git ~/.vim/pack/colors/opt/gruvbox-material
+ex -s -c "helptags ~/.vim/pack/colors/opt/gruvbox-material/doc/" -c "q"
