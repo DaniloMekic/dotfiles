@@ -1,3 +1,0 @@
-[submodule "Neovim"]
-	path = Neovim
-	url = git@danilomekic.github.com:DaniloMekic/nvim-config.git
