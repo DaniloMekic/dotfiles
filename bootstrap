@@ -1,5 +1,24 @@
 #!/usr/bin/env bash
 
+get_aur_helper() {
+    echo "Installing paru, AUR helper"
+
+    if sudo pacman -S --needed base-devel && \
+        (
+            git clone https://aur.archlinux.org/paru.git /tmp/paru && \
+            cd /tmp/paru && \
+            makepkg -si
+        )
+        rm -rf /tmp/paru
+   then
+        echo "paru installed successfully"
+        return 0
+    else 
+        echo "Failed to install paru"
+        exit 1
+    fi
+}
+
 # System Dependencies
 bootstrap_system() {
     sudo pacman -S --needed \
@@ -7,19 +26,12 @@ bootstrap_system() {
         keyd \
         mpv \
         neovim \
+        ripgrep \
         tmux \
         vim
 
-    ## Get paru if it's not installed
     if ! command -v paru &> /dev/null; then
-        echo "Installing paru"
-        sudo pacman -S --neded base-devel && \
-        (
-            git clone https://aur.archlinux.org/paru.git /tmp/paru && \
-            cd /tmp/paru && \
-            makepkg -si
-        ) && \
-        rm -rf /tmp/paru
+        get_aur_helper
     fi
 
     paru -S \
