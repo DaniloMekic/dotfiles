@@ -2,7 +2,7 @@
 :syntax on
 
 " Terminal
-" ANSI Escape Codes for Cursor
+" ANSI Escape Codes for Cursor (DECSCUSR)
 let &t_EI = "\e[2 q"  " NORMAL Mode: Steady Block
 let &t_SR = "\e[3 q"  " REPLACE Mode: Blinking Underline
 let &t_SI = "\e[5 q"  " INSERT Mode: Blinking Bar
