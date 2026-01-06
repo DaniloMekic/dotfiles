@@ -64,13 +64,13 @@ bootstrap_configs() {
     CONFIG=$HOME/.config
     ## Symlinks
     mkdir -p $CONFIG/Alacritty/ && ln -sfv $PWD/alacritty.toml "$_"
-    ln -sfv $PWD/Bash/bashrc $HOME/
-    ln -sfv $PWD/Bash/bash_profile $HOME/
+    ln -sfv $PWD/Bash/bashrc $HOME/.bashrc
+    ln -sfv $PWD/Bash/bash_profile $HOME/.bash_profile
     mkdir -p $CONFIG/foot/ && ln -sfv $PWD/foot.conf "$_/foot.ini"
     mkdir -p $CONFIG/hypr/ && ln -sfv $PWD/hyprland.conf "$_"
     mkdir -p $CONFIG/mpv/ && ln -sfv $PWD/mpv/input.conf "$_"
     ln -sfv $PWD/mpv/mpv.conf $CONFIG/mpv/
-    ln -sfv $PWD/Neovim/ $CONFIG/nvim
+    ln -sfv $PWD/Neovim $CONFIG/nvim
     ln -sfv $PWD/tmux.conf $HOME/.tmux.conf
     ln -sfv $PWD/Vim/vimrc $HOME/.vimrc
     sudo ln -sfv $PWD/logiops.conf /etc/logid.cfg
@@ -85,6 +85,9 @@ case "$1" in
         ;;
     --nvim)
         bootstrap_nvim
+        ;;
+    --configs|--cfgs)
+        bootstrap_configs
         ;;
     -h|--help)
         echo "Usage: ./bootstrap [option]"
