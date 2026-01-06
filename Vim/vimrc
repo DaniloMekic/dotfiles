@@ -1,5 +1,14 @@
-:filetype on
-:syntax on
+filetype on
+syntax on
+
+" Functions
+function! ToggleQuickFixWindow()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        copen
+    else
+        cclose
+    endif
+endfunction
 
 " Terminal
 " ANSI Escape Codes for Cursor (DECSCUSR)
@@ -45,14 +54,6 @@ set scrolloff=999
 set wildmenu
 set wildchar=<Tab>
 set wildoptions=""
-
-function! ToggleQuickFixWindow()
-    if empty(filter(getwininfo(), 'v:val.quickfix'))
-        copen
-    else
-        cclose
-    endif
-endfunction
 
 " Keymaps
 let g:mapleader = " "
