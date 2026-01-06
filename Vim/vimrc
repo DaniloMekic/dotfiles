@@ -10,8 +10,18 @@ function! ToggleQuickFixWindow()
     endif
 endfunction
 
+" See :help 'timeout'
+set timeout
+set ttimeout
+set timeoutlen=1000                                                            " Keymapping delay in milliseconds
+set ttimeoutlen=100                                                            " Keycode delay in milliseconds
+                                                                               " Linux kernel maps scancodes to keycodes
+                                                                               " See https://wiki.archlinux.org/title/Keyboard_input
+
 " Terminal
 " ANSI Escape Codes for Cursor (DECSCUSR)
+" DECSCUSR: Digital Equipment Corporation (DEC) Set Cursor Style
+" Cursor shape switching speed is determined by 'ttimeoutlen' option
 let &t_EI = "\e[2 q"                                                           " NORMAL Mode: Steady Block
 let &t_SR = "\e[3 q"                                                           " REPLACE Mode: Blinking Underline
 let &t_SI = "\e[5 q"                                                           " INSERT Mode: Blinking Bar
@@ -20,7 +30,7 @@ set nocompatible
 
 set number
 set relativenumber
-set showmode
+set showmode                                                                   " Show current mode on the last line (INSERT/REPLACE/VISUAL).
 
 " TAB spaces to WHITESPACE
 set expandtab
