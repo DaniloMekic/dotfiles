@@ -3,9 +3,9 @@
 
 " Terminal
 " ANSI Escape Codes for Cursor (DECSCUSR)
-let &t_EI = "\e[2 q"  " NORMAL Mode: Steady Block
-let &t_SR = "\e[3 q"  " REPLACE Mode: Blinking Underline
-let &t_SI = "\e[5 q"  " INSERT Mode: Blinking Bar
+let &t_EI = "\e[2 q"                                                           " NORMAL Mode: Steady Block
+let &t_SR = "\e[3 q"                                                           " REPLACE Mode: Blinking Underline
+let &t_SI = "\e[5 q"                                                           " INSERT Mode: Blinking Bar
 
 set nocompatible
 
@@ -29,8 +29,12 @@ set list
 set listchars=tab:>-,space:·,trail:·,eol:$
 
 " Searching
-set ignorecase
-set smartcase
+" :help pattern.txt
+set ignorecase                                                                 " Ignore case in search patterns and command-line completions.
+set smartcase                                                                  " Override the 'ignorecase' option if the search pattern contains upper case characters.
+                                                                               " Only used when the search pattern is typed.
+set hlsearch                                                                   " Highlight matches.
+set incsearch                                                                  " While typing a search command, show where the pattern, as it was typed so far, matches.
 
 set splitright
 set splitbelow
