@@ -1,3 +1,15 @@
+" Get vim-plug, if it's not installed
+let s:vim_plug_path = expand("~/.vim/autoload/plug.vim")
+if empty(glob(s:vim_plug_path))
+  silent execute "!curl -fLo " . s:vim_plug_path . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+Plug 'andymass/vim-matchup'
+Plug 'sainnhe/gruvbox-material'
+call plug#end()
+
 filetype plugin indent on                                                      " Enable filetype detection, and filetype-specific plugins and indentation rules
 syntax on                                                                      " Switch on syntax highlighting
 
@@ -5,7 +17,7 @@ set nocompatible                                                               "
 
 " Functions
 function! ToggleQuickFixWindow()
-    if empty(filter(getwininfo(), 'v:val.quickfix'))
+    if empty(filter(getwininfo(), "v:val.quickfix"))
         copen
     else
         cclose
@@ -83,7 +95,6 @@ nnoremap [q :cprevious<CR>
 
 " Colors
 set termguicolors
-packadd! gruvbox-material
 set background=dark
 let g:gruvbox_material_background = "hard"
 let g:gruvbox_material_foreground = "material"
