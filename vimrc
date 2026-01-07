@@ -6,8 +6,8 @@ if empty(glob(s:vim_plug_path))
 endif
 
 call plug#begin()
-Plug 'andymass/vim-matchup'
-Plug 'sainnhe/gruvbox-material'
+    Plug 'andymass/vim-matchup'
+    Plug 'sainnhe/gruvbox-material'
 call plug#end()
 
 filetype plugin indent on                                                      " Enable filetype detection, and filetype-specific plugins and indentation rules
