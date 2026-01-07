@@ -57,7 +57,7 @@ set autoindent
 
 " Display control characters
 set list
-set listchars=tab:>-,space:·,nsp:⍽,trail:·,eol:$                                     " For space and trail U+00B7 is used; for non-breaking space U+237D
+set listchars=tab:>-,space:·,nbsp:⍽,trail:·,eol:$                              " For space and trail U+00B7 is used; for non-breaking space U+237D
 
 " Searching
 " :help pattern.txt
