@@ -96,7 +96,18 @@ nnoremap [q :cprevious<CR>
 " Colors
 set termguicolors
 set background=dark
+
+" Try to set gruvbox-material, with fallback to default colorschemes
+let s:colorschemes = [ "gruvbox-material", "sorbet", "slate", "wildcharm" ]
+for s:colorscheme in s:colorschemes
+    try
+        execute "colorscheme " . s:colorscheme
+        break " Exit the loop if colorscheme loads successfully
+    catch /^Vim\%((\a\+)\)\=:E185/
+        continue
+    endtry
+endfor
+
 let g:gruvbox_material_background = "hard"
 let g:gruvbox_material_foreground = "material"
 let g:gruvbox_material_enable_bold = 0
-colorscheme gruvbox-material
