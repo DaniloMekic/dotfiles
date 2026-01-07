@@ -1,5 +1,7 @@
-filetype on
-syntax on
+filetype plugin indent on                                                      " Enable filetype detection, and filetype-specific plugins and indentation rules
+syntax on                                                                      " Switch on syntax highlighting
+
+set nocompatible                                                               " Disavle Vi-compatible mode
 
 " Functions
 function! ToggleQuickFixWindow()
@@ -26,11 +28,21 @@ let &t_EI = "\e[2 q"                                                           "
 let &t_SR = "\e[3 q"                                                           " REPLACE Mode: Blinking Underline
 let &t_SI = "\e[5 q"                                                           " INSERT Mode: Blinking Bar
 
-set nocompatible
-
+" UI
 set number
 set relativenumber
-set showmode                                                                   " Show current mode on the last line (INSERT/REPLACE/VISUAL).
+set showmode                                                                   " Show current mode on the last line (INSERT/REPLACE/VISUAL)
+set showcmd                                                                    " Show (partial) command in the last line of the screen
+set cursorline                                                                 " Highlight the text line of the cursor
+set laststatus=2                                                               " Statusline is always visible, even with only one window open
+set ruler                                                                      " Show the line and column number of the cursor position
+
+" CLI Completions
+" :help cmdline-completion
+set wildmenu                                                                   " Command-line completion
+set wildchar=<Tab>                                                             " Character to start wildcard expansion in the command-line
+set wildmode=full                                                              " Complete the next full match, and cycle through all matches with one 'wildchar' press
+set wildoptions=""
 
 " TAB spaces to WHITESPACE
 set expandtab
@@ -49,21 +61,16 @@ set listchars=tab:>-,space:·,trail:·,eol:$
 
 " Searching
 " :help pattern.txt
-set ignorecase                                                                 " Ignore case in search patterns and command-line completions.
-set smartcase                                                                  " Override the 'ignorecase' option if the search pattern contains upper case characters.
-                                                                               " Only used when the search pattern is typed.
-set hlsearch                                                                   " Highlight matches.
-set incsearch                                                                  " While typing a search command, show where the pattern, as it was typed so far, matches.
+set ignorecase                                                                 " Ignore case in search patterns and command-line completions
+set smartcase                                                                  " Override the 'ignorecase' option if the search pattern contains upper case characters
+                                                                               " Only used when the search pattern is typed
+set hlsearch                                                                   " Highlight matches
+set incsearch                                                                  " While typing a search command, show where the pattern, as it was typed so far, matches
 
 set splitright
 set splitbelow
 set nowrap
 set scrolloff=999
-
-" CLI Completions
-set wildmenu
-set wildchar=<Tab>
-set wildoptions=""
 
 " Keymaps
 let g:mapleader = " "
