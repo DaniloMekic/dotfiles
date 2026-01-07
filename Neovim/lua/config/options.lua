@@ -18,9 +18,10 @@ vim.opt.autoindent = true                        -- Keep indentation from previo
 
 -- Display control characters
 vim.opt.list = true                              -- Enable 'list' mode.
-vim.opt.listchars = {                            -- Strings to use in 'list' mode.
+vim.opt.listchars = {                            -- Strings to use in 'list' mode. For space and trail U+00B7 is used; for non-breaking space U+237D.
   tab = ">-",
   space = "·",
+  nbsp = "⍽",
   lead = "·",
   trail = "·",
   eol = "$"
