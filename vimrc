@@ -103,7 +103,7 @@ for s:colorscheme in s:colorschemes
     try
         execute "colorscheme " . s:colorscheme
         break " Exit the loop if colorscheme loads successfully
-    catch /^Vim\%((\a\+)\)\=:E185/
+    catch /E185/                                                               " :help E185 and :help exception-variable
         continue
     endtry
 endfor
