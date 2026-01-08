@@ -87,13 +87,14 @@ case "$1" in
     --nvim)
         bootstrap_nvim
         ;;
-    --configs|--cfgs)
+    -c|--configs)
         bootstrap_configs
         ;;
     -h|--help)
         echo "Usage: ./bootstrap [option]"
-        echo "      -a, --all   Install everything"
-        echo "      --nvim      Install only Neovim dependencies"
+        echo "      -a, --all           Install everything"
+        echo "      -c, --configs       Install configs"
+        echo "      --nvim              Install only Neovim dependencies"
         ;;
     *)
         echo "Invalid option. See --help."
