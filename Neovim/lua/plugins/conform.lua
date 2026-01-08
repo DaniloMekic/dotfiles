@@ -10,7 +10,6 @@ return {
             cpp = { lsp_format = "prefer" },
             java = { "google-java-format", lsp_format = "fallback" },
             javascript = { "prettierd", "prettier", stop_after_first = true },
-            lua = { "stylua" },
             python = { "isort", "black" },
         },
 
@@ -19,19 +18,13 @@ return {
                 -- Use 4 space indents per Android Open Source Project (AOSP), instead of 2 per Google Java Style Guide
                 prepend_args = { "--aosp" },
             },
-            stylua = {
-                append_args = {
-                    "--indent-type",
-                    "Spaces",
-                },
-            },
         },
 
         -- Setup autocommand for BufWritePre event
         format_on_save = {
             -- These options will be passed to conform.format()
             timeout_ms = 500,
-            lsp_format = "fallback",
+            lsp_format = "never",
         },
     },
 }
