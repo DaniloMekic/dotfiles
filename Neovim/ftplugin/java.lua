@@ -32,10 +32,16 @@ end
 -- JDTLS Plugins
 --
 local jdtls_plugins = {}
--- Spring Tools: https://spring.io/tools
--- Install via `:MasonInstall vscode-spring-boot-tools`
+-- Installation via WhoIsSethDaniel/mason-tool-installer
+-- Spring Tools:
+--      https://spring.io/tools
+--      https://github.com/spring-projects/spring-tools
 local spring_boot = require("spring_boot").java_extensions()
 vim.list_extend(jdtls_plugins, spring_boot)
+-- https://github.com/microsoft/java-debug
+vim.list_extend(jdtls_plugins, vim.fn.glob(vim.fn.expand("$MASON/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"), true, true))
+-- https://github.com/microsoft/vscode-java-test
+vim.list_extend(jdtls_plugins, vim.split(vim.fn.glob(vim.fn.expand("$MASON/packages/java-test/extension/server/*.jar"), true), "\n"))
 
 -- Java Agents
 local java_agents = {

@@ -42,6 +42,17 @@ return {
                 }
             }
         },
+        {
+            "WhoIsSethDaniel/mason-tool-installer",
+            -- Valid names: https://mason-registry.dev/registry/list 
+            opts = {
+                ensure_installed = {
+                    "java-debug-adapter",
+                    "java-test",
+                    "vscode-spring-boot-tools"
+                }
+            }
+        },
         "neovim/nvim-lspconfig"
     }
 }
