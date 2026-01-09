@@ -1,11 +1,14 @@
-return { 
-    "mfussenegger/nvim-dap",
+return {
+    "rcarriga/nvim-dap-ui",
+    opts = {},
     dependencies = {
-        "rcarriga/nvim-dap-ui"
+        {
+            "mfussenegger/nvim-dap",
+            keys = {
+                { "<Leader>dt", function() require("dap").toggle_breakpoint() end, desc = "Toggle breakpoint" },
+                { "<Leader>dc", function () require("dap").continue() end, desc = "Continue" }
+            }
+        },
+        "nvim-neotest/nvim-nio",
     },
-    config = function ()
-        local dap = require("dap")
-        vim.keymap.set("n", "<Leader>dt", dap.toggle_breakpoint, {})
-        vim.keymap.set("n", "<Leader>dc", dap.continue, {})
-    end
 }
