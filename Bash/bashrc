@@ -23,3 +23,5 @@ export PS1='[\u@\h:\w]$(__git_ps1 " (%s)")\$ '
 ## Git Completions
 ## https://git-scm.com/book/en/v2/Appendix-A:-Git-in-Other-Environments-Git-in-Bash
 source /usr/share/git/completion/git-completion.bash
+
+. "$HOME/.local/bin/env"
