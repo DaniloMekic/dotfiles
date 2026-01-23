@@ -6,6 +6,9 @@ return {
     opts = {
         -- Formatters are automatically installed with Mason via mason-conform plugin
         formatters_by_ft = {
+            -- clangd LSP embeds clang-format, a code formatter for C/C++/C# and other languages
+            -- Styling options can be controlled with .clang-format file
+            -- https://clang.llvm.org/docs/ClangFormatStyleOptions.html
             c = { lsp_format = "prefer" },
             cpp = { lsp_format = "prefer" },
             java = { "google-java-format", lsp_format = "fallback" },
