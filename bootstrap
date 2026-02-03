@@ -74,6 +74,7 @@ bootstrap_configs() {
     ln -sfv --no-dereference $PWD/Neovim $CONFIG/nvim # Option --no-dereference prevents following of an existing symlink if it points to a directory.
     ln -sfv $PWD/tmux.conf $HOME/.tmux.conf
     ln -sfv $PWD/vimrc $HOME/.vimrc
+    ln -sfv $PWD/curlrc $HOME/.curlrc
     sudo ln -sfv $PWD/logiops.conf /etc/logid.cfg
     sudo ln -sfv $PWD/keyd.conf /etc/keyd/default.conf
 }
