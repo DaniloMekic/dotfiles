@@ -4,25 +4,26 @@ return {
         ---@type string[]
         ensure_installed = {
             -- Valid LSP Names: github.com/neovim/nvim-lspconfig/tree/master/lsp
-            "vimls",                   -- VimScript
-            "jdtls",                   -- Java
-            "clangd",                  -- C, C++
-            "lua_ls",                  -- Lua
-            "html",                    -- HTML
-            "cssls",                   -- CSS
-            "ts_ls",                   -- TypeScript
+            "awk_ls",                  -- AWK
             "basedpyright",            -- Python LSP
-            "ruff",                    -- Python Linter/Code Formatter
             "bashls",                  -- Bash
-            "markdown_oxide",          -- Markdown
+            "clangd",                  -- C, C++
+            "cssls",                   -- CSS
+            "docker_language_server",  -- Docker
+            "html",                    -- HTML
+            "jdtls",                   -- Java
             "jsonls",                  -- JSON
             "lemminx",                 -- XML
-            "yamlls",                  -- YAML
-            "taplo",                   -- TOML
-            "docker_language_server",  -- Docker
-            "texlab",                  -- LaTeX
-            "sqls",                    -- SQL
+            "lua_ls",                  -- Lua
+            "markdown_oxide",          -- Markdown
             "postgres_lsp",            -- PostgreSQL
+            "ruff",                    -- Python Linter/Code Formatter
+            "sqls",                    -- SQL
+            "taplo",                   -- TOML
+            "texlab",                  -- LaTeX
+            "ts_ls",                   -- TypeScript
+            "vimls",                   -- VimScript
+            "yamlls",                  -- YAML
         },
         ---@type boolean | string[] | { exclude: string[] }
         automatic_enable = {
