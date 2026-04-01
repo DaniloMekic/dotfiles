@@ -15,6 +15,7 @@ return {
             javascript = { "prettierd", "prettier", stop_after_first = true },
             python = { "isort", "black" },
             sh = { "shfmt", lsp_format = "fallback" },
+            tex = { "tex-fmt" },
         },
 
         formatters = {
