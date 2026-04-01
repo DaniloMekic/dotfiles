@@ -7,39 +7,40 @@ return {{
 
         treesitter.install({
             -- Languages
+            "awk",
+            "bash",
             "c",
             "java",
-            "python",
-            "lua",
             "javascript",
-            "vim", -- Vimscript
+            "lua",
+            "python",
+            "rust",
             "sql",
-            "bash",
-            "awk",
+            "vim",                              -- Vimscript
             -- Markup
+            "css",
+            "csv",                              -- CSV, PSV, TSV
+            "html",
+            "jq",
+            "json",
             "markdown",
             "markdown_inline",
-            "html",
-            "css",
-            "json",
-            "jq",
-            "yaml",
             "toml",
-            "csv", -- CSV, PSV, TSV
             "xml",
+            "yaml",
             -- Configs & Configuration Languages
+            "dockerfile",
             "git_config", "gitattributes", "gitcommit", "gitignore", "git_rebase",
+            "hyprlang",                         -- Hyprland Configuration Language
+            "passwd",
+            "properties",                       -- Java Properties File
             "ssh_config",
             "tmux",
-            "passwd",
-            "hyprlang", -- Hyprland Configuration Language
-            "properties", -- Java Properties File
-            "dockerfile",
             -- Docs
-            "vimdoc",
             "javadoc",
             "luadoc",
-            "query"
+            "query",
+            "vimdoc",
         })
     end
 }}

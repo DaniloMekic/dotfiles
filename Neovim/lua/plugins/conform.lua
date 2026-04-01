@@ -16,6 +16,7 @@ return {
             python = { "isort", "black" },
             sh = { "shfmt", lsp_format = "fallback" },
             tex = { "tex-fmt" },
+            rust = { "rustfmt", lsp_format = "fallback" },
         },
 
         formatters = {
