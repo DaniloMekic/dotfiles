@@ -50,7 +50,8 @@ return {
                 ensure_installed = {
                     "java-debug-adapter",
                     "java-test",
-                    "vscode-spring-boot-tools"
+                    "vscode-spring-boot-tools",
+                    "debugpy",                          -- Python debugger
                 }
             }
         },

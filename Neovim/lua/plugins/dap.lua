@@ -17,6 +17,7 @@ return {
                 { "<F11>", function() require("dap").step_into() end, desc = "Debugging: Step Into" },
                 { "<F12>", function() require("dap").step_out() end, desc = "Debugging: Step Out" },
                 { "<Leader>dt", function() require("dap").terminate() end, desc = "Debugging: Terminate" },
+                { "<Leader>dr", function() require("dap").repl.open() end, desc = "Debugging: REPL" },
             }
         },
         "nvim-neotest/nvim-nio",
