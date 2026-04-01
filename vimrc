@@ -88,14 +88,15 @@ set scrolloff=999
 let g:mapleader = " "
 nnoremap <Leader>w :write<CR>
 nnoremap <Leader>q :call ToggleQuickFixWindow()<CR>
-nnoremap [b :bprevious<CR>
 nnoremap [B :bfirst<CR>
+nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
 nnoremap ]B :blast<CR>
 nnoremap [q :cprevious<CR>
 nnoremap ]q :cnext<CR>
-nnoremap [l :lprevious<CR>
 nnoremap [L :lfirst<CR>
+nnoremap [l :lprevious<CR>
+nnoremap ]l :lnext<CR>
 nnoremap ]L :llast<CR>
 
 " Colors
