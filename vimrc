@@ -92,8 +92,10 @@ nnoremap [b :bprevious<CR>
 nnoremap [B :bfirst<CR>
 nnoremap ]b :bnext<CR>
 nnoremap ]B :blast<CR>
-nnoremap ]q :cnext<CR>
 nnoremap [q :cprevious<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [l :lprevious<CR>
+nnoremap ]l :lnext<CR>
 
 " Colors
 set termguicolors
