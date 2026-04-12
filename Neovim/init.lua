@@ -15,6 +15,7 @@ vim.pack.add({
     { src = "https://github.com/nvim-mini/mini.files" },
     { src = "https://github.com/nvim-lualine/lualine.nvim", name = "lualine" },
     { src = "https://github.com/mfussenegger/nvim-lint" },
+    { src = "https://github.com/rshkarin/mason-nvim-lint" },
     { src = "https://github.com/mfussenegger/nvim-dap" },
     { src = "https://github.com/rcarriga/nvim-dap-ui" },
     { src = "https://github.com/mfussenegger/nvim-dap-python" },

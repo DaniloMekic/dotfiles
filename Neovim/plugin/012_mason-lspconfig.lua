@@ -15,7 +15,6 @@ require("mason-lspconfig").setup({
             "lua_ls",                  -- Lua
             "markdown_oxide",          -- Markdown
             "postgres_lsp",            -- PostgreSQL
-            "ruff",                    -- Python Linter/Code Formatter
             "rust_analyzer",           -- Rust
             "sqls",                    -- SQL
             "taplo",                   -- TOML
