@@ -1,5 +1,5 @@
 require("mini.files").setup({
-	version = false,
+    version = false,
 })
 
 vim.keymap.set("n", "<Leader>e", function() MiniFiles.open() end, { desc = "Explore" })
