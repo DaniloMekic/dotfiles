@@ -25,3 +25,4 @@ export PS1='[\u@\h:\w]$(__git_ps1 " (%s)")\$ '
 source /usr/share/git/completion/git-completion.bash
 
 . "$HOME/.local/bin/env"
+. "$HOME/.cargo/env"

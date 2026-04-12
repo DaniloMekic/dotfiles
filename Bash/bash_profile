@@ -4,3 +4,4 @@ if [ -f ~/.bashrc ]; then
 fi
 
 . "$HOME/.local/bin/env"
+. "$HOME/.cargo/env"
