@@ -1,0 +1,7 @@
+vim.keymap.set("n", "<F5>", function() require("dap").continue() end, { desc = "Debugging: Continue" })
+vim.keymap.set("n", "<F9>", function() require("dap").toggle_breakpoint() end, { desc = "Debugging: Breakpoint" })
+vim.keymap.set("n", "<F10>", function() require("dap").step_over() end, { desc = "Debugging: Step Over" })
+vim.keymap.set("n", "<F11>", function() require("dap").step_into() end, { desc = "Debugging: Step Into" })
+vim.keymap.set("n", "<F12>", function() require("dap").step_out() end, { desc = "Debugging: Step Out" })
+vim.keymap.set("n", "<Leader>dt", function() require("dap").terminate() end, { desc = "Debugging: Terminate" })
+vim.keymap.set("n", "<Leader>dr", function() require("dap").repl.open() end, { desc = "Debugging: Read–Eval–Print Loop" })

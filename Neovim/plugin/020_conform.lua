@@ -1,9 +1,6 @@
-return {
-    "stevearc/conform.nvim",
-
-    ---@module "conform"
-    ---@type conform.setupOpts
-    opts = {
+---@module "conform"
+require("conform").setup({
+	---@type conform.setupOpts
         -- Formatters are automatically installed with Mason via mason-conform plugin
         formatters_by_ft = {
             -- clangd LSP embeds clang-format, a code formatter for C/C++/C# and other languages
@@ -32,5 +29,4 @@ return {
             timeout_ms = 500,
             lsp_format = "never",
         },
-    },
-}
+})

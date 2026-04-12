@@ -1,11 +1,4 @@
-return {{
-    "nvim-treesitter/nvim-treesitter",
-    lazy = false,
-    build = ":TSUpdate",
-    config = function () 
-        local treesitter = require("nvim-treesitter")
-
-        treesitter.install({
+require("nvim-treesitter").install({
             -- Languages
             "awk",
             "bash",
@@ -41,6 +34,4 @@ return {{
             "luadoc",
             "query",
             "vimdoc",
-        })
-    end
-}}
+    })
