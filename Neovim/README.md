@@ -18,3 +18,22 @@ $ bootstrap_nvim
 - **Code Completion Engine**: [blink.cmp](https://github.com/Saghen/blink.cmp)
 - **Snippet Engine**: [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 - **Debug Adapter Protocol** (DAP) **Client**: [nvim-dap](https://github.com/mfussenegger/nvim-dap)
+
+# Mason Architecture
+```mermaid
+flowchart TD
+    Mason
+ 
+    Mason --> mason-lspconfig
+    Mason --> mason-nvim-lint
+    Mason --> mason-conform
+    Mason --> mason-nvim-dap
+ 
+    mason-lspconfig --> nvim-lspconfig
+ 
+    mason-nvim-lint --> nvim-lint
+ 
+    mason-conform --> conform.nvim
+ 
+    mason-nvim-dap --> nvim-dap
+```
