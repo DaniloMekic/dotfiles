@@ -36,3 +36,11 @@ require("nvim-treesitter").install({
     "xml",
     "yaml",
 })
+
+-- Enable syntax highlighting
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "hurl" },
+    callback = function()
+        vim.treesitter.start()
+    end,
+})
