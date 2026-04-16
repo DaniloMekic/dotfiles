@@ -1,37 +1,38 @@
 require("nvim-treesitter").install({
-            -- Languages
-            "awk",
-            "bash",
-            "c",
-            "java",
-            "javascript",
-            "lua",
-            "python",
-            "rust",
-            "sql",
-            "vim",                              -- Vimscript
-            -- Markup
-            "css",
-            "csv",                              -- CSV, PSV, TSV
-            "html",
-            "jq",
-            "json",
-            "markdown",
-            "markdown_inline",
-            "toml",
-            "xml",
-            "yaml",
-            -- Configs & Configuration Languages
-            "dockerfile",
-            "git_config", "gitattributes", "gitcommit", "gitignore", "git_rebase",
-            "hyprlang",                         -- Hyprland Configuration Language
-            "passwd",
-            "properties",                       -- Java Properties File
-            "ssh_config",
-            "tmux",
-            -- Docs
-            "javadoc",
-            "luadoc",
-            "query",
-            "vimdoc",
-    })
+    "awk",
+    "bash",
+    "c",
+    "css",
+    "csv", -- CSV, PSV, TSV
+    "dockerfile",
+    "git_config",
+    "gitattributes",
+    "gitcommit",
+    "gitignore",
+    "git_rebase",
+    "html",
+    "hurl",
+    "hyprlang", -- Hyprland Configuration Language
+    "java",
+    "javadoc",
+    "javascript",
+    "jq",
+    "json",
+    "lua",
+    "luadoc",
+    "markdown",
+    "markdown_inline",
+    "passwd",
+    "properties", -- Java Properties File
+    "python",
+    "query",
+    "rust",
+    "sql",
+    "ssh_config",
+    "tmux",
+    "toml",
+    "vim", -- Vimscript
+    "vimdoc",
+    "xml",
+    "yaml",
+})
