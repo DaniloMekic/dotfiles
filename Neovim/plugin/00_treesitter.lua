@@ -6,10 +6,10 @@ require("nvim-treesitter").install({
     "csv", -- CSV, PSV, TSV
     "dockerfile",
     "git_config",
+    "git_rebase",
     "gitattributes",
     "gitcommit",
     "gitignore",
-    "git_rebase",
     "html",
     "hurl",
     "hyprlang", -- Hyprland Configuration Language
@@ -39,7 +39,37 @@ require("nvim-treesitter").install({
 
 -- Enable syntax highlighting
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "hurl" },
+    pattern = {
+        "awk",
+        "bash",
+        "c",
+        "css",
+        "csv",
+        "dockerfile",
+        "gitattributes",
+        "gitcommit",
+        "gitconfig",
+        "gitrebase",
+        "html",
+        "hurl",
+        "hyprlang",
+        "java",
+        "javascript",
+        "jq",
+        "json",
+        "lua",
+        "markdown",
+        "passwd",
+        "python",
+        "rust",
+        "sql",
+        "sshconfig",
+        "tmux",
+        "toml",
+        "vim",
+        "xml",
+        "yaml",
+    },
     callback = function()
         vim.treesitter.start()
     end,
