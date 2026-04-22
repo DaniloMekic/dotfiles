@@ -14,9 +14,17 @@ local jdtls_plugins = {}
 local spring_boot = require("spring_boot").java_extensions()
 vim.list_extend(jdtls_plugins, spring_boot)
 -- https://github.com/microsoft/java-debug
-vim.list_extend(jdtls_plugins, vim.fn.glob(vim.fn.expand("$MASON/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"), true, true))
+vim.list_extend(
+    jdtls_plugins,
+    vim.fn.glob(
+        vim.fn.expand("$MASON/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"),
+        true,
+        true
+    )
+)
 -- https://github.com/microsoft/vscode-java-test
-local java_test_bundles = vim.split(vim.fn.glob(vim.fn.expand("$MASON/packages/java-test/extension/server/*.jar"), 1), "\n")
+local java_test_bundles =
+    vim.split(vim.fn.glob(vim.fn.expand("$MASON/packages/java-test/extension/server/*.jar"), 1), "\n")
 local excluded = {
     "com.microsoft.java.test.runner-jar-with-dependencies.jar",
     "jacocoagent.jar",
@@ -34,7 +42,7 @@ end
 local config = {
     name = "jdtls",
     cmd = { "jdtls" },
-    root_dir = vim.fs.root(0, {'gradlew', '.git', 'mvnw'}),
+    root_dir = vim.fs.root(0, { "gradlew", ".git", "mvnw" }),
 
     -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
     -- for a list of options
@@ -44,33 +52,33 @@ local config = {
                 runtimes = {
                     {
                         name = "JavaSE-1.8",
-                        path = "/usr/lib/jvm/java-8-openjdk"
+                        path = "/usr/lib/jvm/java-8-openjdk",
                     },
                     {
                         name = "JavaSE-11",
-                        path = "/usr/lib/jvm/java-11-openjdk"
+                        path = "/usr/lib/jvm/java-11-openjdk",
                     },
                     {
                         name = "JavaSE-17",
-                        path = "/usr/lib/jvm/java-17-openjdk"
+                        path = "/usr/lib/jvm/java-17-openjdk",
                     },
                     {
                         name = "JavaSE-21",
-                        path = "/usr/lib/jvm/java-21-openjdk"
+                        path = "/usr/lib/jvm/java-21-openjdk",
                     },
                     {
-                        name = "JavaSE-25",
-                        path = "/usr/lib/jvm/java-25-openjdk"
-                    }
-                }
-            }
-        }
+                        name = "JavaSE-26",
+                        path = "/usr/lib/jvm/java-26-openjdk",
+                    },
+                },
+            },
+        },
     },
 
     -- Language server `initializationOptions`
     -- `bundles` table needs to be extended with paths to jar files
     init_options = {
-        bundles = jdtls_plugins
+        bundles = jdtls_plugins,
     },
 }
 
