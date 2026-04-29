@@ -51,10 +51,6 @@ vim.opt.termguicolors = true -- Enables 24-bit RGB color in the TUI.
 vim.opt.undofile = true
 vim.opt.showmode = false -- Disabling since custom status line displays current mode.
 
--- Spell check
-vim.opt.spell = true
-vim.opt.spelllang = "en_us"
-
 -- Wildmenu
 vim.opt.wildmenu = true
 vim.opt.wildmode = "full" -- How Vim handles <Tab> completion.
