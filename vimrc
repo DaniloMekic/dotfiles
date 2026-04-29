@@ -98,6 +98,8 @@ nnoremap [L :lfirst<CR>
 nnoremap [l :lprevious<CR>
 nnoremap ]l :lnext<CR>
 nnoremap ]L :llast<CR>
+vnoremap < <gv
+vnoremap > >gv
 
 " Colors
 set termguicolors
