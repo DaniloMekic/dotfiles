@@ -33,4 +33,8 @@ require("conform").setup({
         timeout_ms = 500,
         lsp_format = "never",
     },
+
+    stop_after_first = true,
 })
+
+vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
