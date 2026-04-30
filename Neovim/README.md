@@ -37,3 +37,5 @@ flowchart TD
  
     mason-nvim-dap --> nvim-dap
 ```
+
+LSPs are automatically enabled via `mason-lspconfig`, there is no need to call `vim.lsp.enable({name})`.
