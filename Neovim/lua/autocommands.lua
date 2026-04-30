@@ -1,3 +1,4 @@
+-- Enable spell check and text wrap only for certain file types
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "markdown", "text", "gitcommit" },
     callback = function()
