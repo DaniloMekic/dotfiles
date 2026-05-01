@@ -9,7 +9,7 @@ require("conform").setup({
         c = { lsp_format = "prefer" },
         cpp = { lsp_format = "prefer" },
         java = { "google-java-format", lsp_format = "fallback" },
-        javascript = { "prettierd", "prettier", stop_after_first = true },
+        javascript = { "prettierd", "prettier" },
         lua = { "stylua" },
         python = { "isort", "black" },
         rust = { "rustfmt", lsp_format = "fallback" },
