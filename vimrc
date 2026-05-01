@@ -100,6 +100,12 @@ nnoremap ]l :lnext<CR>
 nnoremap ]L :llast<CR>
 vnoremap < <gv
 vnoremap > >gv
+" tmux requires extended-keys option to be enabled,
+" in order to support complex modifiers
+nnoremap <M-j> :move .+1<CR>==
+nnoremap <M-k> :move .-2<CR>==
+vnoremap <M-j> :move '>+1<CR>gv=gv
+vnoremap <M-k> :move '<-2<CR>gv=gv
 
 " Colors
 set termguicolors
