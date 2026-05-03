@@ -3,17 +3,18 @@
 get_aur_helper() {
     echo "Installing paru, AUR helper"
 
-    if sudo pacman -S --needed base-devel && \
-        (
-            git clone https://aur.archlinux.org/paru.git /tmp/paru && \
-            cd /tmp/paru && \
-            makepkg -si
-        )
+    if
+        sudo pacman -S --needed base-devel &&
+            (
+                git clone https://aur.archlinux.org/paru.git /tmp/paru &&
+                    cd /tmp/paru &&
+                    makepkg -si
+            )
         rm -rf /tmp/paru
-   then
+    then
         echo "paru installed successfully"
         return 0
-    else 
+    else
         echo "Failed to install paru"
         exit 1
     fi
@@ -30,7 +31,7 @@ bootstrap_system() {
         tmux \
         vim
 
-    if ! command -v paru &> /dev/null; then
+    if ! command -v paru &>/dev/null; then
         get_aur_helper
     fi
 
@@ -73,32 +74,32 @@ bootstrap_configs() {
     ln -sfv $PWD/mpv/mpv.conf $CONFIG/mpv/
     ln -sfv --no-dereference $PWD/Neovim $CONFIG/nvim # Option --no-dereference prevents following of an existing symlink if it points to a directory.
     ln -sfv $PWD/tmux.conf $HOME/.tmux.conf
-    ln -sfv $PWD/vimrc $HOME/.vimrc
+    ln -sfv $PWD/config.vim $HOME/.vimrc
     ln -sfv $PWD/curlrc $HOME/.curlrc
     sudo ln -sfv $PWD/logiops.conf /etc/logid.cfg
     sudo ln -sfv $PWD/keyd.conf /etc/keyd/default.conf
 }
 
 case "$1" in
-    -a|--all)
-        bootstrap_system
-        bootstrap_nvim
-        bootstrap_configs
-        ;;
-    --nvim)
-        bootstrap_nvim
-        ;;
-    -c|--configs)
-        bootstrap_configs
-        ;;
-    -h|--help)
-        echo "Usage: ./bootstrap [option]"
-        echo "      -a, --all           Install everything"
-        echo "      -c, --configs       Install configs"
-        echo "      --nvim              Install only Neovim dependencies"
-        ;;
-    *)
-        echo "Invalid option. See --help."
-        exit 1
-        ;;
+-a | --all)
+    bootstrap_system
+    bootstrap_nvim
+    bootstrap_configs
+    ;;
+--nvim)
+    bootstrap_nvim
+    ;;
+-c | --configs)
+    bootstrap_configs
+    ;;
+-h | --help)
+    echo "Usage: ./bootstrap [option]"
+    echo "      -a, --all           Install everything"
+    echo "      -c, --configs       Install configs"
+    echo "      --nvim              Install only Neovim dependencies"
+    ;;
+*)
+    echo "Invalid option. See --help."
+    exit 1
+    ;;
 esac
