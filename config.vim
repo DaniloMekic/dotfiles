@@ -86,6 +86,7 @@ set nowrap
 set scrolloff=999
 
 " Keymaps
+" :help key-notation
 let g:mapleader = " "
 nnoremap <Leader>w :write<CR>
 nnoremap <Leader>q :call ToggleQuickFixWindow()<CR>
@@ -107,6 +108,8 @@ nnoremap <M-j> :move .+1<CR>==
 nnoremap <M-k> :move .-2<CR>==
 vnoremap <M-j> :move '>+1<CR>gv=gv
 vnoremap <M-k> :move '<-2<CR>gv=gv
+" fzf
+nnoremap <Leader>ff :<C-U>FZF<CR>
 
 " Colors
 set termguicolors
