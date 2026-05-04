@@ -8,6 +8,7 @@ endif
 call plug#begin()
     Plug 'andymass/vim-matchup'
     Plug 'sainnhe/gruvbox-material'
+    Plug 'junegunn/fzf.vim'
 call plug#end()
 
 filetype plugin indent on                                                      " Enable filetype detection, and filetype-specific plugins and indentation rules
