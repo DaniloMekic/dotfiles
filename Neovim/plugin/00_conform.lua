@@ -10,6 +10,7 @@ require("conform").setup({
         cpp = { lsp_format = "prefer" },
         java = { "google-java-format", lsp_format = "fallback" },
         javascript = { "prettierd", "prettier" },
+        json = { "jq" },
         lua = { "stylua" },
         python = { "isort", "black" },
         rust = { "rustfmt", lsp_format = "fallback" },
