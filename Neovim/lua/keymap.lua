@@ -8,6 +8,14 @@
 vim.g.mapleader = " "
 
 vim.keymap.set("n", "<Leader>w", ":write<CR>")
+-- Yank to system clipboard
+vim.keymap.set({ "n", "x" }, "<Leader>y", '"+y', { desc = "Yank to system clipboard" })
+vim.keymap.set("n", "<Leader>Y", '"+yy', { desc = "Yank line(s) to system clipboard" })
+-- Put from system clipboard, without modifying unnamed register
+vim.keymap.set("n", "<Leader>p", '"+p', { desc = "Put from system clipboard after the cursor" })
+vim.keymap.set("n", "<Leader>P", '"+P', { desc = "Put from system clipboard before the cursor" })
+vim.keymap.set("x", "<Leader>p", '"_d"+P', { desc = "Put from system clipboard" })
+vim.keymap.set("x", "<Leader>P", '"_d"+P', { desc = "Put from system clipboard" })
 
 -- Indentation
 vim.keymap.set("v", "<", "<gv", { desc = "Indent line and reselect" })
