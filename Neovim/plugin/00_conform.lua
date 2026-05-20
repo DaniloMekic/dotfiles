@@ -8,6 +8,7 @@ require("conform").setup({
         -- https://clang.llvm.org/docs/ClangFormatStyleOptions.html
         c = { lsp_format = "prefer" },
         cpp = { lsp_format = "prefer" },
+        groovy = { "npm-groovy-lint" },
         java = { "google-java-format", lsp_format = "fallback" },
         javascript = { "prettierd", "prettier" },
         json = { "jq" },

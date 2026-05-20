@@ -10,6 +10,7 @@ require("nvim-treesitter").install({
     "gitattributes",
     "gitcommit",
     "gitignore",
+    "groovy",
     "html",
     "hurl",
     "hyprlang", -- Hyprland Configuration Language
@@ -50,6 +51,7 @@ vim.api.nvim_create_autocmd("FileType", {
         "gitcommit",
         "gitconfig",
         "gitrebase",
+        "groovy",
         "html",
         "hurl",
         "hyprlang",

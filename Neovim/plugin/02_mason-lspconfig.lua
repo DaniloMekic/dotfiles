@@ -8,6 +8,7 @@ require("mason-lspconfig").setup({
         "clangd", -- C, C++
         "cssls", -- CSS
         "docker_language_server", -- Docker
+        "groovyls", -- Apache Groovy
         "harper_ls", -- Grammar
         "html", -- HTML
         "jdtls", -- Java
