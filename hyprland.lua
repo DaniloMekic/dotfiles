@@ -9,9 +9,9 @@
 -- Create your files separately and then require them like this:
 -- require("myColors")
 
-------------------
----- MONITORS ----
-------------------
+------------------------------------------------------------
+--- MONITORS
+------------------------------------------------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
@@ -21,18 +21,18 @@ hl.monitor({
     scale = 'auto',
 })
 
----------------------
----- MY PROGRAMS ----
----------------------
+------------------------------------------------------------
+--- MY PROGRAMS
+------------------------------------------------------------
 
 -- Set programs that you use
 local terminal = 'foot'
 local file_manager = 'yazi'
 local menu = 'hyprlauncher'
 
--------------------
----- AUTOSTART ----
--------------------
+------------------------------------------------------------
+--- AUTOSTART
+------------------------------------------------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
 
@@ -45,18 +45,18 @@ local menu = 'hyprlauncher'
 --   hl.exec_cmd("waybar & hyprpaper & firefox")
 -- end)
 
--------------------------------
----- ENVIRONMENT VARIABLES ----
--------------------------------
+------------------------------------------------------------
+--- ENVIRONMENT VARIABLES
+------------------------------------------------------------
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 
 hl.env('XCURSOR_SIZE', '24')
 hl.env('HYPRCURSOR_SIZE', '24')
 
------------------------
------ PERMISSIONS -----
------------------------
+------------------------------------------------------------
+---- PERMISSIONS
+------------------------------------------------------------
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Permissions/
 -- Please note permission changes here require a Hyprland restart and are not applied on-the-fly
@@ -72,9 +72,9 @@ hl.env('HYPRCURSOR_SIZE', '24')
 -- hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
 -- hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
 
------------------------
----- LOOK AND FEEL ----
------------------------
+------------------------------------------------------------
+--- LOOK AND FEEL
+------------------------------------------------------------
 
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
@@ -193,9 +193,9 @@ hl.config({
     },
 })
 
-----------------
-----  MISC  ----
-----------------
+------------------------------------------------------------
+---  MISC
+------------------------------------------------------------
 
 hl.config({
     misc = {
@@ -204,9 +204,9 @@ hl.config({
     },
 })
 
----------------
----- INPUT ----
----------------
+------------------------------------------------------------
+--- INPUT
+------------------------------------------------------------
 
 hl.config({
     input = {
@@ -239,9 +239,11 @@ hl.device({
     sensitivity = -0.5,
 })
 
----------------------
----- KEYBINDINGS ----
----------------------
+------------------------------------------------------------
+--- KEYBINDINGS
+--- Key Names are taken from C header file xkbcommon-keysyms.h,
+--- https://github.com/xkbcommon/libxkbcommon/blob/master/include/xkbcommon/xkbcommon-keysyms.h
+------------------------------------------------------------
 
 local main_mod = 'SUPER' -- Sets "Windows" key as main modifier
 
@@ -320,9 +322,9 @@ hl.bind('XF86AudioPause', hl.dsp.exec_cmd('playerctl play-pause'), { locked = tr
 hl.bind('XF86AudioPlay', hl.dsp.exec_cmd('playerctl play-pause'), { locked = true })
 hl.bind('XF86AudioPrev', hl.dsp.exec_cmd('playerctl previous'), { locked = true })
 
---------------------------------
----- WINDOWS AND WORKSPACES ----
---------------------------------
+------------------------------------------------------------
+--- WINDOWS AND WORKSPACES
+------------------------------------------------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 -- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
