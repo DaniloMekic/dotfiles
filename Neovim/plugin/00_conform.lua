@@ -39,4 +39,5 @@ require('conform').setup({
     stop_after_first = true,
 })
 
+-- See `:help gq`
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
