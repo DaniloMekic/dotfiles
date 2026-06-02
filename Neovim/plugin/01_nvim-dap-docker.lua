@@ -1,1 +1,1 @@
-require("dap-docker").setup()
+require('dap-docker').setup()

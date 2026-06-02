@@ -20,20 +20,20 @@ vim.opt.smartindent = true -- Autoindent when starting a new line.
 vim.opt.autoindent = true -- Keep indentation from previous line.
 
 -- Folding
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.opt.foldlevel = 99
 
 -- Display control characters
 vim.opt.list = true -- Enable 'list' mode.
 vim.opt.listchars =
     { -- Strings to use in 'list' mode. For space and trail U+00B7 is used; for non-breaking space U+237D.
-        tab = ">-",
-        space = "·",
-        nbsp = "⍽",
-        lead = "·",
-        trail = "·",
-        eol = "$",
+        tab = '>-',
+        space = '·',
+        nbsp = '⍽',
+        lead = '·',
+        trail = '·',
+        eol = '$',
     }
 
 -- Searching
@@ -42,7 +42,7 @@ vim.opt.smartcase = true -- If search string contains at least one uppercase let
 
 vim.opt.splitright = true -- Splitting a window vertically will put the new window right of the current one.
 vim.opt.splitbelow = true -- Splitting a window horizontally will put the new window below the current one.
-vim.opt.inccommand = "split" -- When nonempty, shows the effects of :substitute, :smagic, :snomagic and user commands with the :command-preview flag as you type.
+vim.opt.inccommand = 'split' -- When nonempty, shows the effects of :substitute, :smagic, :snomagic and user commands with the :command-preview flag as you type.
 vim.opt.showcmd = true -- Show (partial) command in the last line of the screen.
 
 -- Colors
@@ -53,6 +53,6 @@ vim.opt.showmode = false -- Disabling since custom status line displays current 
 
 -- Wildmenu
 vim.opt.wildmenu = true
-vim.opt.wildmode = "full" -- How Vim handles <Tab> completion.
+vim.opt.wildmode = 'full' -- How Vim handles <Tab> completion.
 
-vim.opt.winborder = "rounded"
+vim.opt.winborder = 'rounded'

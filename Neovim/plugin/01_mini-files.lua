@@ -1,5 +1,7 @@
-require("mini.files").setup({
+require('mini.files').setup({
     version = false,
 })
 
-vim.keymap.set("n", "<Leader>e", function() MiniFiles.open() end, { desc = "Explore" })
+vim.keymap.set('n', '<Leader>e', function()
+    MiniFiles.open()
+end, { desc = 'Explore' })
