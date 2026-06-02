@@ -27,7 +27,8 @@ hl.monitor({
 
 -- Set programs that you use
 local terminal = 'foot'
-local file_manager = 'yazi'
+local browser = 'firefox'
+local file_manager = 'foot -e yazi'
 local menu = 'hyprlauncher'
 
 ------------------------------------------------------------
@@ -258,6 +259,7 @@ hl.bind(
     hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
 )
 hl.bind(main_mod .. ' + E', hl.dsp.exec_cmd(file_manager))
+hl.bind(main_mod .. ' + B', hl.dsp.exec_cmd(browser))
 -- Float and pin
 hl.bind(main_mod .. ' + V', function()
     hl.dsp.window.float({ action = 'toggle' })
