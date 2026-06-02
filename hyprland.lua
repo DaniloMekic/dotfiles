@@ -10,7 +10,7 @@
 -- require("myColors")
 
 ------------------------------------------------------------
---- MONITORS
+-- MONITORS
 ------------------------------------------------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
@@ -22,7 +22,7 @@ hl.monitor({
 })
 
 ------------------------------------------------------------
---- MY PROGRAMS
+-- MY PROGRAMS
 ------------------------------------------------------------
 
 -- Set programs that you use
@@ -31,7 +31,7 @@ local file_manager = 'yazi'
 local menu = 'hyprlauncher'
 
 ------------------------------------------------------------
---- AUTOSTART
+-- AUTOSTART
 ------------------------------------------------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
@@ -46,7 +46,7 @@ local menu = 'hyprlauncher'
 -- end)
 
 ------------------------------------------------------------
---- ENVIRONMENT VARIABLES
+-- ENVIRONMENT VARIABLES
 ------------------------------------------------------------
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
@@ -55,7 +55,7 @@ hl.env('XCURSOR_SIZE', '24')
 hl.env('HYPRCURSOR_SIZE', '24')
 
 ------------------------------------------------------------
----- PERMISSIONS
+-- PERMISSIONS
 ------------------------------------------------------------
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Permissions/
@@ -73,7 +73,7 @@ hl.env('HYPRCURSOR_SIZE', '24')
 -- hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
 
 ------------------------------------------------------------
---- LOOK AND FEEL
+-- LOOK AND FEEL
 ------------------------------------------------------------
 
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
@@ -194,7 +194,7 @@ hl.config({
 })
 
 ------------------------------------------------------------
----  MISC
+-- MISC
 ------------------------------------------------------------
 
 hl.config({
@@ -205,9 +205,11 @@ hl.config({
 })
 
 ------------------------------------------------------------
---- INPUT
+-- INPUT
 ------------------------------------------------------------
 
+-- X Keyboard Extension (XKB) syntax
+-- https://wiki.archlinux.org/title/X_keyboard_extension
 hl.config({
     input = {
         kb_layout = 'us,rs,rs',
@@ -240,9 +242,9 @@ hl.device({
 })
 
 ------------------------------------------------------------
---- KEYBINDINGS
---- Key Names are taken from C header file xkbcommon-keysyms.h,
---- https://github.com/xkbcommon/libxkbcommon/blob/master/include/xkbcommon/xkbcommon-keysyms.h
+-- KEYBINDINGS
+-- Key Names are taken from C header file xkbcommon-keysyms.h,
+-- https://github.com/xkbcommon/libxkbcommon/blob/master/include/xkbcommon/xkbcommon-keysyms.h
 ------------------------------------------------------------
 
 local main_mod = 'SUPER' -- Sets "Windows" key as main modifier
@@ -323,7 +325,7 @@ hl.bind('XF86AudioPlay', hl.dsp.exec_cmd('playerctl play-pause'), { locked = tru
 hl.bind('XF86AudioPrev', hl.dsp.exec_cmd('playerctl previous'), { locked = true })
 
 ------------------------------------------------------------
---- WINDOWS AND WORKSPACES
+-- WINDOWS AND WORKSPACES
 ------------------------------------------------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
