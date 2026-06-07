@@ -28,6 +28,7 @@ vim.pack.add({
     { src = 'https://github.com/lervag/vimtex' },
     { src = 'https://github.com/folke/which-key.nvim' },
     { src = 'https://tangled.org/cuducos.me/yaml.nvim' },
+    { src = 'https://github.com/OXY2DEV/markview.nvim' },
 })
 
 require('variables')
