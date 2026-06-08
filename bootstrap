@@ -24,6 +24,7 @@ get_aur_helper() {
 bootstrap_system() {
     sudo pacman -S --needed \
         foot \
+        hyprland hyprlock \
         jless \
         keyd \
         mpv \
