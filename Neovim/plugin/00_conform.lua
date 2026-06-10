@@ -6,6 +6,7 @@ require('conform').setup({
         -- clangd LSP embeds clang-format, a code formatter for C/C++/C# and other languages
         -- Styling options can be controlled with .clang-format file
         -- https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+        bash = { 'shfmt', lsp_format = 'fallback' },
         c = { lsp_format = 'prefer' },
         cpp = { lsp_format = 'prefer' },
         groovy = { 'npm-groovy-lint' },
@@ -26,6 +27,13 @@ require('conform').setup({
         },
         stylua = {
             prepend_args = { '--indent-type', 'Spaces', '--quote-style', 'AutoPreferSingle' },
+        },
+        -- shfmt man page
+        -- https://github.com/mvdan/sh/blob/master/cmd/shfmt/shfmt.1.scd
+        shfmt = {
+            -- Google's Shell Style Guide
+            -- https://google.github.io/styleguide/shellguide.html
+            prepend_args = { '-i', '2', '-ci', '-bn' },
         },
     },
 
