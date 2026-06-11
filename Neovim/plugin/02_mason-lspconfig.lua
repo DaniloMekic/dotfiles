@@ -15,7 +15,6 @@ require('mason-lspconfig').setup({
         'jsonls', -- JSON
         'lemminx', -- XML
         'lua_ls', -- Lua
-        'markdown_oxide', -- Markdown
         'postgres_lsp', -- PostgreSQL
         'rust_analyzer', -- Rust
         'sqls', -- SQL
