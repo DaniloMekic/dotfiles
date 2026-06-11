@@ -18,6 +18,7 @@ require('conform').setup({
         rust = { 'rustfmt', lsp_format = 'fallback' },
         sh = { 'shfmt', lsp_format = 'fallback' },
         tex = { 'tex-fmt' },
+        xml = { 'xmllint' },
     },
 
     formatters = {
