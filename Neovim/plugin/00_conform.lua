@@ -36,6 +36,12 @@ require('conform').setup({
             -- https://google.github.io/styleguide/shellguide.html
             prepend_args = { '-i', '2', '-ci', '-bn' },
         },
+        xmllint = {
+            -- https://gnome.pages.gitlab.gnome.org/libxml2/xmllint.html
+            env = {
+                XMLLINT_INDENT = '    ',
+            },
+        },
     },
 
     -- Setup autocommand for BufWritePre event
