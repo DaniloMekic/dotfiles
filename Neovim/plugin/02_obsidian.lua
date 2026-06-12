@@ -3,7 +3,7 @@ require('obsidian').setup({
     workspaces = {
         {
             name = 'personal',
-            path = '~/repo/demo-obsidian-nvim/obsidiannvim/',
+            path = '~/repo/notes',
         },
     },
 })
