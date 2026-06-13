@@ -33,6 +33,8 @@ vim.pack.add({
     { src = 'https://github.com/obsidian-nvim/obsidian.nvim', version = vim.version.range('*') },
 })
 
+vim.cmd('packadd nvim.undotree')
+
 require('variables')
 require('options')
 require('keymap')

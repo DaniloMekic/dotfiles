@@ -7,6 +7,14 @@
 
 vim.g.mapleader = ' '
 
+-- Factory Function: Toggle
+local function toggle(opt, name)
+    return function()
+        vim.opt_local[opt] = not vim.opt_local[opt]:get()
+        vim.notify(name .. ': ' .. (vim.opt_local[opt]:get() and 'On' or 'Off'))
+    end
+end
+
 vim.keymap.set('n', '<Leader>w', '<Cmd>write<CR>')
 -- Yank to system clipboard
 vim.keymap.set({ 'n', 'x' }, '<Leader>y', '"+y', { desc = 'Yank to system clipboard' })
@@ -26,6 +34,21 @@ vim.keymap.set('n', '<M-j>', '<Cmd>move .+1<CR>==', { desc = 'Move line down' })
 vim.keymap.set('n', '<M-k>', '<Cmd>move .-2<CR>==', { desc = 'Move line up' })
 vim.keymap.set('v', '<M-j>', "<Cmd>move '>+1<CR>gv=gv", { desc = 'Move selection down' })
 vim.keymap.set('v', '<M-k>', "<Cmd>move '<-2<CR>gv=gv", { desc = 'Move selection up' })
+
+-- UI
+vim.keymap.set('n', '<Leader>uw', toggle('wrap', 'Wrap'), { desc = 'Toggle Wrap' })
+vim.keymap.set('n', '<Leader>us', toggle('spell', 'Spell Check'), { desc = 'Toggle Spell Check' })
+vim.keymap.set('n', '<Leader>un', toggle('number', 'Line Numbers'), { desc = 'Toggle Line Numbers' })
+vim.keymap.set(
+    'n',
+    '<Leader>ur',
+    toggle('relativenumber', 'Relative Line Numbers'),
+    { desc = 'Toggle Relative Line Numbers' }
+)
+vim.keymap.set('n', '<leader>ut', vim.treesitter.inspect_tree, { desc = 'Inspect Tree-sitter Tree' })
+vim.keymap.set('n', '<Leader>uu', function()
+    require('undotree').open()
+end, { desc = 'Toggle Undo Tree' })
 
 -- QuickFix List
 -- See `:help default-mappings`; `:help [q`; `:help ]q`
