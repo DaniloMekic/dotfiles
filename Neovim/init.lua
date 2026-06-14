@@ -11,7 +11,6 @@ vim.pack.add({
     { src = 'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim', name = 'mason-tool-installer' },
     { src = 'https://github.com/mason-org/mason-lspconfig.nvim', name = 'mason-lspconfig' },
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
-    { src = 'https://github.com/nvim-tree/nvim-web-devicons', name = 'web-devicons' },
     { src = 'https://github.com/nvim-mini/mini.icons' },
     { src = 'https://github.com/nvim-mini/mini.files' },
     { src = 'https://github.com/nvim-mini/mini.surround' },
