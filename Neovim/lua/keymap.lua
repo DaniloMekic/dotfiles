@@ -36,19 +36,19 @@ vim.keymap.set('v', '<M-j>', "<Cmd>move '>+1<CR>gv=gv", { desc = 'Move selection
 vim.keymap.set('v', '<M-k>', "<Cmd>move '<-2<CR>gv=gv", { desc = 'Move selection up' })
 
 -- UI
-vim.keymap.set('n', '<Leader>uw', toggle('wrap', 'Wrap'), { desc = 'Toggle Wrap' })
-vim.keymap.set('n', '<Leader>us', toggle('spell', 'Spell Check'), { desc = 'Toggle Spell Check' })
-vim.keymap.set('n', '<Leader>un', toggle('number', 'Line Numbers'), { desc = 'Toggle Line Numbers' })
+vim.keymap.set('n', '<Leader>uw', toggle('wrap', 'Wrap'), { desc = 'Toggle wrap' })
+vim.keymap.set('n', '<Leader>us', toggle('spell', 'Spell Check'), { desc = 'Toggle spell check' })
+vim.keymap.set('n', '<Leader>un', toggle('number', 'Line Numbers'), { desc = 'Toggle line numbers' })
 vim.keymap.set(
     'n',
     '<Leader>ur',
     toggle('relativenumber', 'Relative Line Numbers'),
-    { desc = 'Toggle Relative Line Numbers' }
+    { desc = 'Toggle relative line numbers' }
 )
-vim.keymap.set('n', '<leader>ut', vim.treesitter.inspect_tree, { desc = 'Inspect Tree-sitter Tree' })
+vim.keymap.set('n', '<leader>ut', vim.treesitter.inspect_tree, { desc = 'Inspect tree-sitter tree' })
 vim.keymap.set('n', '<Leader>uu', function()
     require('undotree').open()
-end, { desc = 'Toggle Undo Tree' })
+end, { desc = 'Toggle undo tree' })
 
 -- QuickFix List
 -- See `:help default-mappings`; `:help [q`; `:help ]q`
