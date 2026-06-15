@@ -41,7 +41,3 @@ require('diagnostics')
 require('autocommands')
 
 vim.cmd([[colorscheme gruvbox-material]])
-
-vim.lsp.enable({
-    'plsql',
-})
