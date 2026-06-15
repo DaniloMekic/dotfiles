@@ -25,6 +25,11 @@ function! ToggleQuickFixWindow()
     endif
 endfunction
 
+function! s:toggle(opt, name) abort
+    execute 'setlocal' a:opt . '!'
+    echo a:name . ':' . (eval('&l:' . a:opt) ? 'On' : 'Off')
+endfunction
+
 " See :help 'timeout'
 set timeout
 set ttimeout
@@ -110,6 +115,11 @@ vnoremap <M-j> :move '>+1<CR>gv=gv
 vnoremap <M-k> :move '<-2<CR>gv=gv
 " fzf
 nnoremap <Leader>ff :<C-U>FZF<CR>
+" UI
+nnoremap <silent> <Leader>uw :call <SID>toggle('wrap', 'Wrap')<CR>
+nnoremap <silent> <Leader>us :call <SID>toggle('spell', 'Spell Check')<CR>
+nnoremap <silent> <Leader>un :call <SID>toggle('number', 'Line Numbers')<CR>
+nnoremap <silent> <Leader>ur :call <SID>toggle('relativenumber', 'Relative Line Numbers')<CR>
 
 " Colors
 set termguicolors
