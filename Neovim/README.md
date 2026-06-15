@@ -1,14 +1,7 @@
-# Install
-Neovim loads configuration files from `~/.config/nvim/`.
+# Resolve System Dependencies
 ```shell
-$ chmod +x ~/.config/nvim/install
-$ ~/.config/nvim/install
-```
-
-## Resolve System Dependencies
-```shell
-$ source <(curl -s https://raw.githubusercontent.com/DaniloMekic/dotfiles/refs/heads/main/bootstrap)
-$ bootstrap_nvim
+source <(curl -s https://raw.githubusercontent.com/DaniloMekic/dotfiles/refs/heads/main/bootstrap)
+bootstrap_nvim
 ```
 
 # Core Plugin Stack
