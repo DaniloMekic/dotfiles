@@ -1,5 +1,5 @@
 # Setup
 ```shell
-$ chmod +x bootstrap
-$ ./bootstrap --help
+chmod +x bootstrap
+./bootstrap --help
 ```
