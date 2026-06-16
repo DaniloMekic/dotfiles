@@ -6,4 +6,7 @@ require('obsidian').setup({
             path = '~/repo/notes',
         },
     },
+    ui = {
+        enable = false,
+    },
 })
