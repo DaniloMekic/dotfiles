@@ -19,6 +19,7 @@ require('nvim-treesitter').install({
     'javascript',
     'jq',
     'json',
+    'latex',
     'lua',
     'luadoc',
     'markdown',
@@ -32,6 +33,7 @@ require('nvim-treesitter').install({
     'ssh_config',
     'tmux',
     'toml',
+    'typst',
     'vim', -- Vimscript
     'vimdoc',
     'xml',
