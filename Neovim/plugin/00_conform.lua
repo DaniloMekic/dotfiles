@@ -6,18 +6,19 @@ require('conform').setup({
         -- clangd LSP embeds clang-format, a code formatter for C/C++/C# and other languages
         -- Styling options can be controlled with .clang-format file
         -- https://clang.llvm.org/docs/ClangFormatStyleOptions.html
-        bash = { 'shfmt', lsp_format = 'fallback' },
-        c = { lsp_format = 'prefer' },
-        cpp = { lsp_format = 'prefer' },
+        -- Since LSP formatting is disabled globally, clang-format needs to be added separately
+        bash = { 'shfmt' },
+        c = { 'clang-format' },
+        cpp = { 'clang-format' },
         groovy = { 'npm-groovy-lint' },
-        java = { 'google-java-format', lsp_format = 'fallback' },
+        java = { 'google-java-format' },
         javascript = { 'prettierd', 'prettier' },
         javascriptreact = { 'prettierd', 'prettier' },
         json = { 'jq' },
         lua = { 'stylua' },
         python = { 'isort', 'black' },
-        rust = { 'rustfmt', lsp_format = 'fallback' },
-        sh = { 'shfmt', lsp_format = 'fallback' },
+        rust = { 'rustfmt' },
+        sh = { 'shfmt' },
         tex = { 'tex-fmt' },
         typescript = { 'prettierd', 'prettier' },
         typescriptreact = { 'prettierd', 'prettier' },
