@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
 
 get_aur_helper() {
-    echo "Installing paru, AUR helper"
+    echo "Installing AUR helper: yay"
 
     if
-        sudo pacman -S --needed base-devel &&
-            (
-                git clone https://aur.archlinux.org/paru.git /tmp/paru &&
-                    cd /tmp/paru &&
-                    makepkg -si
+        sudo pacman -S --needed git base-devel \
+            && (
+                git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin \
+                    && cd /tmp/yay-bin \
+                    && makepkg -si
             )
-        rm -rf /tmp/paru
+        rm -rf /tmp/yay-bin
     then
-        echo "paru installed successfully"
+        echo "yay installed successfully"
         return 0
     else
-        echo "Failed to install paru"
+        echo "Failed to install yay"
         exit 1
     fi
 }
@@ -83,25 +83,25 @@ bootstrap_configs() {
 }
 
 case "$1" in
--a | --all)
-    bootstrap_system
-    bootstrap_nvim
-    bootstrap_configs
-    ;;
---nvim)
-    bootstrap_nvim
-    ;;
--c | --configs)
-    bootstrap_configs
-    ;;
--h | --help)
-    echo "Usage: ./bootstrap [option]"
-    echo "      -a, --all           Install everything"
-    echo "      -c, --configs       Install configs"
-    echo "      --nvim              Install only Neovim dependencies"
-    ;;
-*)
-    echo "Invalid option. See --help."
-    exit 1
-    ;;
+    -a | --all)
+        bootstrap_system
+        bootstrap_nvim
+        bootstrap_configs
+        ;;
+    --nvim)
+        bootstrap_nvim
+        ;;
+    -c | --configs)
+        bootstrap_configs
+        ;;
+    -h | --help)
+        echo "Usage: ./bootstrap [option]"
+        echo "      -a, --all           Install everything"
+        echo "      -c, --configs       Install configs"
+        echo "      --nvim              Install only Neovim dependencies"
+        ;;
+    *)
+        echo "Invalid option. See --help."
+        exit 1
+        ;;
 esac
