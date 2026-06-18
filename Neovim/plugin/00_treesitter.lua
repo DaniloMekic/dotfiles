@@ -25,6 +25,7 @@ require('nvim-treesitter').install({
     'markdown',
     'markdown_inline',
     'passwd',
+    'perl',
     'properties', -- Java Properties File
     'python',
     'query',
