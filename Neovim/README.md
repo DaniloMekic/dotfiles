@@ -13,7 +13,7 @@ bootstrap_nvim
 - **Debug Adapter Protocol** (DAP) **Client**: [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 - **Picker**: [Fzf-Lua](https://github.com/ibhagwan/fzf-lua)
 
-# Mason Architecture
+## Mason Architecture
 ```mermaid
 flowchart TD
     Mason
@@ -33,3 +33,9 @@ flowchart TD
 ```
 
 LSPs are automatically enabled via `mason-lspconfig`, there is no need to call `vim.lsp.enable({name})`.
+
+# Update All Plugins
+```lua
+--- https://neovim.io/doc/user/pack/#vim.pack.update()
+vim.pack.update()
+```
