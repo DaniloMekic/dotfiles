@@ -37,6 +37,12 @@ vim.keymap.set('v', '<M-k>', "<Cmd>move '<-2<CR>gv=gv", { desc = 'Move selection
 
 -- UI
 vim.keymap.set('n', '<Leader>uw', toggle('wrap', 'Wrap'), { desc = 'Toggle wrap' })
+vim.keymap.set(
+    'n',
+    '<Leader>uh',
+    toggle('hlsearch', 'Highlight Search Matches'),
+    { desc = 'Toggle highlight search matches' }
+)
 vim.keymap.set('n', '<Leader>us', toggle('spell', 'Spell Check'), { desc = 'Toggle spell check' })
 vim.keymap.set('n', '<Leader>un', toggle('number', 'Line Numbers'), { desc = 'Toggle line numbers' })
 vim.keymap.set(
