@@ -117,6 +117,8 @@ vnoremap <M-k> :move '<-2<CR>gv=gv
 nnoremap <Leader>ff :<C-U>FZF<CR>
 " UI
 nnoremap <silent> <Leader>uw :call <SID>toggle('wrap', 'Wrap')<CR>
+nnoremap <silent> <Leader>uh :nohlsearch<CR>
+nnoremap <silent> <Leader>uH :call <SID>toggle('hlsearch', 'Highlight Search Matches')<CR>
 nnoremap <silent> <Leader>us :call <SID>toggle('spell', 'Spell Check')<CR>
 nnoremap <silent> <Leader>un :call <SID>toggle('number', 'Line Numbers')<CR>
 nnoremap <silent> <Leader>ur :call <SID>toggle('relativenumber', 'Relative Line Numbers')<CR>
