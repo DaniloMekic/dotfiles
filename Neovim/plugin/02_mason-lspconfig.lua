@@ -3,7 +3,7 @@ require('mason-lspconfig').setup({
     ensure_installed = {
         -- Valid LSP Names: github.com/neovim/nvim-lspconfig/tree/master/lsp
         'awk_ls', -- AWK
-        'basedpyright', -- Python LSP
+        'basedpyright', -- Python
         'bashls', -- Bash
         'clangd', -- C, C++
         'cssls', -- CSS
@@ -15,6 +15,7 @@ require('mason-lspconfig').setup({
         'jsonls', -- JSON
         'lemminx', -- XML
         'lua_ls', -- Lua
+        'markdown_oxide', -- Markdown for PKMS
         'perlnavigator', -- Perl
         'postgres_lsp', -- PostgreSQL
         'rust_analyzer', -- Rust

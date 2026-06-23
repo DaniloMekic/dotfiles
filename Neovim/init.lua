@@ -29,7 +29,6 @@ vim.pack.add({
     { src = 'https://github.com/folke/which-key.nvim' },
     { src = 'https://tangled.org/cuducos.me/yaml.nvim' },
     { src = 'https://github.com/OXY2DEV/markview.nvim' },
-    { src = 'https://github.com/obsidian-nvim/obsidian.nvim', version = vim.version.range('*') },
 })
 
 vim.cmd('packadd nvim.undotree')
