@@ -29,12 +29,6 @@ vim.keymap.set('x', '<Leader>P', '"_d"+P', { desc = 'Put from system clipboard' 
 vim.keymap.set('v', '<', '<gv', { desc = 'Indent line and reselect' })
 vim.keymap.set('v', '>', '>gv', { desc = 'Re-indent line and reselect' })
 
--- Move lines and indent
-vim.keymap.set('n', '<M-j>', '<Cmd>move .+1<CR>==', { desc = 'Move line down' })
-vim.keymap.set('n', '<M-k>', '<Cmd>move .-2<CR>==', { desc = 'Move line up' })
-vim.keymap.set('v', '<M-j>', "<Cmd>move '>+1<CR>gv=gv", { desc = 'Move selection down' })
-vim.keymap.set('v', '<M-k>', "<Cmd>move '<-2<CR>gv=gv", { desc = 'Move selection up' })
-
 -- UI
 vim.keymap.set('n', '<Leader>uw', toggle('wrap', 'Wrap'), { desc = 'Toggle wrap' })
 vim.keymap.set('n', '<Leader>uh', '<Cmd>nohlsearch<CR>', { desc = 'Stop highlighting search matches' })
