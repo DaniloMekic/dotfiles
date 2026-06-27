@@ -80,6 +80,7 @@ bootstrap_configs() {
     ln -sfv $PWD/curlrc $HOME/.curlrc
     sudo ln -sfv $PWD/logiops.conf /etc/logid.cfg
     sudo ln -sfv $PWD/keyd.conf /etc/keyd/default.conf
+    mkdir -p $CONFIG/waybar/ && ln -sfv $PWD/Waybar/config.jsonc "$_" && ln -sfv $PWD/Waybar/style.css "$_"
 }
 
 case "$1" in
