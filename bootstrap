@@ -37,11 +37,11 @@ bootstrap_system() {
         ttf-jetbrains-mono-nerd \
         vim
 
-    if ! command -v paru &>/dev/null; then
+    if ! command -v yay &>/dev/null; then
         get_aur_helper
     fi
 
-    paru -S \
+    yay -S \
         logiops
 }
 ## Neovim
