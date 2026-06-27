@@ -22,6 +22,8 @@ get_aur_helper() {
 
 # System Dependencies
 bootstrap_system() {
+    # JetBrainsMono Nerd Font for Neovim
+    # Noto Color Emoji for Waybar
     sudo pacman -S --needed \
         foot \
         hyprland hyprlock \
@@ -29,8 +31,10 @@ bootstrap_system() {
         keyd \
         mpv \
         neovim \
+        noto-fonts-emoji \
         ripgrep \
         tmux \
+        ttf-jetbrains-mono-nerd \
         vim
 
     if ! command -v paru &>/dev/null; then
