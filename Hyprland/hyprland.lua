@@ -29,7 +29,7 @@ hl.monitor({
 local terminal = 'foot'
 local browser = 'firefox'
 local file_manager = 'foot -e yazi'
-local menu = 'hyprlauncher'
+local menu = 'rofi -show drun'
 
 ------------------------------------------------------------
 -- AUTOSTART

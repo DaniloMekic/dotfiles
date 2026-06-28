@@ -59,6 +59,7 @@ bootstrap_nvim() {
         python \
         python-pip \
         ripgrep \
+        rofi \
         rust \
         shellcheck \
         tree-sitter-cli \
@@ -85,6 +86,7 @@ bootstrap_configs() {
     sudo ln -sfv $PWD/logiops.conf /etc/logid.cfg
     sudo ln -sfv $PWD/keyd.conf /etc/keyd/default.conf
     mkdir -p $CONFIG/waybar/ && ln -sfv $PWD/Waybar/config.jsonc "$_" && ln -sfv $PWD/Waybar/style.css "$_"
+    mkdir -p $CONFIG/rofi/ && ln -sfv $PWD/rofi.rasi "$_/config.rasi"
 }
 
 case "$1" in
