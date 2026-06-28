@@ -29,6 +29,7 @@ require('nvim-treesitter').install({
     'properties', -- Java Properties File
     'python',
     'query',
+    'rasi', -- Rofi Advanced Style Information
     'rust',
     'sql',
     'ssh_config',
