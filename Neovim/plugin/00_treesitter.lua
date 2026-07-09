@@ -1,3 +1,7 @@
+-- Disable entire built-in ftplugin mappings to avoid conflicts with nvim-treesitter-textobjects
+-- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins
+vim.g.no_plugin_maps = true
+
 require('nvim-treesitter').install({
     'awk',
     'bash',
