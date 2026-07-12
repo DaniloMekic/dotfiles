@@ -23,6 +23,7 @@ require('nvim-treesitter').install({
     'javascript',
     'jq',
     'json',
+    'kdl',
     'latex',
     'lua',
     'luadoc',

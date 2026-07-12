@@ -15,6 +15,7 @@ require('conform').setup({
         javascript = { 'prettierd', 'prettier' },
         javascriptreact = { 'prettierd', 'prettier' },
         json = { 'jq' },
+        kdl = { 'kdlfmt' },
         lua = { 'stylua' },
         perl = { 'perltidy ' },
         python = { 'isort', 'black' },
