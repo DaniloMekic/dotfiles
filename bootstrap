@@ -29,13 +29,12 @@ bootstrap_system() {
         jless \
         keyd \
         mpv \
-        neovim \
+        niri fuzzel mako \
         noto-fonts-emoji \
         ripgrep \
-        sway swaybg swaylock \
         tmux \
         ttf-jetbrains-mono-nerd \
-        vim
+        vim neovim
 
     if ! command -v yay &>/dev/null; then
         get_aur_helper
