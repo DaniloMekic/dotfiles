@@ -32,7 +32,7 @@ bootstrap_system() {
         neovim \
         noto-fonts-emoji \
         ripgrep \
-        sway swaybg \
+        sway swaybg swaylock \
         tmux \
         ttf-jetbrains-mono-nerd \
         vim
