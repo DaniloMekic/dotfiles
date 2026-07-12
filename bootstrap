@@ -42,7 +42,8 @@ bootstrap_system() {
     fi
 
     yay -S \
-        logiops
+        logiops \
+        wlogout
 }
 ## Neovim
 bootstrap_nvim() {
