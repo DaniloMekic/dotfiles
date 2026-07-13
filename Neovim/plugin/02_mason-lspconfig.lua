@@ -22,6 +22,7 @@ require('mason-lspconfig').setup({
         'sqls', -- SQL
         'taplo', -- TOML
         'texlab', -- LaTeX
+        'tinymist', -- Typst
         'ts_ls', -- TypeScript
         'vimls', -- VimScript
         'yamlls', -- YAML
