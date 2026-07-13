@@ -22,7 +22,7 @@ require('conform').setup({
         rust = { 'rustfmt' },
         sh = { 'shfmt' },
         tex = { 'tex-fmt' },
-        typst = { 'typstyle ' },
+        typst = { 'typstyle' },
         typescript = { 'prettierd', 'prettier' },
         typescriptreact = { 'prettierd', 'prettier' },
         xml = { 'xmllint' },

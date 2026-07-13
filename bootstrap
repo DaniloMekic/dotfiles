@@ -20,6 +20,13 @@ get_aur_helper() {
     fi
 }
 
+get_rustup() {
+    if ! command -v rustup &>/dev/null; then
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || return 1
+        . "$HOME/.cargo/env"
+    fi
+}
+
 # System Dependencies
 bootstrap_system() {
     # JetBrainsMono Nerd Font for Neovim
@@ -43,6 +50,8 @@ bootstrap_system() {
     yay -S \
         logiops \
         wlogout
+
+    get_rustup
 }
 ## Neovim
 bootstrap_nvim() {
@@ -56,18 +65,21 @@ bootstrap_nvim() {
         maven \
         nodejs \
         npm \
+        perl-tidy \
         python \
         python-pip \
         ripgrep \
         rofi \
-        rust \
         shellcheck \
         tree-sitter-cli \
         unzip \
         yazi
 
+    get_rustup
+
     # Update Rust and install KDL LSP
     rustup update stable
+    rustup component add rustfmt
     cargo install kdl-lsp
 }
 
