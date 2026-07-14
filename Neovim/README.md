@@ -1,7 +1,6 @@
 # Resolve System Dependencies
 ```shell
-source <(curl -s https://raw.githubusercontent.com/DaniloMekic/dotfiles/refs/heads/main/bootstrap)
-bootstrap_nvim
+bash <(curl -s https://raw.githubusercontent.com/DaniloMekic/dotfiles/refs/heads/main/bootstrap) --nvim
 ```
 
 # Core Plugin Stack
