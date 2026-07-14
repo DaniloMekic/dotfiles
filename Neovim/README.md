@@ -18,7 +18,7 @@ Installation of LSP servers, DAP servers (debuggers), linters, and code formatte
 
 Mason package installation is automated via following plugins, that also perform other tasks:
 - `mason-tool-installer` is purely for package installation in a declarative way.
-- `mason-lspconfig` bridges `nvim-lspconfig` and initializes LSP servers by automatically enabling the—there is no need to call `vim.lsp.enable({name})`.
+- `mason-lspconfig` bridges `nvim-lspconfig` and initializes LSP servers—there is no need to call `vim.lsp.enable({name})`.
 - `mason-nvim-dap` bridges `nvim-dap` and configures debuggers.
 - `mason-nvim-lint` connects Mason's installed linters to the `nvim-lint`.
 
