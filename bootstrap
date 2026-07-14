@@ -41,8 +41,11 @@ get_rustup() {
 }
 
 enable_services() {
-    echo "Enabling services"
-    sudo systemctl enable --now keyd logid
+    declare -a services=(keyd logid)
+
+    echo "Enabling services: ${services[*]}"
+
+    sudo systemctl enable --now "${services[@]}"
 }
 
 # System Dependencies
@@ -80,7 +83,11 @@ bootstrap_system() {
 
     get_rustup
 
-    enable_services
+    read -rp "Enable services? [Y/n] " response
+    # test -z option catches empty response (just pressing Enter)
+    if [[ -z "$response" || "${response,,}" == yes || "${response,,}" == y ]]; then
+        enable_services
+    fi
 }
 ## Neovim
 bootstrap_nvim() {
