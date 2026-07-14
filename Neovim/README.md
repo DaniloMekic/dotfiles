@@ -15,21 +15,21 @@ bootstrap_nvim
 
 ## Mason Architecture
 ```mermaid
-flowchart TD
-    Mason
- 
-    Mason --> mason-lspconfig
-    Mason --> mason-nvim-lint
-    Mason --> mason-conform
-    Mason --> mason-nvim-dap
- 
-    mason-lspconfig --> nvim-lspconfig
- 
-    mason-nvim-lint --> nvim-lint
- 
-    mason-conform --> conform.nvim
- 
-    mason-nvim-dap --> nvim-dap
+flowchart BT
+    Mason --> A["LSP Servers"]
+    Mason --> B["DAP Servers"]
+    Mason --> C["Linters"]
+    Mason --> D["Code Formatters"]
+
+    mason-tool-installer --> Mason
+    mason-lspconfig --> Mason
+    mason-nvim-dap --> Mason
+    mason-nvim-lint --> Mason
+
+    nvim-lspconfig -- "Auto Installation" --> mason-lspconfig
+    nvim-dap -- "Auto Installation" --> mason-nvim-dap
+    nvim-lint -- "Auto Installation" --> mason-nvim-lint
+    conform.nvim -- "Declared in ensure_installed" --> mason-tool-installer
 ```
 
 LSPs are automatically enabled via `mason-lspconfig`, there is no need to call `vim.lsp.enable({name})`.
