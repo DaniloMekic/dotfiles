@@ -13,26 +13,14 @@ bootstrap_nvim
 - **Debug Adapter Protocol** (DAP) **Client**: [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 - **Picker**: [Fzf-Lua](https://github.com/ibhagwan/fzf-lua)
 
-## Mason Architecture
-```mermaid
-flowchart BT
-    Mason --> A["LSP Servers"]
-    Mason --> B["DAP Servers"]
-    Mason --> C["Linters"]
-    Mason --> D["Code Formatters"]
+# Language Tools
+Installation of LSP servers, DAP servers (debuggers), linters, and code formatters is done via [Mason](https://github.com/mason-org/mason.nvim).
 
-    mason-tool-installer --> Mason
-    mason-lspconfig --> Mason
-    mason-nvim-dap --> Mason
-    mason-nvim-lint --> Mason
-
-    nvim-lspconfig -- "Auto Installation" --> mason-lspconfig
-    nvim-dap -- "Auto Installation" --> mason-nvim-dap
-    nvim-lint -- "Auto Installation" --> mason-nvim-lint
-    conform.nvim -- "Declared in ensure_installed" --> mason-tool-installer
-```
-
-LSPs are automatically enabled via `mason-lspconfig`, there is no need to call `vim.lsp.enable({name})`.
+Mason package installation is automated via following plugins, that also perform other tasks:
+- `mason-tool-installer` is purely for package installation in a declarative way.
+- `mason-lspconfig` bridges `nvim-lspconfig` and initializes LSP servers by automatically enabling the—there is no need to call `vim.lsp.enable({name})`.
+- `mason-nvim-dap` bridges `nvim-dap` and configures debuggers.
+- `mason-nvim-lint` connects Mason's installed linters to the `nvim-lint`.
 
 # Update All Plugins
 ```lua
