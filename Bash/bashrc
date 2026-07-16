@@ -24,5 +24,17 @@ export PS1='[\u@\h:\w]$(__git_ps1 " (%s)")\$ '
 ## https://git-scm.com/book/en/v2/Appendix-A:-Git-in-Other-Environments-Git-in-Bash
 source /usr/share/git/completion/git-completion.bash
 
+# man pages theme: Everforest
+man() {
+    LESS_TERMCAP_md=$'\e[1;38;2;167;192;128m' \
+        LESS_TERMCAP_me=$'\e[0m' \
+        LESS_TERMCAP_us=$'\e[4;38;2;131;192;146m' \
+        LESS_TERMCAP_ue=$'\e[0m' \
+        LESS_TERMCAP_so=$'\e[1;38;2;45;53;59;48;2;219;188;127m' \
+        LESS_TERMCAP_se=$'\e[0m' \
+        MANROFFOPT="-P -c" \
+        command man "$@"
+}
+
 . "$HOME/.local/bin/env"
 . "$HOME/.cargo/env"
