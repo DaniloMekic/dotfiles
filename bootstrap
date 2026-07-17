@@ -53,7 +53,7 @@ bootstrap_system() {
     # noto-fonts-emoji                  : Noto Color Emoji for Waybar
     # ttf-jetbrains-mono-nerd           : JetBrainsMono Nerd Font for Neovim
     sudo pacman -S --needed --noconfirm \
-        foot \
+        ghostty \
         jless \
         keyd \
         mpv \
