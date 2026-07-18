@@ -375,18 +375,7 @@ binds {
     Mod+Q repeat=false {
         close-window
     }
-    Mod+Left {
-        focus-column-left
-    }
-    Mod+Down {
-        focus-window-down
-    }
-    Mod+Up {
-        focus-window-up
-    }
-    Mod+Right {
-        focus-column-right
-    }
+    // Vim-style keybindings
     Mod+H {
         focus-column-left
     }
@@ -398,18 +387,6 @@ binds {
     }
     Mod+L {
         focus-column-right
-    }
-    Mod+Ctrl+Left {
-        move-column-left
-    }
-    Mod+Ctrl+Down {
-        move-window-down
-    }
-    Mod+Ctrl+Up {
-        move-window-up
-    }
-    Mod+Ctrl+Right {
-        move-column-right
     }
     Mod+Ctrl+H {
         move-column-left
