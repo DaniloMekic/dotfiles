@@ -5,7 +5,8 @@ fi
 
 # If shell is interactive, launch fastfetch
 # Guard against non-interactive login shells with scp or sftp
-if [[ $- == *i* ]]; then
+# Guard against tmux, since tmux starts every new window and pane as a login shell
+if [[ $- == *i* && -z "$TMUX" ]]; then
     fastfetch
 fi
 
