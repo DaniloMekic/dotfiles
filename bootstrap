@@ -124,22 +124,23 @@ bootstrap_configs() {
     DOTFILES="$(dirname "$(realpath "$0")")"
     CONFIG_HOME=$HOME/.config
 
-    # Symlinks
-    mkdir -p "$CONFIG_HOME/alacritty/" && ln -sfv "$DOTFILES/alacritty.toml" "$_"
     ln -sfv "$DOTFILES/Bash/bashrc" "$HOME/.bashrc"
     ln -sfv "$DOTFILES/Bash/bash_profile" "$HOME/.bash_profile"
-    mkdir -p "$CONFIG_HOME/foot/" && ln -sfv "$DOTFILES/foot.conf" "$_/foot.ini"
-    mkdir -p "$CONFIG_HOME/niri/" && ln -sfv "$DOTFILES/niri.kdl" "$_/config.kdl"
-    mkdir -p "$CONFIG_HOME/mpv/" && ln -sfv "$DOTFILES/mpv/input.conf" "$_"
+    mkdir -p "$CONFIG_HOME/niri" && ln -sfv "$DOTFILES/niri.kdl" "$_/config.kdl"
+    mkdir -p "$CONFIG_HOME/mpv" && ln -sfv "$DOTFILES/mpv/input.conf" "$_"
     ln -sfv "$DOTFILES/mpv/mpv.conf" "$CONFIG_HOME/mpv/"
     ln -sfv --no-dereference "$DOTFILES/Neovim" "$CONFIG_HOME/nvim" # Option --no-dereference prevents following of an existing symlink if it points to a directory
-    ln -sfv "$DOTFILES/tmux.conf" "$HOME/.tmux.conf"
     ln -sfv "$DOTFILES/config.vim" "$HOME/.vimrc"
     ln -sfv "$DOTFILES/curlrc" "$HOME/.curlrc"
     sudo ln -sfv "$DOTFILES/logiops.conf" "/etc/logid.cfg"
     sudo ln -sfv "$DOTFILES/keyd.conf" "/etc/keyd/default.conf"
-    mkdir -p "$CONFIG_HOME/waybar/" && ln -sfv "$DOTFILES/Waybar/config.jsonc" "$_" && ln -sfv "$DOTFILES/Waybar/style.css" "$_"
-    mkdir -p "$CONFIG_HOME/rofi/" && ln -sfv "$DOTFILES/rofi.rasi" "$_/config.rasi"
+    mkdir -p "$CONFIG_HOME/waybar" && ln -sfv "$DOTFILES/Waybar/config.jsonc" "$_" && ln -sfv "$DOTFILES/Waybar/style.css" "$_"
+    mkdir -p "$CONFIG_HOME/rofi" && ln -sfv "$DOTFILES/rofi.rasi" "$_/config.rasi"
+    # Terminal Emulators
+    mkdir -p "$CONFIG_HOME/alacritty/" && ln -sfv "$DOTFILES/alacritty.toml" "$_"
+    mkdir -p "$CONFIG_HOME/ghostty" && ln -sfv "$DOTFILES/ghostty.conf" "$_/config"
+    mkdir -p "$CONFIG_HOME/foot" && ln -sfv "$DOTFILES/foot.conf" "$_/foot.ini"
+    ln -sfv "$DOTFILES/tmux.conf" "$HOME/.tmux.conf"
 }
 
 case "${1:-}" in
