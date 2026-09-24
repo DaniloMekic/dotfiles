@@ -38,7 +38,6 @@ require('nvim-treesitter').install({
     'rust',
     'sql',
     'ssh_config',
-    'tmux',
     'toml',
     'typst',
     'vim', -- Vimscript
@@ -75,7 +74,6 @@ vim.api.nvim_create_autocmd('FileType', {
         'rust',
         'sql',
         'sshconfig',
-        'tmux',
         'toml',
         'vim',
         'xml',
