@@ -10,5 +10,4 @@ if [[ $- == *i* && -z "$TMUX" ]]; then
     fastfetch
 fi
 
-. "$HOME/.local/bin/env"
 . "$HOME/.cargo/env"

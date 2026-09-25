@@ -36,5 +36,4 @@ man() {
         command man "$@"
 }
 
-. "$HOME/.local/bin/env"
 . "$HOME/.cargo/env"
