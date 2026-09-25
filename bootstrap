@@ -2,6 +2,17 @@
 
 set -euo pipefail
 
+# Set argument to an empty string, since nounset (-u) is enabled
+OPTION="${1:-}"
+
+# Force-sync repository databases and upgrade the system
+force_sync_refresh_upgrade() {
+    # -S            Synchronize packages
+    # -yy           Force a refresh of all package databases, even if they appear to be up-to-date
+    # -u            Upgrade all packages that are out-of-date
+    sudo pacman -Syyu --needed --noconfirm --disable-download-timeout
+}
+
 get_aur_helper() {
     local aur_helper="yay"
 
@@ -14,7 +25,7 @@ get_aur_helper() {
     local build_dir
     build_dir=$(mktemp -d)
 
-    if sudo pacman -S --needed --noconfirm git base-devel \
+    if sudo pacman -S --needed --noconfirm --disable-download-timeout git base-devel \
         && git clone https://aur.archlinux.org/yay-bin.git "$build_dir" \
         && (cd "$build_dir" && makepkg -si --noconfirm); then
 
@@ -30,7 +41,7 @@ get_aur_helper() {
 
 # Official toolchain installer and manager for the Rust programming language
 # Arch Linux official rust package and rustup conflict because they both provide executables like cargo and rustc
-get_rustup() {
+setup_rust() {
     if ! command -v rustup &>/dev/null; then
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || {
             echo "Failed to fetch rustup installation script"
@@ -38,6 +49,25 @@ get_rustup() {
         }
         . "$HOME/.cargo/env"
     fi
+}
+
+# https://wiki.archlinux.org/title/Java
+# Get JDK, documentation, and sources for multiple Java versions, including archlinux-java helper script
+setup_java() {
+    sudo pacman -S --needed --noconfirm --disable-download-timeout \
+        java-runtime-common \
+        jdk8-openjdk openjdk8-doc openjdk8-src \
+        jdk11-openjdk openjdk11-doc openjdk11-src \
+        jdk17-openjdk openjdk17-doc openjdk17-src \
+        jdk21-openjdk openjdk21-doc openjdk21-src \
+        jdk25-openjdk openjdk25-doc openjdk25-src \
+        jdk-openjdk openjdk-doc openjdk-src
+
+    mkdir -p ~/.config/environment.d
+
+    cat >~/.config/environment.d/java.conf <<EOF
+JAVA_HOME=/usr/lib/jvm/default
+EOF
 }
 
 enable_services() {
@@ -52,9 +82,10 @@ enable_services() {
 bootstrap_system() {
     # noto-fonts-emoji                  : Noto Color Emoji for Waybar
     # ttf-jetbrains-mono-nerd           : JetBrainsMono Nerd Font for Neovim
-    sudo pacman -S --needed --noconfirm \
-        ghostty \
+    sudo pacman -S --needed --noconfirm --disable-download-timeout \
         fastfetch \
+        ghostty \
+        git \
         jless \
         keyd \
         mpv \
@@ -67,6 +98,13 @@ bootstrap_system() {
 
     if ! command -v yay &>/dev/null; then
         get_aur_helper
+    fi
+
+    setup_rust
+
+    # Return early if it's WSL environment
+    if [[ "$1" == "--wsl" ]]; then
+        return
     fi
 
     # yay options:
@@ -82,8 +120,6 @@ bootstrap_system() {
         logiops \
         wlogout
 
-    get_rustup
-
     read -rp "Enable services? [Y/n] " response
     # test -z option catches empty response (just pressing Enter)
     if [[ -z "$response" || "${response,,}" == yes || "${response,,}" == y ]]; then
@@ -92,12 +128,11 @@ bootstrap_system() {
 }
 ## Neovim
 bootstrap_nvim() {
-    sudo pacman -S --needed --noconfirm \
+    sudo pacman -S --needed --noconfirm --disable-download-timeout \
         fzf \
         gcc \
         git \
         go \
-        jdk-openjdk \
         lua \
         maven \
         nodejs \
@@ -111,12 +146,15 @@ bootstrap_nvim() {
         unzip \
         yazi
 
-    get_rustup
+    setup_rust
 
     # Update Rust and install KDL LSP
     rustup update stable
     rustup component add rustfmt
     cargo install kdl-lsp
+
+    setup_java
+    sudo archlinux-java set java-21-openjdk
 }
 
 # Configs
@@ -124,14 +162,27 @@ bootstrap_configs() {
     DOTFILES="$(dirname "$(realpath "$0")")"
     CONFIG_HOME=$HOME/.config
 
+    ln -sfv --no-dereference "$DOTFILES/Neovim" "$CONFIG_HOME/nvim" # Option --no-dereference prevents following of an existing symlink if it points to a directory
+
+    # Return early if it's only Neovim bootstrapping
+    if [[ "$1" == "--nvim" ]]; then
+        return
+    fi
+
     ln -sfv "$DOTFILES/Bash/bashrc" "$HOME/.bashrc"
     ln -sfv "$DOTFILES/Bash/bash_profile" "$HOME/.bash_profile"
+    ln -sfv "$DOTFILES/config.vim" "$HOME/.vimrc"
+    ln -sfv "$DOTFILES/curlrc" "$HOME/.curlrc"
+    ln -sfv "$DOTFILES/tmux.conf" "$HOME/.tmux.conf"
+
+    # Return early if it's WSL environment
+    if [[ "$1" == "--wsl" ]]; then
+        return
+    fi
+
     mkdir -p "$CONFIG_HOME/niri" && ln -sfv "$DOTFILES/niri.kdl" "$_/config.kdl"
     mkdir -p "$CONFIG_HOME/mpv" && ln -sfv "$DOTFILES/mpv/input.conf" "$_"
     ln -sfv "$DOTFILES/mpv/mpv.conf" "$CONFIG_HOME/mpv/"
-    ln -sfv --no-dereference "$DOTFILES/Neovim" "$CONFIG_HOME/nvim" # Option --no-dereference prevents following of an existing symlink if it points to a directory
-    ln -sfv "$DOTFILES/config.vim" "$HOME/.vimrc"
-    ln -sfv "$DOTFILES/curlrc" "$HOME/.curlrc"
     sudo ln -sfv "$DOTFILES/logiops.conf" "/etc/logid.cfg"
     sudo ln -sfv "$DOTFILES/keyd.conf" "/etc/keyd/default.conf"
     mkdir -p "$CONFIG_HOME/waybar" && ln -sfv "$DOTFILES/Waybar/config.jsonc" "$_" && ln -sfv "$DOTFILES/Waybar/style.css" "$_"
@@ -140,30 +191,33 @@ bootstrap_configs() {
     mkdir -p "$CONFIG_HOME/alacritty/" && ln -sfv "$DOTFILES/alacritty.toml" "$_"
     mkdir -p "$CONFIG_HOME/ghostty" && ln -sfv "$DOTFILES/ghostty.conf" "$_/config"
     mkdir -p "$CONFIG_HOME/foot" && ln -sfv "$DOTFILES/foot.conf" "$_/foot.ini"
-    ln -sfv "$DOTFILES/tmux.conf" "$HOME/.tmux.conf"
 }
 
 case "${1:-}" in
-    -a | --all)
-        bootstrap_system
+    -a | --all | --wsl)
+        force_sync_refresh_upgrade
+        bootstrap_system "$OPTION"
         bootstrap_nvim
-        bootstrap_configs
+        bootstrap_configs "$OPTION"
         ;;
     -s | --system)
-        bootstrap_system
+        force_sync_refresh_upgrade
+        bootstrap_system "$OPTION"
         ;;
     --nvim)
         bootstrap_nvim
+        bootstrap_configs "$OPTION"
         ;;
     -c | --configs)
-        bootstrap_configs
+        bootstrap_configs "$OPTION"
         ;;
     -h | --help)
         echo "Usage: ./bootstrap [option]"
         echo "      -a, --all           Install everything"
         echo "      -s, --system        Install system dependencies"
         echo "      -c, --configs       Install configs"
-        echo "      --nvim              Install Neovim dependencies"
+        echo "      --nvim              Bootstrap Neovim"
+        echo "      --wsl               Bootstrap for WSL"
         ;;
     *)
         echo "Invalid option. See --help."
