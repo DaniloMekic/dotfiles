@@ -73,8 +73,8 @@ Modifiers specify whether whitespace around the object is included (`a`), or if 
 | `t` | <tag>; repeat `at` to expand outwards | mini.ai (overrides Vim) |
 | `f` | function call | mini.ai |
 | `a` | argument of a function | mini.ai |
-| `?` | user prompt, asks for left and right edge strings | mini.ai |
-| punctuation / digit / space | default separator | mini.ai |
+| `?` | user prompt for left and right edge, strings that could be different | mini.ai |
+| punctuation / digit / space | typed separator that does not have a dedicated text object | mini.ai |
 
 
 | Keys | Feature | Source | Notes |
