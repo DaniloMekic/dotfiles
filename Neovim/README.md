@@ -28,11 +28,14 @@ vim.pack.update()
 ```
 
 # Keybindings
+
 | Keys | Action |
 |---|---|
 | `<Leader>q` | Toggle quickfix window |
+| `gq` | Format the lines that `{motion}` moves over, with `'formatexpr'` being set to the Conform's function |
 
 ## LSP
+
 | Keys | Action |
 |---|---|
 | `K` | Display hover information about the symbol under the cursor in a floating window |
@@ -47,27 +50,32 @@ vim.pack.update()
 | `gx` | Open document links (`textDocument/documentLink`) |
 
 ## Text Objects
+
 `[count]` **operator** with a **modifier**, and an **object**.
 
-Cursor position in examples is marked with `*`.
+Modifiers specify whether whitespace around the object is included (`a`), or if only content inside the object is operated on (`i`).
 
-| Key | Name | Source | Example | `a` selects | `i` selects | Notes |
-|---|---|---|---|---|---|---|
-| `w` | word | Vim | `foo *bar baz` | `bar ` | `bar` | Not overridden by mini.ai |
-| `W` | WORD (non-blank run) | Vim | `a.b(*c) d` | `a.b(c) ` | `a.b(c)` | Not overridden by mini.ai |
-| `s` | sentence | Vim | `One. *Two. Three.` | `Two. ` | `Two.` | Not overridden by mini.ai |
-| `p` | paragraph | Vim | cursor in a block of text | paragraph + blank line | paragraph | Not overridden by mini.ai |
-| `B` | `{}` block | Vim | `if (x) { *y; }` | `{ y; }` | ` y; ` | Not overridden by mini.ai (uppercase Latin letter) |
-| `(` `[` `{` `<` | balanced bracket, trims inner whitespace | mini.ai (replaces Vim) | `f( *x )` | `( x )` | `x` | Open bracket = inner edge whitespace excluded |
-| `)` `]` `}` `>` | balanced bracket, keeps inner whitespace | mini.ai (replaces Vim) | `f( *x )` | `( x )` | ` x ` | Close bracket = inner edge whitespace included |
-| `b` | any bracket alias | mini.ai (replaces Vim) | `list.get(*i)` | `(i)` | `i` | Vim: `()` block only. mini.ai: nearest of `)` `]` `}` |
-| `"` `'` `` ` `` | balanced quotes | mini.ai (replaces Vim) | `s = "*hi"` | `"hi"` | `hi` | Balanced pairs only, not the text between two strings |
-| `q` | any quote alias | mini.ai | `c = '*x'` | `'x'` | `x` | Nearest of `"` `'` `` ` `` |
-| `t` | tag | mini.ai (replaces Vim) | `<x><y>*a</y></x>` | `<y>a</y>` | `a` | Repeat `at` to expand to `<x>...</x>` |
-| `f` | function call | mini.ai | `Math.max(*a, b)` | `Math.max(a, b)` | `a, b` | Call, not definition. Name may contain `.` |
-| `a` | argument | mini.ai | `f(*a, g(b, c))` | `a,` | `a` | Ignores commas inside nested brackets/quotes |
-| `?` | user prompt | mini.ai | `e*e o` (edges `e`, `o`) | `e o` | ` ` | Asks for left and right edge strings |
-| punctuation / digit / space | default separator | mini.ai | `aa_*b__cc` (typed `_`) | `_b__` | `b` | `a` includes only the right edge |
+[mini.ai](https://github.com/nvim-mini/mini.ai) plugin modifies how open brackets (`(`, `[`, `{`) differ from close brackets (`)`, `]`, `}`) by how they treat inner edge whitespace for `i` textobject: open ignores it, close - includes.
+
+
+| Object | Description | Source |
+|---|---|---|
+| `w` | word | Vim |
+| `W` | WORD | Vim |
+| `s` | sentence | Vim |
+| `p` | paragraph | Vim |
+| `B` | code block | Vim |
+| `(`, `[`, `{` | balanced bracket, trims enclosing whitespace | mini.ai |
+| `)`, `]`, `}` | balanced bracket, keeps enclosing whitespace | mini.ai |
+| `b` | any bracket | mini.ai (overrides Vim) |
+| `"`, `'`, `` ` `` | balanced quotes | mini.ai (overrides Vim) |
+| `q` | any quote | mini.ai |
+| `t` | <tag>; repeat `at` to expand outwards | mini.ai (overrides Vim) |
+| `f` | function call | mini.ai |
+| `a` | argument of a function | mini.ai |
+| `?` | user prompt, asks for left and right edge strings | mini.ai |
+| punctuation / digit / space | default separator | mini.ai |
+
 
 | Keys | Feature | Source | Notes |
 |---|---|---|---|
@@ -79,6 +87,7 @@ Cursor position in examples is marked with `*`.
 | `g[)` / `g])` | goto edge | mini.ai | Move cursor to left / right edge of `a` textobject |
 
 ## UI
+
 | Keys | Action |
 |---|---|
 | `<Leader>uw` | Toggle wrap |
@@ -91,7 +100,9 @@ Cursor position in examples is marked with `*`.
 | `<Leader>uu` | Toggle undo tree |
 
 ### Folding
+
 Folding is powered by Tree-sitter, with `'foldexpr'` being set to `v:lua.vim.treesitter.foldexpr()`. LSP-based folding is also available with `v:lua.vim.lsp.foldexpr()`.
+
 
 | Keys | Action |
 |---|---|
