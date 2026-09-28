@@ -28,6 +28,13 @@ vim.pack.update()
 ```
 
 # Keybindings
+Find source of a keybind with:
+```vimscript
+:verbose map <key>
+:verbose nmap <key>     " Normal mode
+:verbose imap <key>     " Insert mode
+:verbose xmap <key>     " Visual mode
+```
 
 | Keys | Action |
 |---|---|
@@ -39,6 +46,15 @@ vim.pack.update()
 | `<Leader>p` / `<Leader>P` | Put from system clipboard before/after cursor |
 | `<` / `>` | In visual mode, indent/re-indent line and reselect |
 | `<Alt>` + `hjkl` | Move line(s) or, in visual mode, move selection |
+
+## Picker
+
+| Keys | Action |
+|---|---|
+| `<Leader>ff` | Find files |
+| `<Leader>fo` | Find old files |
+| `<Leader>fg` | Grep files |
+| `<Leader>fb` | Find buffers |
 
 ## LSP
 
@@ -123,3 +139,4 @@ Folding is powered by Tree-sitter, with `'foldexpr'` being set to `v:lua.vim.tre
 | `zi` | Toggle `'foldenable'` |
 | `zj` / `zk` | Move to the next / previous fold |
 | `[z` / `]z` | Move to the start / end of the current fold |
+
