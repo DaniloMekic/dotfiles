@@ -51,11 +51,13 @@ vim.pack.update()
 
 ## Text Objects
 
-`[count]` **operator** with a **modifier**, and an **object**.
+`[count]` **operator** with a **modifier** (`a`/`i`), and an **object**.
 
-Modifiers specify whether whitespace around the object is included (`a`), or if only content inside the object is operated on (`i`).
+Modifiers specify whether surrounding delimiters and _trailing_ whitespace is included (`a`), or if only content inside the object is operated on (`i`).
 
-[mini.ai](https://github.com/nvim-mini/mini.ai) plugin modifies how open brackets (`(`, `[`, `{`) differ from close brackets (`)`, `]`, `}`) by how they treat inner edge whitespace for `i` textobject: open ignores it, close - includes.
+[mini.ai](https://github.com/nvim-mini/mini.ai) plugin modifies how open brackets (`(`, `[`, `{`) differ from close brackets (`)`, `]`, `}`) by how they treat inner edge whitespace for `i` modifier – open ignores it, close includes. To move cursor to corresponding edge of `a` textobject `X`, use `g[X` or `g]X`.
+
+`mini.ai` further expands modifiers with next/last prefixes. So, `anX` and `inX` refer to the next textobject `X`.
 
 
 | Object | Description | Source |
@@ -64,27 +66,18 @@ Modifiers specify whether whitespace around the object is included (`a`), or if 
 | `W` | WORD | Vim |
 | `s` | sentence | Vim |
 | `p` | paragraph | Vim |
-| `B` | code block | Vim |
 | `(`, `[`, `{` | balanced bracket, trims enclosing whitespace | mini.ai |
 | `)`, `]`, `}` | balanced bracket, keeps enclosing whitespace | mini.ai |
-| `b` | any bracket | mini.ai (overrides Vim) |
+| `b` | any bracket (alias for `)`, `]`, or `}`) | mini.ai (overrides Vim) |
 | `"`, `'`, `` ` `` | balanced quotes | mini.ai (overrides Vim) |
 | `q` | any quote | mini.ai |
-| `t` | <tag>; repeat `at` to expand outwards | mini.ai (overrides Vim) |
-| `f` | function call | mini.ai |
-| `a` | argument of a function | mini.ai |
+| `t` | `<tag>...</tag>`; in visual mode, repeat `at` or `it` to expand outwards through enclosing tags | mini.ai (overrides Vim) |
+| `f` | function call; `af` operates on function name, including parentheses and arguments, while `if` operates only on arguments | mini.ai |
+| `F` | function definition | mini.ai with Tree-sitter textobjects |
+| `a` | argument of a function; `aa` includes whitespace and a comma (`,`) separator, while `ia` does not | mini.ai |
 | `?` | user prompt for left and right edge, strings that could be different | mini.ai |
-| punctuation / digit / space | typed separator that does not have a dedicated text object | mini.ai |
+| any unassigned character | typed separator that does not have a dedicated text object | mini.ai |
 
-
-| Keys | Feature | Source | Notes |
-|---|---|---|---|
-| `an` / `in` (Visual) | incremental selection (parent / child node) | Neovim 0.12 | Overridden by mini.ai's "next" variant by default |
-| `al` / `il` | buffer / line textobjects | Neovim 0.13 | Overridden by mini.ai's "last" variant by default |
-| `an)` `in)` `al)` `il)` | next / last textobject | mini.ai | Forces search forward / backward |
-| `2a)` `3if` | count | mini.ai | Selects the 2nd / 3rd enclosing match |
-| `va)` then `a)` | consecutive application | mini.ai | Expands selection outward |
-| `g[)` / `g])` | goto edge | mini.ai | Move cursor to left / right edge of `a` textobject |
 
 ## UI
 
