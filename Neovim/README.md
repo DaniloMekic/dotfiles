@@ -31,8 +31,14 @@ vim.pack.update()
 
 | Keys | Action |
 |---|---|
+| `<Leader>w` | Write buffer to the file |
 | `<Leader>q` | Toggle quickfix window |
 | `gq` | Format the lines that `{motion}` moves over, with `'formatexpr'` being set to the Conform's function |
+| `<Leader>y` | Yank to system clipboard |
+| `<Leader>Y` | Yank line(s) to system clipboard |
+| `<Leader>p` / `<Leader>P` | Put from system clipboard before/after cursor |
+| `<` / `>` | In visual mode, indent/re-indent line and reselect |
+| `<Alt>` + `hjkl` | Move line(s) or, in visual mode, move selection |
 
 ## LSP
 
@@ -78,6 +84,17 @@ Modifiers specify whether surrounding delimiters and _trailing_ whitespace is in
 | `?` | user prompt for left and right edge, strings that could be different | mini.ai |
 | any unassigned character | typed separator that does not have a dedicated text object | mini.ai |
 
+## Debugging
+
+| Keys | Action |
+|---|---|
+| `<Leader>dc` / `<F5>` | Continue |
+| `<Leader>db` / `<F9>` | Toggle breakpoint |
+| `<Leader>do` / `<F10>` | Step over |
+| `<Leader>di` / `<F11>` | Step into |
+| `<Leader>dI` / `<F12>` | Step out |
+| `<Leader>dt` | Terminate |
+| `<Leader>dr` | Read–Eval–Print Loop (REPL) |
 
 ## UI
 
