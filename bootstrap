@@ -70,6 +70,15 @@ JAVA_HOME=/usr/lib/jvm/default
 EOF
 }
 
+setup_tex() {
+    sudo pacman -S --needed --noconfirm --disable-download-timeout \
+        biber \
+        texlive-basic \
+        texlive-binextra \
+        texlive-latex \
+        texlive-latexrecommended
+}
+
 enable_services() {
     declare -a services=(keyd logid)
 
@@ -155,6 +164,8 @@ bootstrap_nvim() {
 
     setup_java
     sudo archlinux-java set java-21-openjdk
+
+    setup_tex
 }
 
 # Configs
