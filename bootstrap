@@ -77,7 +77,7 @@ setup_tex() {
         texlive-binextra \
         texlive-latex \
         texlive-latexrecommended \
-        zathura
+        zathura zathura-pdf-mupdf
 }
 
 enable_services() {
