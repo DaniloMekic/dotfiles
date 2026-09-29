@@ -76,7 +76,8 @@ setup_tex() {
         texlive-basic \
         texlive-binextra \
         texlive-latex \
-        texlive-latexrecommended
+        texlive-latexrecommended \
+        zathura
 }
 
 enable_services() {
