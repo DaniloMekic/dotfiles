@@ -25,6 +25,9 @@ vim.keymap.set('n', '<Leader>P', '"+P', { desc = 'Put from system clipboard befo
 vim.keymap.set('x', '<Leader>p', '"_d"+P', { desc = 'Put from system clipboard' })
 vim.keymap.set('x', '<Leader>P', '"_d"+P', { desc = 'Put from system clipboard' })
 
+-- Open jump list
+vim.keymap.set('n', '<Leader>j', '<cmd>jumps<CR>', { desc = 'Jump list' })
+
 -- Indentation
 vim.keymap.set('v', '<', '<gv', { desc = 'Indent line and reselect' })
 vim.keymap.set('v', '>', '>gv', { desc = 'Re-indent line and reselect' })
