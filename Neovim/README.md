@@ -40,10 +40,11 @@ Find source of a keybind with:
 |---|---|
 | `<Leader>w` | Write buffer to the file |
 | `<Leader>q` | Toggle quickfix window |
-| `gq` | Format the lines that `{motion}` moves over, with `'formatexpr'` being set to the [Conform's](https://github.com/stevearc/conform.nvim) function |
+| `gq` | Format the lines that `{motion}` moves over, with `'formatexpr'` being set to the [Conform](https://github.com/stevearc/conform.nvim)'s function |
 | `<Leader>y` | Yank to system clipboard |
 | `<Leader>Y` | Yank line(s) to system clipboard |
 | `<Leader>p` / `<Leader>P` | Put from system clipboard before/after cursor |
+| `<Leader>e` | Explore files ([mini.files](https://github.com/nvim-mini/mini.files)) |
 | `<` / `>` | In visual mode, indent/re-indent line and reselect |
 | `<Alt>` + `hjkl` | Move line(s) or, in visual mode, move selection |
 
