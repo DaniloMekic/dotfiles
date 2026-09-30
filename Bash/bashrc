@@ -36,4 +36,8 @@ man() {
         command man "$@"
 }
 
+# Rust
 . "$HOME/.cargo/env"
+
+# Python
+export PATH="$HOME/.local/bin:$PATH"
