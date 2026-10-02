@@ -13,10 +13,10 @@ force_sync_refresh_upgrade() {
     sudo pacman -Syyu --needed --noconfirm --disable-download-timeout
 }
 
+AUR_HELPER="yay"
 get_aur_helper() {
-    local aur_helper="yay"
 
-    echo "Installing AUR helper: $aur_helper"
+    echo "Installing AUR helper: $AUR_HELPER"
 
     # Separate declaration with 'local' Bash builtin from the assignment,
     # since local masks the exit status of the substituted command.
@@ -30,10 +30,10 @@ get_aur_helper() {
         && (cd "$build_dir" && makepkg -si --noconfirm); then
 
         rm -rf "$build_dir"
-        echo "$aur_helper installed successfully"
+        echo "$AUR_HELPER installed successfully"
     else
         rm -rf "$build_dir"
-        echo "Failed to install $aur_helper" >&2
+        echo "Failed to install $AUR_HELPER" >&2
 
         exit 1
     fi
@@ -168,6 +168,15 @@ bootstrap_nvim() {
     sudo archlinux-java set java-21-openjdk
 
     setup_tex
+
+    # Clipboard provider for WSL environment
+    if [[ "$OPTION" == "--wsl" ]]; then
+        if command -v yay >/dev/null 2>&1; then
+            yay -S --noconfirm win32yank-bin
+        else
+            get_aur_helper && yay -S --noconfirm win32yank-bin
+        fi
+    fi
 }
 
 # Configs
