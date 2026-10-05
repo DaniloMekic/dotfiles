@@ -157,6 +157,9 @@ bootstrap_nvim() {
         unzip \
         yazi
 
+    yay -S --noconfirm \
+        powershell-bin # Required binaries for the PowerShell Editor Services, an LSP for PowerShell
+
     setup_rust
 
     # Update Rust and install KDL LSP
