@@ -17,15 +17,14 @@ require('conform').setup({
         json = { 'jq' },
         kdl = { 'kdlfmt' },
         lua = { 'stylua' },
-        perl = { 'perltidy ' },
         python = { 'isort', 'black' },
-        rust = { 'rustfmt' },
+        rust = { 'rustfmt' }, -- Installed via Rustup
         sh = { 'shfmt' },
-        tex = { 'latexindent' },
+        tex = { 'latexindent' }, -- Installed via pacman, texlive-binextra package
         typescript = { 'prettierd', 'prettier' },
         typescriptreact = { 'prettierd', 'prettier' },
         typst = { 'typstyle' },
-        xml = { 'xmllint' },
+        xml = { 'xmllint' }, -- Available by default on Arch Linux
     },
 
     formatters = {
