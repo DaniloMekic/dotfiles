@@ -2,6 +2,7 @@ require('mason-lspconfig').setup({
     ---@type string[]
     ensure_installed = {
         -- Valid LSP Names: github.com/neovim/nvim-lspconfig/tree/master/lsp
+        -- LSP servers are automatically enabled (vim.lsp.enable())
         'awk_ls', -- AWK
         'basedpyright', -- Python
         'bashls', -- Bash
@@ -15,7 +16,8 @@ require('mason-lspconfig').setup({
         'jsonls', -- JSON
         'lemminx', -- XML
         'lua_ls', -- Lua
-        'markdown_oxide', -- Markdown for PKMS
+        'markdown_oxide', -- Markdown LSP for PKMS
+        'powershell_es', -- PowerShell Editor Services
         'perlnavigator', -- Perl
         'postgres_lsp', -- PostgreSQL
         'rust_analyzer', -- Rust
