@@ -1,7 +1,7 @@
 ---@module "conform"
 require('conform').setup({
     ---@type conform.setupOpts
-    -- Formatters are automatically installed with Mason via mason-conform plugin
+    -- Formatters can be installed via :Mason command, or programmatically via mason-tool-installer plugin
     formatters_by_ft = {
         -- clangd LSP embeds clang-format, a code formatter for C/C++/C# and other languages
         -- Styling options can be controlled with .clang-format file
@@ -21,10 +21,10 @@ require('conform').setup({
         python = { 'isort', 'black' },
         rust = { 'rustfmt' },
         sh = { 'shfmt' },
-        tex = { 'tex-fmt' },
-        typst = { 'typstyle' },
+        tex = { 'latexindent' },
         typescript = { 'prettierd', 'prettier' },
         typescriptreact = { 'prettierd', 'prettier' },
+        typst = { 'typstyle' },
         xml = { 'xmllint' },
     },
 
