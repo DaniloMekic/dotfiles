@@ -98,6 +98,7 @@ bootstrap_system() {
         ghostty \
         git \
         jless \
+        jq \
         keyd \
         mpv \
         niri fuzzel mako \
@@ -144,6 +145,7 @@ bootstrap_nvim() {
         gcc \
         git \
         go \
+        jq \
         lua \
         maven \
         nodejs \
