@@ -17,6 +17,7 @@ require('conform').setup({
         json = { 'jq' },
         kdl = { 'kdlfmt' },
         lua = { 'stylua' },
+        ps1 = { lsp_format = 'prefer' },
         python = { 'isort', 'black' },
         rust = { 'rustfmt' }, -- Installed via Rustup
         sh = { 'shfmt' },
@@ -54,7 +55,7 @@ require('conform').setup({
     format_on_save = {
         -- These options will be passed to conform.format()
         timeout_ms = 500,
-        lsp_format = 'never',
+        lsp_format = 'fallback',
     },
 
     stop_after_first = true,
