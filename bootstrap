@@ -97,8 +97,7 @@ bootstrap_system() {
         fastfetch \
         ghostty \
         git \
-        jless \
-        jq \
+        jq jless \
         keyd \
         mpv \
         niri fuzzel mako \
