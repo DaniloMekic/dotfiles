@@ -10,7 +10,6 @@ require('mason-tool-installer').setup({
         'google-java-format',
         'isort',
         'black',
-        'jq',
         'kdlfmt',
         'npm-groovy-lint',
         'prettierd',
