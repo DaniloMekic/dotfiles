@@ -101,6 +101,7 @@ bootstrap_system() {
         keyd \
         mpv \
         niri fuzzel mako \
+        nix \
         noto-fonts-emoji \
         ripgrep \
         tmux \
