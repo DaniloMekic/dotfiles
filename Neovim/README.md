@@ -72,7 +72,7 @@ Find source of a keybind with:
 | `gO` | List all symbols in the current buffer in the location-list |
 | `gx` | Open document links (`textDocument/documentLink`) |
 
-## Text Objects
+## Plugin: mini.ai
 
 `[count]` **operator** with a **modifier** (`a`/`i`), and an **object**.
 
@@ -100,6 +100,24 @@ Modifiers specify whether surrounding delimiters and _trailing_ whitespace is in
 | `a` | argument of a function; `aa` includes whitespace and a comma (`,`) separator, while `ia` does not | mini.ai |
 | `?` | user prompt for left and right edge, strings that could be different | mini.ai |
 | any unassigned character | typed separator that does not have a dedicated text object | mini.ai |
+
+## Plugin: mini.surround
+ Two "modes", *input* (in `delete` and `replace` start, `find`, and `highlight`) and *output* (in `add` and `replace` end).
+
+| Keys | Action |
+|---|---|
+| `sa{motion}X` | Add surrounding `X`, in visual mode or with a motion |
+| `sdX` | Delete surrounding `X` |
+| `srX` | Replace surrounding `X` |
+| `sfX` / `sFX` | Find next/previous surrounding `X` |
+| `shX` | Highlight surrounding `X` |
+
+Surrounding is identified by a single character:
+- All symbols in brackets `()`, `[]`, `{}`, `<>`. In "input" represents balanced brackets (open – with whitespace pad, close – without), in "output" – left and right parts of brackets.
+- `t` – tag. In "input" finds tag with same identifier, in "output" prompts user to enter tag name with possible attributes.
+- `f` - function call (string of alphanumeric symbols or `_` or `.` followed by balanced `()`). In "input" finds function call, in "output" prompts user to enter function name.
+- `?` - interactive. Prompts user to enter left and right parts. 
+- All other single character identifiers (supported by `getcharstr()`) represent surrounding with identical left and right parts.
 
 ## Debugging
 
