@@ -16,7 +16,6 @@ require('mason-lspconfig').setup({
         'jsonls', -- JSON
         'lemminx', -- XML
         'lua_ls', -- Lua
-        'markdown_oxide', -- Markdown LSP for PKMS
         'powershell_es', -- PowerShell Editor Services
         'perlnavigator', -- Perl
         'postgres_lsp', -- PostgreSQL
