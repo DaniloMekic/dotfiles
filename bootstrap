@@ -80,6 +80,18 @@ setup_tex() {
         zathura zathura-pdf-mupdf
 }
 
+# https://wiki.archlinux.org/title/Nix
+setup_nix() {
+    sudo pacman -S --needed --noconfirm --disable-download-timeout \
+        nix
+
+    # Launch Nix daemon at boot time
+    sudo systemctl enable --now nix-daemon.service
+
+    nix-channel --add https://channels.nixos.org/nixpkgs-unstable
+    nix-channel --update
+}
+
 # Function for detecting Windows Subsystem for Linux (WSL) environment
 is_wsl() {
     [[ -n "${WSL_DISTRO_NAME:-}" ]] \
@@ -88,7 +100,7 @@ is_wsl() {
 }
 
 enable_services() {
-    declare -a services=(keyd logid)
+    declare -a services=(keyd logid nix-daemon.service)
 
     echo "Enabling services: ${services[*]}"
 
@@ -108,7 +120,6 @@ bootstrap_system() {
         keyd \
         mpv \
         niri fuzzel mako \
-        nix \
         noto-fonts-emoji \
         ripgrep \
         tmux \
@@ -120,6 +131,7 @@ bootstrap_system() {
     fi
 
     setup_rust
+    setup_nix
 
     # Return early if it's WSL environment
     if is_wsl; then
@@ -171,6 +183,7 @@ bootstrap_nvim() {
         powershell-bin # Required binaries for the PowerShell Editor Services, an LSP for PowerShell
 
     setup_rust
+    setup_nix
 
     # Update Rust and install KDL LSP
     rustup update stable
@@ -209,6 +222,7 @@ bootstrap_configs() {
     ln -sfv "$DOTFILES/config.vim" "$HOME/.vimrc"
     ln -sfv "$DOTFILES/curlrc" "$HOME/.curlrc"
     ln -sfv "$DOTFILES/tmux.conf" "$HOME/.tmux.conf"
+    mkdir -p "$CONFIG_HOME/nix" && ln -sfv "$DOTFILES/nix.conf" "$_"
 
     # Return early if it's WSL environment
     if is_wsl; then
