@@ -80,6 +80,13 @@ setup_tex() {
         zathura zathura-pdf-mupdf
 }
 
+# Function for detecting Windows Subsystem for Linux (WSL) environment
+is_wsl() {
+    [[ -n "${WSL_DISTRO_NAME}" ]] \
+        || [[ "$(uname -r)" == *[Mm]icrosoft* ]] \
+        || [[ -f /proc/sys/fs/binfmt_misc/WSLInterop ]]
+}
+
 enable_services() {
     declare -a services=(keyd logid)
 
@@ -115,7 +122,7 @@ bootstrap_system() {
     setup_rust
 
     # Return early if it's WSL environment
-    if [[ "$1" == "--wsl" ]]; then
+    if is_wsl; then
         return
     fi
 
@@ -175,7 +182,7 @@ bootstrap_nvim() {
     setup_tex
 
     # Clipboard provider for WSL environment
-    if [[ "$OPTION" == "--wsl" ]]; then
+    if is_wsl; then
         if command -v yay >/dev/null 2>&1; then
             yay -S --noconfirm win32yank-bin
         else
@@ -192,7 +199,7 @@ bootstrap_configs() {
     ln -sfv --no-dereference "$DOTFILES/Neovim" "$CONFIG_HOME/nvim" # Option --no-dereference prevents following of an existing symlink if it points to a directory
 
     # Return early if it's only Neovim bootstrapping
-    if [[ "$1" == "--nvim" ]]; then
+    if [[ "$OPTION" == "--nvim" ]]; then
         return
     fi
 
@@ -203,7 +210,7 @@ bootstrap_configs() {
     ln -sfv "$DOTFILES/tmux.conf" "$HOME/.tmux.conf"
 
     # Return early if it's WSL environment
-    if [[ "$1" == "--wsl" ]]; then
+    if is_wsl; then
         return
     fi
 
@@ -221,22 +228,22 @@ bootstrap_configs() {
 }
 
 case "${1:-}" in
-    -a | --all | --wsl)
+    -a | --all)
         force_sync_refresh_upgrade
-        bootstrap_system "$OPTION"
+        bootstrap_system
         bootstrap_nvim
-        bootstrap_configs "$OPTION"
+        bootstrap_configs
         ;;
     -s | --system)
         force_sync_refresh_upgrade
-        bootstrap_system "$OPTION"
+        bootstrap_system
         ;;
     --nvim)
         bootstrap_nvim
-        bootstrap_configs "$OPTION"
+        bootstrap_configs
         ;;
     -c | --configs)
-        bootstrap_configs "$OPTION"
+        bootstrap_configs
         ;;
     -h | --help)
         echo "Usage: ./bootstrap [option]"
@@ -244,7 +251,6 @@ case "${1:-}" in
         echo "      -s, --system        Install system dependencies"
         echo "      -c, --configs       Install configs"
         echo "      --nvim              Bootstrap Neovim"
-        echo "      --wsl               Bootstrap for WSL"
         ;;
     *)
         echo "Invalid option. See --help."
