@@ -82,7 +82,7 @@ setup_tex() {
 
 # Function for detecting Windows Subsystem for Linux (WSL) environment
 is_wsl() {
-    [[ -n "${WSL_DISTRO_NAME}" ]] \
+    [[ -n "${WSL_DISTRO_NAME:-}" ]] \
         || [[ "$(uname -r)" == *[Mm]icrosoft* ]] \
         || [[ -f /proc/sys/fs/binfmt_misc/WSLInterop ]]
 }
@@ -227,7 +227,7 @@ bootstrap_configs() {
     mkdir -p "$CONFIG_HOME/foot" && ln -sfv "$DOTFILES/foot.conf" "$_/foot.ini"
 }
 
-case "${1:-}" in
+case "${OPTION}" in
     -a | --all)
         force_sync_refresh_upgrade
         bootstrap_system
