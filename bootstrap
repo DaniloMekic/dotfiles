@@ -103,7 +103,7 @@ bootstrap_system() {
         7zip \
         fastfetch \
         ghostty \
-        git \
+        git tig lazygit \
         jq jless \
         keyd \
         mpv \
@@ -137,6 +137,7 @@ bootstrap_system() {
     #   wlogout                         : Wayland based logout menu
     yay -S --needed --noconfirm --answerdiff None --answerclean None \
         logiops \
+        sourcegit-bin \
         wlogout
 
     read -rp "Enable services? [Y/n] " response
