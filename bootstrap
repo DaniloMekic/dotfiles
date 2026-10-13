@@ -94,9 +94,7 @@ setup_nix() {
 
 # Function for detecting Windows Subsystem for Linux (WSL) environment
 is_wsl() {
-    [[ -n "${WSL_DISTRO_NAME:-}" ]] \
-        || [[ "$(uname -r)" == *[Mm]icrosoft* ]] \
-        || [[ -f /proc/sys/fs/binfmt_misc/WSLInterop ]]
+    [[ -n "${WSL_DISTRO_NAME:-}" ]] || grep -qi microsoft /proc/version 2>/dev/null
 }
 
 enable_services() {
