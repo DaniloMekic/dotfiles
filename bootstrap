@@ -235,7 +235,7 @@ bootstrap_configs() {
     sudo ln -sfv "$DOTFILES/logiops.conf" "/etc/logid.cfg"
     sudo ln -sfv "$DOTFILES/keyd.conf" "/etc/keyd/default.conf"
     mkdir -p "$CONFIG_HOME/waybar" && ln -sfv "$DOTFILES/Waybar/config.jsonc" "$_" && ln -sfv "$DOTFILES/Waybar/style.css" "$_"
-    mkdir -p "$CONFIG_HOME/rofi" && ln -sfv "$DOTFILES/rofi.rasi" "$_/config.rasi"
+    # mkdir -p "$CONFIG_HOME/rofi" && ln -sfv "$DOTFILES/rofi.rasi" "$_/config.rasi"
     # Terminal Emulators
     mkdir -p "$CONFIG_HOME/alacritty/" && ln -sfv "$DOTFILES/alacritty.toml" "$_"
     mkdir -p "$CONFIG_HOME/ghostty" && ln -sfv "$DOTFILES/ghostty.conf" "$_/config"
