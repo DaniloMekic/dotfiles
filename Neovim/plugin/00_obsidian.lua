@@ -15,7 +15,7 @@ local opts = {
         if title ~= nil then
             -- If a title is provided, convert it to a lowercase, hyphen-separated slug
             local slug = title:gsub(' ', '_'):gsub('[^A-Za-z0-9-_]', ''):lower()
-            return timestamp .. '-' .. slug
+            return timestamp .. '__' .. slug
         end
 
         -- If no title is given, fall back to just the timestamp
