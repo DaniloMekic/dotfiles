@@ -29,6 +29,7 @@ require('nvim-treesitter').install({
     'luadoc',
     'markdown',
     'markdown_inline',
+    'nix',
     'passwd',
     'perl',
     'properties', -- Java Properties File

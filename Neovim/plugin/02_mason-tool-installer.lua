@@ -1,22 +1,23 @@
 require('mason-tool-installer').setup({
     -- Valid names: https://mason-registry.dev/registry/list
     ensure_installed = {
-        'debugpy', -- Python debugger
-        'java-debug-adapter',
-        'java-test',
-        'npm-groovy-lint',
-        'vscode-spring-boot-tools',
+        'black',
         'clang-format',
+        'debugpy', -- Python debugger
         'google-java-format',
         'isort',
-        'black',
+        'java-debug-adapter',
+        'java-test',
         'kdlfmt',
+        'nixfmt', -- https://github.com/NixOS/nixfmt
         'npm-groovy-lint',
-        'prettierd',
+        'npm-groovy-lint',
         'prettier',
+        'prettierd',
         'shfmt',
         'stylua',
         'tex-fmt',
+        'vscode-spring-boot-tools',
         'typstyle',
     },
 })

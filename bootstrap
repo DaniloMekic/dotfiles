@@ -187,6 +187,7 @@ bootstrap_nvim() {
     rustup update stable
     rustup component add rustfmt
     cargo install kdl-lsp
+    cargo install deadnix
 
     setup_java
     sudo archlinux-java set java-21-openjdk

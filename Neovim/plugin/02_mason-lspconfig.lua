@@ -16,9 +16,10 @@ require('mason-lspconfig').setup({
         'jsonls', -- JSON
         'lemminx', -- XML
         'lua_ls', -- Lua
-        'powershell_es', -- PowerShell Editor Services
+        'nil_ls', -- Nix: https://github.com/oxalica/nil
         'perlnavigator', -- Perl
         'postgres_lsp', -- PostgreSQL
+        'powershell_es', -- PowerShell Editor Services
         'rust_analyzer', -- Rust
         'sqls', -- SQL
         'taplo', -- TOML
