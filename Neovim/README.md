@@ -50,7 +50,6 @@ Find source of a keybind with:
 | `<Leader>e` | Explore files ([mini.files](https://github.com/nvim-mini/mini.files)) |
 | `<` / `>` | In visual mode, indent/re-indent line and reselect |
 | `<Alt>` + `hjkl` | Move line(s) or, in visual mode, move selection |
-| `CTRL-W_d` | Show diagnostics in a floating window; mapped to `vim.diagnostic.open_float()` |
 
 ## Picker
 
@@ -62,6 +61,8 @@ Find source of a keybind with:
 | `<Leader>fb` | Find buffers |
 
 ## LSP
+
+https://neovim.io/doc/user/lsp/
 
 | Keys | Action |
 |---|---|
@@ -75,6 +76,16 @@ Find source of a keybind with:
 | `grx` | Run code lens at the current cursor position |
 | `gO` | List all symbols in the current buffer in the location-list |
 | `gx` | Open document links (`textDocument/documentLink`) |
+
+## Diagnostics
+
+https://neovim.io/doc/user/diagnostic/
+
+| Keys | Action |
+|---|---|
+| `]d` / `[d` | Jump to the next/previous diagnostic |
+| `]D` / `[D` | Jump to the last/first diagnostic |
+| `CTRL-W_d` | Show diagnostics in a floating window; mapped to `vim.diagnostic.open_float()` |
 
 ## Plugin: mini.ai
 
