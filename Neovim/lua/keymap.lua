@@ -64,6 +64,15 @@ vim.keymap.set('n', '<Leader>q', function()
     end
 end, { desc = 'Toggle quickfix window' })
 
+-- Location List
+vim.keymap.set('n', '<Leader>l', function()
+    if vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 then
+        vim.cmd('lclose')
+    else
+        vim.cmd('lopen')
+    end
+end, { desc = 'Toggle location list' })
+
 --- Global LSP Configuration
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
