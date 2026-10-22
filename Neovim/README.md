@@ -36,6 +36,9 @@ Find source of a keybind with:
 :verbose xmap <key>     " Visual mode
 ```
 
+[Default mappings](https://neovim.io/doc/user/vim_diff/#default-mappings)
+
+
 | Keys | Action |
 |---|---|
 | `<Leader>w` | Write buffer to the file |
@@ -47,6 +50,7 @@ Find source of a keybind with:
 | `<Leader>e` | Explore files ([mini.files](https://github.com/nvim-mini/mini.files)) |
 | `<` / `>` | In visual mode, indent/re-indent line and reselect |
 | `<Alt>` + `hjkl` | Move line(s) or, in visual mode, move selection |
+| `CTRL-W_d` | Show diagnostics in a floating window; mapped to `vim.diagnostic.open_float()` |
 
 ## Picker
 
