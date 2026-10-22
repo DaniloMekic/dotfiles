@@ -36,7 +36,7 @@ Find source of a keybind with:
 :verbose xmap <key>     " Visual mode
 ```
 
-[Default mappings](https://neovim.io/doc/user/vim_diff/#default-mappings)
+- [Default mappings](https://neovim.io/doc/user/vim_diff/#default-mappings)
 
 
 | Keys | Action |
@@ -62,7 +62,7 @@ Find source of a keybind with:
 
 ## LSP
 
-https://neovim.io/doc/user/lsp/
+- https://neovim.io/doc/user/lsp/
 
 | Keys | Action |
 |---|---|
@@ -79,7 +79,7 @@ https://neovim.io/doc/user/lsp/
 
 ## Diagnostics
 
-https://neovim.io/doc/user/diagnostic/
+- https://neovim.io/doc/user/diagnostic/
 
 | Keys | Action |
 |---|---|
@@ -89,10 +89,10 @@ https://neovim.io/doc/user/diagnostic/
 
 ## Text Objects & mini.ai Plugin
 
-https://neovim.io/doc/user/usr_04/#_text-objects
-https://neovim.io/doc/user/vimindex/#_2.1-text-objects
-https://neovim.io/doc/user/motion/#_5.-text-object-motions
-https://neovim.io/doc/user/motion/#_6.-text-object-selection
+- https://neovim.io/doc/user/usr_04/#_text-objects
+- https://neovim.io/doc/user/vimindex/#_2.1-text-objects
+- https://neovim.io/doc/user/motion/#_5.-text-object-motions
+- https://neovim.io/doc/user/motion/#_6.-text-object-selection
 
 `[count]` **operator** with a **modifier** (`a`/`i`), and an **object**.
 
