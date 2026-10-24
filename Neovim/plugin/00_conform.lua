@@ -17,7 +17,6 @@ require('conform').setup({
         json = { 'jq' },
         kdl = { 'kdlfmt' },
         lua = { 'stylua' },
-        nix = { 'nixfmt' },
         ps1 = { lsp_format = 'prefer' },
         python = { 'isort', 'black' },
         rust = { 'rustfmt' }, -- Installed via Rustup
@@ -25,7 +24,6 @@ require('conform').setup({
         tex = { 'latexindent' }, -- Installed via pacman, texlive-binextra package
         typescript = { 'prettierd', 'prettier' },
         typescriptreact = { 'prettierd', 'prettier' },
-        typst = { 'typstyle' },
         xml = { 'xmllint' }, -- Available by default on Arch Linux
     },
 

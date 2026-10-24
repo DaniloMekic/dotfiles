@@ -29,7 +29,6 @@ require('nvim-treesitter').install({
     'luadoc',
     'markdown',
     'markdown_inline',
-    'nix',
     'passwd',
     'perl',
     'properties', -- Java Properties File
@@ -40,7 +39,6 @@ require('nvim-treesitter').install({
     'sql',
     'ssh_config',
     'toml',
-    'typst',
     'vim', -- Vimscript
     'vimdoc',
     'xml',
@@ -68,6 +66,7 @@ vim.api.nvim_create_autocmd('FileType', {
         'javascript',
         'jq',
         'json',
+        'kdl',
         'lua',
         'markdown',
         'passwd',
@@ -75,6 +74,7 @@ vim.api.nvim_create_autocmd('FileType', {
         'rust',
         'sql',
         'sshconfig',
+        'tex',
         'toml',
         'vim',
         'xml',

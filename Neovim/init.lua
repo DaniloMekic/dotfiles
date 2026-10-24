@@ -5,10 +5,7 @@ vim.pack.add({
     { src = 'https://github.com/L3MON4D3/LuaSnip', version = vim.version.range('2'), name = 'luasnip' },
     { src = 'https://github.com/saghen/blink.cmp', version = vim.version.range('1'), name = 'blink.cmp' },
     { src = 'https://github.com/neovim/nvim-lspconfig' },
-    { src = 'https://github.com/mason-org/mason.nvim' },
     { src = 'https://github.com/stevearc/conform.nvim' },
-    { src = 'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim' },
-    { src = 'https://github.com/mason-org/mason-lspconfig.nvim' },
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects' },
     { src = 'https://github.com/nvim-mini/mini.files' },
@@ -18,7 +15,6 @@ vim.pack.add({
     { src = 'https://github.com/nvim-mini/mini.ai' },
     { src = 'https://github.com/nvim-lualine/lualine.nvim' },
     { src = 'https://github.com/mfussenegger/nvim-lint' },
-    { src = 'https://github.com/rshkarin/mason-nvim-lint' },
     { src = 'https://github.com/mfussenegger/nvim-dap' },
     { src = 'https://github.com/rcarriga/nvim-dap-ui' },
     { src = 'https://github.com/mfussenegger/nvim-dap-python' },
@@ -44,4 +40,25 @@ require('autocommands')
 
 vim.cmd([[colorscheme gruvbox-material]])
 
-vim.lsp.enable('kdl_lsp')
+vim.lsp.enable({
+    'basedpyright', -- Pyton
+    'bashls',
+    'clangd',
+    'cssls',
+    'groovyls',
+    'harper_ls', -- Grammar
+    'html',
+    'jsonls',
+    'kdl_lsp',
+    'lemminx', -- XML
+    'lua_ls',
+    'powershell_es',
+    'ruff', -- Python
+    'rust_analyzer',
+    'sqls',
+    'taplo', -- TOML
+    'texlab', -- LaTeX
+    'ts_ls', -- TypeScript
+    'vimls',
+    'yamlls',
+})

@@ -1,0 +1,10 @@
+---@type vim.lsp.Config
+return {
+    cmd = {
+        'java',
+        '-jar',
+        '/usr/share/java/groovy-language-server/groovy-language-server-all.jar',
+    },
+    filetypes = { 'groovy' },
+    root_markers = { 'Jenkinsfile', '.git' },
+}
