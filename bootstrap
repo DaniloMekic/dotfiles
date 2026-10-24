@@ -71,13 +71,14 @@ EOF
 }
 
 setup_tex() {
+    # tesseract-data-eng                : Tesseract OCR data for English, needed for libmupdf dependency
     sudo pacman -S --needed --noconfirm --disable-download-timeout \
         biber \
         texlive-basic \
         texlive-binextra \
         texlive-latex \
         texlive-latexrecommended \
-        zathura zathura-pdf-mupdf
+        zathura zathura-pdf-mupdf tesseract-data-eng
 }
 
 # https://wiki.archlinux.org/title/Nix
@@ -298,6 +299,7 @@ case "${OPTION}" in
         bootstrap_system
         ;;
     --nvim)
+        force_sync_refresh_upgrade
         bootstrap_nvim
         bootstrap_configs
         ;;
