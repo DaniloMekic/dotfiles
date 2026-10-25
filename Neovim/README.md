@@ -13,13 +13,7 @@ bash <(curl -s https://raw.githubusercontent.com/DaniloMekic/dotfiles/refs/heads
 - **Picker**: [Fzf-Lua](https://github.com/ibhagwan/fzf-lua)
 
 # Language Tools
-Installation of LSP servers, DAP servers (debuggers), linters, and code formatters is done via [Mason](https://github.com/mason-org/mason.nvim).
-
-Mason package installation is automated via following plugins, that also perform other tasks:
-- `mason-tool-installer` is purely for package installation in a declarative way.
-- `mason-lspconfig` bridges `nvim-lspconfig` and initializes LSP servers—there is no need to call `vim.lsp.enable({name})`.
-- `mason-nvim-dap` bridges `nvim-dap` and configures debuggers.
-- `mason-nvim-lint` connects Mason's installed linters to the `nvim-lint`.
+LSP servers, DAP servers (debuggers), linters, and code formatters are installed as packages from the Arch Linux [official repositories](https://wiki.archlinux.org/title/Official_repositories) and the [AUR](https://wiki.archlinux.org/title/Arch_User_Repository).
 
 # Update All Plugins
 ```lua
