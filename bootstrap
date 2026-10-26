@@ -5,6 +5,9 @@ set -euo pipefail
 # Set argument to an empty string, since nounset (-u) is enabled
 OPTION="${1:-}"
 
+# Used by logging functions in lib/log.sh
+BOOTSTRAP_LOG_DESTINATION="/tmp/bootstrap.log"
+
 # Force-sync repository databases and upgrade the system
 force_sync_refresh_upgrade() {
     # -S            Synchronize packages
