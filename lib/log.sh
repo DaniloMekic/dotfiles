@@ -10,10 +10,10 @@ _LIB_LOG_SOURCED=true
 # Dependencies
 
 # Get absolute path of the lib/ dir
-LIB_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+LIB_HOME="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 
 if [[ -z "${_LIB_ANSI_SOURCED}" ]]; then
-    [[ -f "${LIB_DIR}/ansi.sh" && -r "${LIB_DIR}/ansi.sh" ]] && source "${LIB_DIR}/ansi.sh" || {
+    [[ -f "${LIB_HOME}/ansi.sh" && -r "${LIB_HOME}/ansi.sh" ]] && source "${LIB_HOME}/ansi.sh" || {
         echo "ERROR: Failed to source ansi.sh"
         exit 1
     }
