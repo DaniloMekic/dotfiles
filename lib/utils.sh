@@ -3,7 +3,7 @@ force_sync_refresh_upgrade() {
     # -S            Synchronize packages
     # -yy           Force a refresh of all package databases, even if they appear to be up-to-date
     # -u            Upgrade ALL packages that are out-of-date
-    sudo pacman -Syyu --needed --noconfirm --disable-download-timeout
+    sudo pacman -Syyu --noconfirm --disable-download-timeout
 }
 
 get_aur_helper() {
@@ -161,8 +161,8 @@ link_configs() {
     mkdir -p "$CONFIG_HOME/mpv" && ln -sfv "$DOTFILES_HOME/cfg/mpv/input.conf" "$_"
     ln -sfv "$DOTFILES_HOME/cfg/mpv/mpv.conf" "$CONFIG_HOME/mpv/"
     sudo ln -sfv "$DOTFILES_HOME/cfg/LogiOps/logiops.conf" "/etc/"
-    sudo ln -sfv "$DOTFILES_HOME/cfg/keyd.conf" "/etc/keyd/"
-    mkdir -p "$CONFIG_HOME/waybar" && ln -sfv "$DOTFILES_HOME/cfg/Waybar/config.jsonc" "$_" && ln -sfv "$DOTFILES_HOME/Waybar/style.css" "$_"
+    sudo ln -sfv "$DOTFILES_HOME/cfg/keyd/default.conf" "/etc/keyd/"
+    mkdir -p "$CONFIG_HOME/waybar" && ln -sfv "$DOTFILES_HOME/cfg/Waybar/config.jsonc" "$_" && ln -sfv "$DOTFILES_HOME/cfg/Waybar/style.css" "$_"
     # mkdir -p "$CONFIG_HOME/rofi" && ln -sfv "$DOTFILES_HOME/rofi.rasi" "$_/config.rasi"
     # Terminal Emulators
     mkdir -p "$CONFIG_HOME/alacritty/" && ln -sfv "$DOTFILES_HOME/cfg/Alacritty/alacritty.toml" "$_"
@@ -232,7 +232,7 @@ bootstrap_nvim() {
     # powershell-editor-services-bin    : PowerShell LSP and DAP server
     # prettierd                         : Code formatter
     # sqls                              : SQL LSP server
-    yay -S --noconfirm \
+    yay -S --noconfirm --needed \
         basedpyright-bin \
         google-java-format \
         groovy-language-server-git \
@@ -256,9 +256,12 @@ bootstrap_nvim() {
     # Clipboard provider for WSL environment
     if is_wsl; then
         if command -v yay >/dev/null 2>&1; then
-            yay -S --noconfirm win32yank-bin
+            yay -S --needed --noconfirm --answerdiff None --answerclean None \
+                win32yank-bin
         else
-            get_aur_helper && yay -S --noconfirm win32yank-bin
+            get_aur_helper \
+                && yay -S --needed --noconfirm --answerdiff None --answerclean None \
+                    win32yank-bin
         fi
     fi
 
