@@ -9,5 +9,3 @@ fi
 if [[ $- == *i* && -z "$TMUX" ]]; then
     fastfetch
 fi
-
-. "$HOME/.cargo/env"

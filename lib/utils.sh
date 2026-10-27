@@ -1,9 +1,10 @@
-# Force-sync repository databases and upgrade the system
-force_sync_refresh_upgrade() {
-    # -S            Synchronize packages
-    # -yy           Force a refresh of all package databases, even if they appear to be up-to-date
-    # -u            Upgrade ALL packages that are out-of-date
-    sudo pacman -Syyu --noconfirm --disable-download-timeout
+# Sync repository databases and upgrade the system
+# https://man.archlinux.org/man/pacman.8.en.html#SYNC_OPTIONS_(APPLY_TO_-S)
+sync_refresh_upgrade() {
+    # -S                                : Synchronize packages
+    # -y                                : Refresh package databases
+    # -u                                : Upgrade ALL packages that are out-of-date
+    sudo pacman -Syu --disable-download-timeout
 }
 
 get_aur_helper() {
@@ -35,7 +36,7 @@ get_aur_helper() {
 setup_rust() {
     if ! command -v rustup &>/dev/null; then
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || {
-            echo "Failed to fetch rustup installation script"
+            echo "Failed to fetch rustup installation script" >&2
             return 1
         }
         . "$HOME/.cargo/env"
@@ -104,7 +105,7 @@ bootstrap_system() {
         ttf-jetbrains-mono-nerd \
         vim neovim
 
-    if ! command -v yay &>/dev/null; then
+    if ! command -v "$AUR_HELPER" &>/dev/null; then
         get_aur_helper
     fi
 
@@ -115,17 +116,11 @@ bootstrap_system() {
         return
     fi
 
-    # yay options:
-    #   --needed                        : Only install packages that are not already installed
-    #   --noconfirm                     : Automatically answer "yes" to all confirmation prompts
-    #   --answerdiff None               : Suppress the prompt to view the changes (diff) between the current PKGBUILD and the previously cached one
-    #   --answerclean None              : After building an AUR package, answer "yes" to prompt to clean the build directory
-    #
-    # yay packages:
+    # AUR packages:
     #   logiops                         : Unofficial userspace driver for HID++ Logitech devices
     #   sourcegit-bin                   : Git GUI client
     #   wlogout                         : Wayland based logout menu
-    yay -S --needed --noconfirm --answerdiff None --answerclean None \
+    "$AUR_HELPER" -S "${AUR_HELPER_OPTS[@]}" \
         logiops \
         sourcegit-bin \
         wlogout
@@ -142,8 +137,6 @@ link_config_nvim() {
     ln -sfv --no-dereference "$DOTFILES_HOME/cfg/Neovim" "$CONFIG_HOME/nvim" # Option --no-dereference prevents following of an existing symlink if it points to a directory
 }
 link_configs() {
-    DOTFILES_HOME="$(dirname "$(realpath "$0")")"
-
     link_config_nvim
 
     ln -sfv "$DOTFILES_HOME/cfg/Bash/bashrc" "$HOME/.bashrc"
@@ -161,11 +154,11 @@ link_configs() {
     mkdir -p "$CONFIG_HOME/mpv" && ln -sfv "$DOTFILES_HOME/cfg/mpv/input.conf" "$_"
     ln -sfv "$DOTFILES_HOME/cfg/mpv/mpv.conf" "$CONFIG_HOME/mpv/"
     sudo ln -sfv "$DOTFILES_HOME/cfg/LogiOps/logiops.conf" "/etc/"
-    sudo ln -sfv "$DOTFILES_HOME/cfg/keyd/default.conf" "/etc/keyd/"
+    sudo mkdir -p "/etc/keyd" && sudo ln -sfv "$DOTFILES_HOME/cfg/keyd/default.conf" "$_"
     mkdir -p "$CONFIG_HOME/waybar" && ln -sfv "$DOTFILES_HOME/cfg/Waybar/config.jsonc" "$_" && ln -sfv "$DOTFILES_HOME/cfg/Waybar/style.css" "$_"
     # mkdir -p "$CONFIG_HOME/rofi" && ln -sfv "$DOTFILES_HOME/rofi.rasi" "$_/config.rasi"
     # Terminal Emulators
-    mkdir -p "$CONFIG_HOME/alacritty/" && ln -sfv "$DOTFILES_HOME/cfg/Alacritty/alacritty.toml" "$_"
+    mkdir -p "$CONFIG_HOME/alacritty" && ln -sfv "$DOTFILES_HOME/cfg/Alacritty/alacritty.toml" "$_"
     mkdir -p "$CONFIG_HOME/ghostty" && ln -sfv "$DOTFILES_HOME/cfg/Ghostty/ghostty.conf" "$_/config"
     mkdir -p "$CONFIG_HOME/foot" && ln -sfv "$DOTFILES_HOME/cfg/foot/foot.ini" "$_"
 }
@@ -189,7 +182,7 @@ bootstrap_nvim() {
     # stylua                            : Lua code formatter
     # taplo-cli                         : TOML LSP server
     # texlab                            : LaTeX LSP server
-    sudo pacman -S --needed --noconfirm --disable-download-timeout \
+    sudo pacman -Syu --needed --disable-download-timeout \
         bash-language-server \
         eslint_d \
         fzf \
@@ -224,6 +217,10 @@ bootstrap_nvim() {
         yaml-language-server \
         yazi
 
+    if ! command -v "$AUR_HELPER" &>/dev/null; then
+        get_aur_helper
+    fi
+
     # basedpyright-bin                  : Python LSP server
     # google-java-format                : Java code formatter
     # groovy-language-server-git        : Groovy LSP server
@@ -232,7 +229,7 @@ bootstrap_nvim() {
     # powershell-editor-services-bin    : PowerShell LSP and DAP server
     # prettierd                         : Code formatter
     # sqls                              : SQL LSP server
-    yay -S --noconfirm --needed \
+    "$AUR_HELPER" -S "${AUR_HELPER_OPTS[@]}" \
         basedpyright-bin \
         google-java-format \
         groovy-language-server-git \
@@ -255,14 +252,7 @@ bootstrap_nvim() {
 
     # Clipboard provider for WSL environment
     if is_wsl; then
-        if command -v yay >/dev/null 2>&1; then
-            yay -S --needed --noconfirm --answerdiff None --answerclean None \
-                win32yank-bin
-        else
-            get_aur_helper \
-                && yay -S --needed --noconfirm --answerdiff None --answerclean None \
-                    win32yank-bin
-        fi
+        "$AUR_HELPER" -S "${AUR_HELPER_OPTS[@]}" win32yank-bin
     fi
 
     link_config_nvim

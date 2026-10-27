@@ -37,7 +37,6 @@ man() {
 }
 
 # Rust
-. "$HOME/.cargo/env"
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
-# Python
 export PATH="$HOME/.local/bin:$PATH"

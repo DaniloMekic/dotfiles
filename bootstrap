@@ -13,17 +13,16 @@ OPTION="${1:-}"
 
 case "${OPTION}" in
     -a | --all)
-        force_sync_refresh_upgrade
+        sync_refresh_upgrade
         bootstrap_system
         bootstrap_nvim
         link_configs
         ;;
     -s | --system)
-        force_sync_refresh_upgrade
+        sync_refresh_upgrade
         bootstrap_system
         ;;
     --nvim)
-        force_sync_refresh_upgrade
         bootstrap_nvim
         ;;
     -c | --configs)
