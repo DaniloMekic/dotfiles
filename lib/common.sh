@@ -19,7 +19,7 @@ AUR_HELPER="yay"
 
 # Used for symlinking configs
 DOTFILES_HOME="$(cd -- "$(dirname -- "${BASH_SOURCE[1]}")" &>/dev/null && pwd)"
-CONFIG_HOME=$HOME/.config
+CONFIG_HOME="$HOME/.config"
 
 source "${LIB_HOME}/ansi.sh"
 source "${LIB_HOME}/log.sh"
