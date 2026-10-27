@@ -4,7 +4,6 @@ bash <(curl -s https://raw.githubusercontent.com/DaniloMekic/dotfiles/refs/heads
 ```
 
 # Core Plugin Stack
-- **Language Server Protocol** (LSP) **Server Management**: [Mason](https://github.com/mason-org/mason.nvim)
 - **Code Formatter Runner**: [Conform](https://github.com/stevearc/conform.nvim)
 - **Linter Engine**: [nvim-lint](https://github.com/mfussenegger/nvim-lint)
 - **Code Completion Engine**: [blink.cmp](https://github.com/Saghen/blink.cmp)

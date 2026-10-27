@@ -1,7 +1,6 @@
 ---@module "conform"
 require('conform').setup({
     ---@type conform.setupOpts
-    -- Formatters can be installed via :Mason command, or programmatically via mason-tool-installer plugin
     formatters_by_ft = {
         -- clangd LSP embeds clang-format, a code formatter for C/C++/C# and other languages
         -- Styling options can be controlled with .clang-format file
