@@ -15,6 +15,9 @@ bash <(curl -s https://raw.githubusercontent.com/DaniloMekic/dotfiles/refs/heads
 # Language Tools
 LSP servers, DAP servers (debuggers), linters, and code formatters are installed as packages from the Arch Linux [official repositories](https://wiki.archlinux.org/title/Official_repositories) and the [AUR](https://wiki.archlinux.org/title/Arch_User_Repository).
 
+To view health check for LSPs and their configurations, run `:checkhealth vim.lsp`.
+To view configured and available formatters, including the log file, run `:ConformInfo`.
+
 # Update All Plugins
 ```lua
 --- https://neovim.io/doc/user/pack/#vim.pack.update()
@@ -57,6 +60,7 @@ Find source of a keybind with:
 ## LSP
 
 - https://neovim.io/doc/user/lsp/
+
 
 | Keys | Action |
 |---|---|
