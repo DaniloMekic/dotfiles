@@ -46,6 +46,7 @@ Find source of a keybind with:
 | `<Leader>e` | Explore files ([mini.files](https://github.com/nvim-mini/mini.files)) |
 | `<` / `>` | In visual mode, indent/re-indent line and reselect |
 | `<Alt>` + `hjkl` | Move line(s) or, in visual mode, move selection |
+| `gt` / `gT` | Tab next/previous |
 
 ## Picker
 
