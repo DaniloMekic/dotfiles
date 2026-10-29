@@ -32,14 +32,12 @@ local opts = {
 if vim.fn.has('wsl') == 1 then
     opts.open = {
         ---@type fun(uri: string)
-        open = {
-            func = function(uri)
-                vim.system({ 'xdg-open', uri }, {
-                    env = { XDG_CURRENT_DESKTOP = 'X-Generic' },
-                    detach = true,
-                })
-            end,
-        },
+        func = function(uri)
+            vim.system({ 'xdg-open', uri }, {
+                env = { XDG_CURRENT_DESKTOP = 'X-Generic' },
+                detach = true,
+            })
+        end,
     }
 end
 
