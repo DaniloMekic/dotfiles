@@ -90,7 +90,7 @@ enable_services() {
 bootstrap_system() {
     # noto-fonts-emoji                  : Noto Color Emoji for Waybar
     # ttf-jetbrains-mono-nerd           : JetBrainsMono Nerd Font for Neovim
-    # wl-clipboard                      : Copy/paste tool for Wayland compositors
+    # wl-clipboard                      : Clipboard CLI tools for Wayland compositors
     sudo pacman -S --needed --noconfirm --disable-download-timeout \
         7zip \
         fastfetch \
@@ -104,8 +104,8 @@ bootstrap_system() {
         ripgrep \
         tmux \
         ttf-jetbrains-mono-nerd \
-        vim neovim
-    wl-clipboard
+        vim neovim \
+        wl-clipboard
 
     if ! command -v "$AUR_HELPER" &>/dev/null; then
         get_aur_helper
@@ -181,11 +181,12 @@ bootstrap_nvim() {
     # python-debugpy                    : Python DAP server
     # python-isort                      : Python utility for sorting module import statements
     # ruff                              : Python linter and LSP server
+    # rumdl                             : Markdown linter and code formatter
     # shfmt                             : Shell code formatter
     # stylua                            : Lua code formatter
     # taplo-cli                         : TOML LSP server
     # texlab                            : LaTeX LSP server
-    # rumdl                             : Markdown linter and code formatter
+    # wl-clipboard                      : Clipboard provider
     sudo pacman -Syu --needed --disable-download-timeout \
         bash-language-server \
         eslint_d \
@@ -219,6 +220,7 @@ bootstrap_nvim() {
         vscode-css-languageserver \
         vscode-html-languageserver \
         vscode-json-languageserver \
+        wl-clipboard \
         yaml-language-server \
         yazi
 
@@ -254,11 +256,6 @@ bootstrap_nvim() {
     cargo install kdl-lsp
 
     setup_tex
-
-    # Clipboard provider for WSL environment
-    if is_wsl; then
-        "$AUR_HELPER" -S "${AUR_HELPER_OPTS[@]}" win32yank-bin
-    fi
 
     link_config_nvim
 }
