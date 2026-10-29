@@ -144,6 +144,7 @@ link_configs() {
     ln -sfv "$DOTFILES_HOME/cfg/Vim/config.vim" "$HOME/.vimrc"
     ln -sfv "$DOTFILES_HOME/cfg/curl/curlrc" "$HOME/.curlrc"
     ln -sfv "$DOTFILES_HOME/cfg/tmux/tmux.conf" "$HOME/.tmux.conf"
+    ln -sfv "$DOTFILES_HOME/cfg/Git/.gitconfig" "$HOME"
 
     # Return early if it's WSL environment
     if is_wsl; then
