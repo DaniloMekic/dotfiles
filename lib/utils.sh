@@ -90,6 +90,7 @@ enable_services() {
 bootstrap_system() {
     # noto-fonts-emoji                  : Noto Color Emoji for Waybar
     # ttf-jetbrains-mono-nerd           : JetBrainsMono Nerd Font for Neovim
+    # wl-clipboard                      : Copy/paste tool for Wayland compositors
     sudo pacman -S --needed --noconfirm --disable-download-timeout \
         7zip \
         fastfetch \
@@ -104,6 +105,7 @@ bootstrap_system() {
         tmux \
         ttf-jetbrains-mono-nerd \
         vim neovim
+    wl-clipboard
 
     if ! command -v "$AUR_HELPER" &>/dev/null; then
         get_aur_helper
