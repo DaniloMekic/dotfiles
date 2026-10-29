@@ -16,6 +16,7 @@ require('conform').setup({
         json = { 'jq' },
         kdl = { 'kdlfmt' },
         lua = { 'stylua' },
+        markdown = { 'rumdl' },
         ps1 = { lsp_format = 'prefer' },
         python = { 'isort', 'black' },
         rust = { 'rustfmt' }, -- Installed via Rustup

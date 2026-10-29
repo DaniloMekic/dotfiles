@@ -183,6 +183,7 @@ bootstrap_nvim() {
     # stylua                            : Lua code formatter
     # taplo-cli                         : TOML LSP server
     # texlab                            : LaTeX LSP server
+    # rumdl                             : Markdown linter and code formatter
     sudo pacman -Syu --needed --disable-download-timeout \
         bash-language-server \
         eslint_d \
@@ -203,6 +204,7 @@ bootstrap_nvim() {
         python python-pip ruff python-isort python-black \
         python-debugpy \
         ripgrep \
+        rumdl \
         rust-analyzer \
         shellcheck \
         shfmt \
