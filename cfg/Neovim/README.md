@@ -176,7 +176,7 @@ Surrounding is identified by a single character:
 | `<Leader>ob` | Backlinks |
 | `<Leader>ol` | Links |
 
-#### Folding
+### Folding
 
 Folding is powered by Tree-sitter, with `'foldexpr'` being set to `v:lua.vim.treesitter.foldexpr()`. LSP-based folding is also available with `v:lua.vim.lsp.foldexpr()`.
 
