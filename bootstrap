@@ -1,32 +1,36 @@
 #!/usr/bin/env bash
 
 # set options
-#       -e                              : Exit immediately if a command exists with non-zero status
+#       -e                              : Exit immediately if a command exits with non-zero status
 #       -u                              : Treat unset variables as errors when substituting
 #       -o pipefail                     : Pipeline fails if any command fails, not just the last one
 set -euo pipefail
 
-source "./lib/common.sh" || echo "ERROR: Failed to source ./lib/common.sh"
+LIB_COMMON="$(dirname -- "${BASH_SOURCE[0]}")/lib/common.sh"
+source "$LIB_COMMON" || {
+    echo "ERROR: Failed to source $LIB_COMMON" >&2
+    exit 1
+}
 
 # Set argument to an empty string, since nounset (-u) is enabled
 OPTION="${1:-}"
 
 case "${OPTION}" in
     -a | --all)
-        sync_refresh_upgrade
-        bootstrap_system
-        bootstrap_nvim
-        link_configs
+        pkg::sync_refresh_upgrade
+        install::system
+        install::nvim
+        link::all_configs
         ;;
     -s | --system)
-        sync_refresh_upgrade
-        bootstrap_system
+        pkg::sync_refresh_upgrade
+        install::system
         ;;
     --nvim)
-        bootstrap_nvim
+        install::nvim
         ;;
     -c | --configs)
-        link_configs
+        link::all_configs
         ;;
     -h | --help)
         echo "Usage: ./bootstrap [option]"

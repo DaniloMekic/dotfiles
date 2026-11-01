@@ -9,6 +9,7 @@ fi
 _LIB_ANSI_SOURCED=true
 
 ################################################################################
+
 ESC="\033"
 # Control Sequence Introducer
 CSI="${ESC}["

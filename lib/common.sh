@@ -1,5 +1,3 @@
-set -euo pipefail
-
 ################################################################################
 # include guard
 # https://en.wikipedia.org/wiki/include_guard
@@ -29,6 +27,8 @@ AUR_HELPER_OPTS=(--needed --noconfirm --answerdiff None --answerclean All --sudo
 DOTFILES_HOME="$(cd -- "$(dirname -- "${BASH_SOURCE[1]}")" &>/dev/null && pwd)"
 CONFIG_HOME="$HOME/.config"
 
-source "${LIB_HOME}/ansi.sh"
-source "${LIB_HOME}/log.sh"
-source "${LIB_HOME}/utils.sh"
+for lib_file in "${LIB_HOME}"/*.sh; do
+    [[ "$lib_file" -ef "${BASH_SOURCE[0]}" ]] && continue # skips common.sh itself
+    source "$lib_file"
+done
+unset lib_file

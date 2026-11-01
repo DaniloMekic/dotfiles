@@ -7,12 +7,8 @@ fi
 _LIB_LOG_SOURCED=true
 
 ################################################################################
-# Dependencies
 
-# Get absolute path of the lib/ dir
-LIB_HOME="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-
-if [[ -z "${_LIB_ANSI_SOURCED}" ]]; then
+if [[ -z "${_LIB_ANSI_SOURCED:-}" ]]; then
     [[ -f "${LIB_HOME}/ansi.sh" && -r "${LIB_HOME}/ansi.sh" ]] && source "${LIB_HOME}/ansi.sh" || {
         echo "ERROR: Failed to source ansi.sh"
         exit 1
