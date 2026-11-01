@@ -156,7 +156,7 @@ link_configs() {
     mkdir -p "$CONFIG_HOME/niri" && ln -sfv "$DOTFILES_HOME/cfg/Niri/config.kdl" "$_/config.kdl"
     mkdir -p "$CONFIG_HOME/mpv" && ln -sfv "$DOTFILES_HOME/cfg/mpv/input.conf" "$_"
     ln -sfv "$DOTFILES_HOME/cfg/mpv/mpv.conf" "$CONFIG_HOME/mpv/"
-    sudo ln -sfv "$DOTFILES_HOME/cfg/LogiOps/logiops.conf" "/etc/"
+    sudo ln -sfv "$DOTFILES_HOME/cfg/LogiOps/logid.cfg" "/etc/"
     sudo mkdir -p "/etc/keyd" && sudo ln -sfv "$DOTFILES_HOME/cfg/keyd/default.conf" "$_"
     mkdir -p "$CONFIG_HOME/waybar" && ln -sfv "$DOTFILES_HOME/cfg/Waybar/config.jsonc" "$_" && ln -sfv "$DOTFILES_HOME/cfg/Waybar/style.css" "$_"
     # mkdir -p "$CONFIG_HOME/rofi" && ln -sfv "$DOTFILES_HOME/rofi.rasi" "$_/config.rasi"
