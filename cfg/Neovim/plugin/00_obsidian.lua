@@ -8,7 +8,6 @@ local opts = {
         },
     },
 
-    ---@type fun(title: string|?, path: obsidian.Path|?): string
     note_id_func = function(title)
         local timestamp = os.date('%Y%m%d%H%M')
 
@@ -21,6 +20,19 @@ local opts = {
         -- If no title is given, fall back to just the timestamp
         return timestamp
     end,
+
+    callbacks = {
+        enter_note = function(note)
+            local map = function(lhs, rhs, desc)
+                vim.keymap.set('n', lhs, rhs, { buffer = true, desc = desc })
+            end
+
+            map('<Leader>on', ':Obsidian new ', 'Obsidian new note')
+            map('<Leader>os', '<cmd>Obsidian search<CR>', 'Obsidian search')
+            map('<Leader>ob', '<cmd>Obsidian backlinks<CR>', 'Obsidian backlinks')
+            map('<Leader>ol', '<cmd>Obsidian links<CR>', 'Obsidian links')
+        end,
+    },
 }
 
 -- In WSL variable $XDG_CURRENT_DESKTOP is not set,

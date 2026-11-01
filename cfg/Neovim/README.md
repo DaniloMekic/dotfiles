@@ -1,9 +1,11 @@
 # Resolve System Dependencies
+
 ```shell
 bash <(curl -s https://raw.githubusercontent.com/DaniloMekic/dotfiles/refs/heads/main/bootstrap) --nvim
 ```
 
-# Core Plugin Stack
+## Core Plugin Stack
+
 - **Code Formatter Runner**: [Conform](https://github.com/stevearc/conform.nvim)
 - **Linter Engine**: [nvim-lint](https://github.com/mfussenegger/nvim-lint)
 - **Code Completion Engine**: [blink.cmp](https://github.com/Saghen/blink.cmp)
@@ -11,20 +13,24 @@ bash <(curl -s https://raw.githubusercontent.com/DaniloMekic/dotfiles/refs/heads
 - **Debug Adapter Protocol** (DAP) **Client**: [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 - **Picker**: [Fzf-Lua](https://github.com/ibhagwan/fzf-lua)
 
-# Language Tools
+## Language Tools
+
 LSP servers, DAP servers (debuggers), linters, and code formatters are installed as packages from the Arch Linux [official repositories](https://wiki.archlinux.org/title/Official_repositories) and the [AUR](https://wiki.archlinux.org/title/Arch_User_Repository).
 
 To view health check for LSPs and their configurations, run `:checkhealth vim.lsp`.
 To view configured and available formatters, including the log file, run `:ConformInfo`.
 
-# Update All Plugins
+## Update All Plugins
+
 ```lua
 --- https://neovim.io/doc/user/pack/#vim.pack.update()
 vim.pack.update()
 ```
 
-# Keybindings
+## Keybindings
+
 Find source of a keybind with:
+
 ```vimscript
 :verbose map <key>
 :verbose nmap <key>     " Normal mode
@@ -33,7 +39,6 @@ Find source of a keybind with:
 ```
 
 - [Default mappings](https://neovim.io/doc/user/vim_diff/#default-mappings)
-
 
 | Keys | Action |
 |---|---|
@@ -48,7 +53,7 @@ Find source of a keybind with:
 | `<Alt>` + `hjkl` | Move line(s) or, in visual mode, move selection |
 | `gt` / `gT` | Tab next/previous |
 
-## Picker
+### Picker
 
 | Keys | Action |
 |---|---|
@@ -57,10 +62,9 @@ Find source of a keybind with:
 | `<Leader>fg` | Grep files |
 | `<Leader>fb` | Find buffers |
 
-## LSP
+### LSP
 
-- https://neovim.io/doc/user/lsp/
-
+- <https://neovim.io/doc/user/lsp/>
 
 | Keys | Action |
 |---|---|
@@ -75,9 +79,9 @@ Find source of a keybind with:
 | `gO` | List all symbols in the current buffer in the location-list |
 | `gx` | Open document links (`textDocument/documentLink`) |
 
-## Diagnostics
+### Diagnostics
 
-- https://neovim.io/doc/user/diagnostic/
+- <https://neovim.io/doc/user/diagnostic/>
 
 | Keys | Action |
 |---|---|
@@ -85,16 +89,16 @@ Find source of a keybind with:
 | `]D` / `[D` | Jump to the last/first diagnostic |
 | `CTRL-W_d` | Show diagnostics in a floating window; mapped to `vim.diagnostic.open_float()` |
 
-## Text Objects & mini.ai Plugin
+### Text Objects & mini.ai Plugin
 
-- https://neovim.io/doc/user/usr_04/#_text-objects
-- https://neovim.io/doc/user/vimindex/#_2.1-text-objects
-- https://neovim.io/doc/user/motion/#_5.-text-object-motions
-- https://neovim.io/doc/user/motion/#_6.-text-object-selection
+- <https://neovim.io/doc/user/usr_04/#_text-objects>
+- <https://neovim.io/doc/user/vimindex/#_2.1-text-objects>
+- <https://neovim.io/doc/user/motion/#_5.-text-object-motions>
+- <https://neovim.io/doc/user/motion/#_6.-text-object-selection>
 
 `[count]` **operator** with a **modifier** (`a`/`i`), and an **object**.
 
-Modifiers specify whether surrounding delimiters and _trailing_ whitespace is included (`a`), or if only content inside the object is operated on (`i`).
+Modifiers specify whether surrounding delimiters and *trailing* whitespace is included (`a`), or if only content inside the object is operated on (`i`).
 
 [mini.ai](https://github.com/nvim-mini/mini.ai) plugin modifies how open brackets (`(`, `[`, `{`) differ from close brackets (`)`, `]`, `}`) by how they treat inner edge whitespace for `i` modifier – open ignores it, close includes. To move cursor to corresponding edge of `a` text object `X`, use `g[X` or `g]X`.
 
@@ -118,7 +122,8 @@ Modifiers specify whether surrounding delimiters and _trailing_ whitespace is in
 | `?` | user prompt for left and right edge, strings that could be different | mini.ai |
 | any unassigned character | typed separator that does not have a dedicated text object | mini.ai |
 
-## Plugin: mini.surround
+### Plugin: mini.surround
+
  Two "modes", *input* (in `delete` and `replace` start, `find`, and `highlight`) and *output* (in `add` and `replace` end).
 
 | Keys | Action |
@@ -130,13 +135,14 @@ Modifiers specify whether surrounding delimiters and _trailing_ whitespace is in
 | `shX` | Highlight surrounding `X` |
 
 Surrounding is identified by a single character:
+
 - All symbols in brackets `()`, `[]`, `{}`, `<>`. In "input" represents balanced brackets (open – with whitespace pad, close – without), in "output" – left and right parts of brackets.
 - `t` – tag. In "input" finds tag with same identifier, in "output" prompts user to enter tag name with possible attributes.
 - `f` - function call (string of alphanumeric symbols or `_` or `.` followed by balanced `()`). In "input" finds function call, in "output" prompts user to enter function name.
-- `?` - interactive. Prompts user to enter left and right parts. 
+- `?` - interactive. Prompts user to enter left and right parts.
 - All other single character identifiers (supported by `getcharstr()`) represent surrounding with identical left and right parts.
 
-## Debugging
+### Debugging
 
 | Keys | Action |
 |---|---|
@@ -148,7 +154,7 @@ Surrounding is identified by a single character:
 | `<Leader>dt` | Terminate |
 | `<Leader>dr` | Read–Eval–Print Loop (REPL) |
 
-## UI
+### UI
 
 | Keys | Action |
 |---|---|
@@ -161,7 +167,16 @@ Surrounding is identified by a single character:
 | `<Leader>ut` | Inspect tree-sitter tree |
 | `<Leader>uu` | Toggle undo tree |
 
-### Folding
+### Plugin: obsidian.nvim
+
+| Keys | Action |
+|---|---|
+| `<Leader>on` | New note |
+| `<Leader>os` | Search |
+| `<Leader>ob` | Backlinks |
+| `<Leader>ol` | Links |
+
+#### Folding
 
 Folding is powered by Tree-sitter, with `'foldexpr'` being set to `v:lua.vim.treesitter.foldexpr()`. LSP-based folding is also available with `v:lua.vim.lsp.foldexpr()`.
 
@@ -174,4 +189,3 @@ Folding is powered by Tree-sitter, with `'foldexpr'` being set to `v:lua.vim.tre
 | `zi` | Toggle `'foldenable'` |
 | `zj` / `zk` | Move to the next / previous fold |
 | `[z` / `]z` | Move to the start / end of the current fold |
-
