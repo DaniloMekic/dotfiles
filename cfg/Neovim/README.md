@@ -105,6 +105,8 @@ Modifiers specify whether surrounding delimiters and *trailing* whitespace is in
 
 `mini.ai` further expands modifiers with next/last prefixes. So, `anX` and `inX` refer to the next text object `X`.
 
+Consecutive application leads to incremental selection, without leaving visual *Visual* mode. For example, `i)` followed by `i}`, would select content enclosed by parenthesis inside braces (`{ ... ( ... ) ... }`).
+
 | Object | Description | Source |
 |---|---|---|
 | `w` | word | Vim |
