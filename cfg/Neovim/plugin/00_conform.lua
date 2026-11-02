@@ -32,8 +32,11 @@ require('conform').setup({
             -- Use 4 space indents per Android Open Source Project (AOSP), instead of 2 per Google Java Style Guide
             prepend_args = { '--aosp' },
         },
-        stylua = {
-            prepend_args = { '--indent-type', 'Spaces', '--quote-style', 'AutoPreferSingle' },
+        rumdl = {
+            -- https://rumdl.dev/rules/
+            -- https://rumdl.dev/usage/cli/
+            -- Apply rule MD010—use spaces instead of tabs—inside code blocks as well
+            prepend_args = { '--config', 'MD010.code-blocks = true' },
         },
         -- shfmt man page
         -- https://github.com/mvdan/sh/blob/master/cmd/shfmt/shfmt.1.scd
@@ -41,6 +44,9 @@ require('conform').setup({
             -- Google's Shell Style Guide
             -- https://google.github.io/styleguide/shellguide.html
             prepend_args = { '-i', '2', '-ci', '-bn' },
+        },
+        stylua = {
+            prepend_args = { '--indent-type', 'Spaces', '--quote-style', 'AutoPreferSingle' },
         },
         xmllint = {
             -- https://gnome.pages.gitlab.gnome.org/libxml2/xmllint.html
