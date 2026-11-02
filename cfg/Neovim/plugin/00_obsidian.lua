@@ -28,7 +28,6 @@ local opts = {
             end
 
             map('<Leader>on', ':Obsidian new ', 'Obsidian new note')
-            map('<Leader>os', '<cmd>Obsidian search<CR>', 'Obsidian search')
             map('<Leader>ob', '<cmd>Obsidian backlinks<CR>', 'Obsidian backlinks')
             map('<Leader>ol', '<cmd>Obsidian links<CR>', 'Obsidian links')
         end,
