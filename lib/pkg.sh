@@ -17,6 +17,7 @@ pkg::sync_refresh_upgrade() {
     sudo pacman -Syu --disable-download-timeout
 }
 
+# https://wiki.archlinux.org/title/AUR_helpers
 pkg::get_aur_helper() {
     echo "Installing AUR helper: $AUR_HELPER"
 
@@ -27,16 +28,41 @@ pkg::get_aur_helper() {
     local build_dir
     build_dir=$(mktemp -d)
 
-    if sudo pacman -S --needed --noconfirm --disable-download-timeout git base-devel \
-        && git clone https://aur.archlinux.org/yay-bin.git "$build_dir" \
-        && (cd "$build_dir" && makepkg -si --noconfirm); then
+    # Install required packages for the build
+    sudo pacman -S --needed --noconfirm --disable-download-timeout git base-devel || {
+        log::error "Failed to install packages: git, base-devel"
+        return 1
+    }
 
+    # Upstream sources for the build
+    # https://github.com/Jguer/yay
+    # https://github.com/morganamilo/paru
+    declare -A upstream_sources
+    upstream_sources[yay]="https://aur.archlinux.org/yay-bin.git"
+    upstream_sources[paru]="https://aur.archlinux.org/paru.git"
+
+    # Validate upstream URL
+    if [[ -z "${upstream_sources[$AUR_HELPER]:-}" ]]; then
+        log::error "Unsupported AUR helper: '$AUR_HELPER'"
+        return 1
+    fi
+
+    if git clone "${upstream_sources[$AUR_HELPER]}" "$build_dir" \
+        && (cd "$build_dir" && makepkg -si --noconfirm); then
         rm -rf "$build_dir"
-        echo "$AUR_HELPER installed successfully"
     else
         rm -rf "$build_dir"
-        echo "Failed to install $AUR_HELPER" >&2
 
-        exit 1
+        log::error "Failed to install $AUR_HELPER"
+        return 1
     fi
+
+    # Validate installation
+    hash -r # clear cache for utility locations
+    if ! command -v "$AUR_HELPER" >/dev/null; then
+        log::error "$AUR_HELPER not found on PATH after the build"
+        return 1
+    fi
+
+    log::info "$AUR_HELPER installed successfully"
 }

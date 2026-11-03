@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
+# https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin
 # set options
 #       -e                              : Exit immediately if a command exits with non-zero status
 #       -u                              : Treat unset variables as errors when substituting
 #       -o pipefail                     : Pipeline fails if any command fails, not just the last one
 set -euo pipefail
 
+# Assign LIB_COMMON to a common library, and source it
 LIB_COMMON="$(dirname -- "${BASH_SOURCE[0]}")/lib/common.sh"
 source "$LIB_COMMON" || {
     echo "ERROR: Failed to source $LIB_COMMON" >&2
