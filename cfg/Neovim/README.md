@@ -178,6 +178,7 @@ Surrounding is identified by a single character:
 | `<Leader>os` | Search |
 | `<Leader>ob` | Backlinks |
 | `<Leader>ol` | Links |
+| `<Leader>ot` | Tags |
 
 ### Folding
 
