@@ -12,7 +12,7 @@ link::nvim_config() {
     ln -sfv --no-dereference "$DOTFILES_HOME/cfg/Neovim" "$CONFIG_HOME/nvim" # Option --no-dereference prevents following of an existing symlink if it points to a directory
 }
 
-link::all_configs() {
+link::configs() {
     link::nvim_config
 
     ln -sfv "$DOTFILES_HOME/cfg/Bash/bashrc" "$HOME/.bashrc"
