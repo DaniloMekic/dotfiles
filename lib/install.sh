@@ -148,5 +148,5 @@ install::nvim() {
 
     setup::tex
 
-    link::nvim_config
+    cfg::link "Neovim" "$CONFIG_HOME/nvim"
 }

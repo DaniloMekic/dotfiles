@@ -22,7 +22,7 @@ case "${OPTION}" in
         pkg::sync_refresh_upgrade
         install::system
         install::nvim
-        link::configs
+        cfg::deploy
         ;;
     -s | --system)
         pkg::sync_refresh_upgrade
@@ -32,7 +32,7 @@ case "${OPTION}" in
         install::nvim
         ;;
     -c | --configs)
-        link::configs
+        cfg::deploy
         ;;
     -h | --help)
         echo "Usage: ./bootstrap [option]"
