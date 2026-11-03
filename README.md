@@ -5,6 +5,17 @@ chmod +x bootstrap
 ./bootstrap --help
 ```
 
+## Core System Services
+
+### Wireless Network
+
+#### iwd (iNet Wireless Daemon)
+
+- <https://archive.kernel.org/oldwiki/iwd.wiki.kernel.org/>
+- <https://wiki.archlinux.org/title/Iwd>
+
+[systemd-resolved](https://wiki.archlinux.org/title/Systemd-resolved) is used as DNS manager.
+
 ## Desktop Environment
 
 ### Wayland Compositor
