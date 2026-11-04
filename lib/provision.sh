@@ -10,6 +10,9 @@ _LIB_INSTALL_SOURCED=true
 
 # System Dependencies
 provision::userland() {
+    log::info "Provisioning userland"
+
+    log::info "Installing packages from the Arch Linux official repositories"
     # noto-fonts-emoji                  : Noto Color Emoji for Waybar
     # ttf-jetbrains-mono-nerd           : JetBrainsMono Nerd Font for Neovim
     # wl-clipboard                      : Clipboard CLI tools for Wayland compositors
@@ -28,6 +31,7 @@ provision::userland() {
         ttf-jetbrains-mono-nerd \
         vim neovim \
         wl-clipboard
+    log::info "Packages from the Arch Linux official repositories installed"
 
     if ! command -v "$AUR_HELPER" &>/dev/null; then
         pkg::get_aur_helper
@@ -40,6 +44,7 @@ provision::userland() {
         return
     fi
 
+    log::info "Installing packages from the Arch User Repository (AUR)"
     # AUR packages:
     #   logiops                         : Unofficial userspace driver for HID++ Logitech devices
     #   sourcegit-bin                   : Git GUI client
@@ -48,6 +53,7 @@ provision::userland() {
         logiops \
         sourcegit-bin \
         wlogout
+    log::info "Packages from the Arch User Repository (AUR) installed"
 
     local response
     read -rp "Enable services? [Y/n] " response
@@ -55,13 +61,18 @@ provision::userland() {
     if [[ -z "$response" || "${response,,}" == yes || "${response,,}" == y ]]; then
         sys::enable_services
     fi
+
+    log::info "Userland provisioned"
 }
 
 # Neovim
 provision::nvim() {
+    log::info "Provisioning Neovim"
+
     toolchain::java
     sudo archlinux-java set java-21-openjdk
 
+    log::info "Installing packages from the Arch Linux official repositories"
     # bash-language-server              : Bash LSP server
     # eslint_d                          : JavaScript/TypeScript linter
     # harper                            : Grammar LSP server
@@ -114,11 +125,13 @@ provision::nvim() {
         wl-clipboard \
         yaml-language-server \
         yazi
+    log::info "Packages from the Arch Linux official repositories installed"
 
     if ! command -v "$AUR_HELPER" &>/dev/null; then
         pkg::get_aur_helper
     fi
 
+    log::info "Installing packages from the Arch User Repository (AUR)"
     # basedpyright-bin                  : Python LSP server
     # google-java-format                : Java code formatter
     # groovy-language-server-git        : Groovy LSP server
@@ -136,17 +149,22 @@ provision::nvim() {
         prettierd \
         sqls \
         vim-language-server
+    log::info "Packages from the Arch User Repository (AUR) installed"
 
+    log::info "Installing packages from the npm"
     sudo npm install -g npm-groovy-lint
 
     toolchain::rust
 
-    # Update Rust and install KDL LSP
+    log::info "Update Rust and install KDL LSP"
     rustup update stable
     rustup component add rustfmt
     cargo install kdl-lsp
 
     toolchain::tex
 
+    log::info "Linking Neovim config"
     cfg::link "Neovim" "$CONFIG_HOME/nvim"
+
+    log::info "Neovim provisioned"
 }

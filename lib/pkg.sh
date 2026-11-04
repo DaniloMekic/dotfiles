@@ -11,15 +11,20 @@ _LIB_PKG_SOURCED=true
 # Sync repository databases and upgrade the system
 # https://man.archlinux.org/man/pacman.8.en.html#SYNC_OPTIONS_(APPLY_TO_-S)
 pkg::sync_refresh_upgrade() {
+    log::info "**************************************************"
+    log::info "Initiating FULL system upgrade"
     # -S                                : Synchronize packages using the local sync databases (/var/lib/pacman/sync/*.db)
     # -y                                : Refresh the local sync databases from the mirrors
     # -u                                : Upgrade ALL packages that are out-of-date
     sudo pacman -Syu --disable-download-timeout
+
+    log::info "Full system upgrade finished"
+    log::info "**************************************************"
 }
 
 # https://wiki.archlinux.org/title/AUR_helpers
 pkg::get_aur_helper() {
-    echo "Installing AUR helper: $AUR_HELPER"
+    log::info "Installing AUR helper: $AUR_HELPER"
 
     # Separate declaration with 'local' Bash builtin from the assignment,
     # since local masks the exit status of the substituted command.

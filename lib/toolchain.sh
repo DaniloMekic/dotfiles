@@ -11,6 +11,8 @@ _LIB_SETUP_SOURCED=true
 # Official toolchain installer and manager for the Rust programming language
 # Arch Linux official rust package and rustup conflict because they both provide executables like cargo and rustc
 toolchain::rust() {
+    log::info "Installing Rust toolchain"
+
     if ! command -v rustup &>/dev/null; then
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || {
             echo "Failed to fetch rustup installation script" >&2
@@ -18,11 +20,15 @@ toolchain::rust() {
         }
         . "$HOME/.cargo/env"
     fi
+
+    log::info "Rust toolchain installed"
 }
 
 # https://wiki.archlinux.org/title/Java
 # Get JDK, documentation, and sources for multiple Java versions, including archlinux-java helper script
 toolchain::java() {
+    log::info "Installing Java toolchain"
+
     sudo pacman -S --needed --noconfirm --disable-download-timeout \
         java-runtime-common \
         jdk8-openjdk openjdk8-doc openjdk8-src \
@@ -37,9 +43,13 @@ toolchain::java() {
     cat >~/.config/environment.d/java.conf <<EOF
 JAVA_HOME=/usr/lib/jvm/default
 EOF
+
+    log::info "Java toolchain installed"
 }
 
 toolchain::tex() {
+    log::info "Installing LaTeX toolchain"
+
     # tesseract-data-eng                : Tesseract OCR data for English, needed for libmupdf dependency
     sudo pacman -S --needed --noconfirm --disable-download-timeout \
         biber \
@@ -48,4 +58,6 @@ toolchain::tex() {
         texlive-latex \
         texlive-latexrecommended \
         zathura zathura-pdf-mupdf tesseract-data-eng
+
+    log::info "LaTeX toolchain installed"
 }

@@ -17,6 +17,8 @@ source "$LIB_COMMON" || {
 # Set argument to an empty string, since nounset (-u) is enabled
 OPTION="${1:-}"
 
+log::info "Bootstrapping with $OPTION option"
+
 case "${OPTION}" in
     -u | --userland)
         pkg::sync_refresh_upgrade
@@ -43,7 +45,7 @@ case "${OPTION}" in
         echo "      -c, --configs       Deploy configs"
         ;;
     *)
-        echo "Invalid option. See --help."
+        log::error "Invalid option. See --help."
         exit 1
         ;;
 esac

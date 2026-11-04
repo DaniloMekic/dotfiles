@@ -35,6 +35,8 @@ cfg::copy() {
 }
 
 cfg::deploy() {
+    log::info "Deploying configs"
+
     cfg::link "Neovim" "$CONFIG_HOME/nvim"
     cfg::link "Bash/bashrc" "$HOME/.bashrc"
     cfg::link "Bash/bash_profile" "$HOME/.bash_profile"
@@ -65,4 +67,6 @@ cfg::deploy() {
     cfg::link "keyd/default.conf" "/etc/keyd/default.conf"
     # iwd.service runs with ProtectHome=yes, so symlink can't be used
     cfg::copy "iwd/main.conf" "/etc/iwd/main.conf"
+
+    log::info "Configs deployed"
 }
