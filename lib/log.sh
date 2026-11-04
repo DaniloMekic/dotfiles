@@ -28,7 +28,7 @@ LEVEL_INFO=$(printf "%5s" "INFO")
 LEVEL_DEBUG=$(printf "%5s" "DEBUG")
 LEVEL_ERROR=$(printf "%5s" "ERROR")
 
-# Print "<path of calling file relative to bootstrap><line", left-padded or truncated to $file_path_width
+# Print "<path of calling file relative to bootstrap><line>", left-padded or truncated to $file_path_width
 # This helper function is meant to be called only within functions defined in this file
 #
 # Call stack when invoked from log::info:
