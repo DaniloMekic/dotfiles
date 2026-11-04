@@ -27,6 +27,7 @@ case "${OPTION}" in
     -s | --system)
         pkg::sync_refresh_upgrade
         install::system
+        cfg::deploy
         ;;
     --nvim)
         install::nvim
@@ -38,7 +39,7 @@ case "${OPTION}" in
         echo "Usage: ./bootstrap [option]"
         echo "      -a, --all           Install everything"
         echo "      -s, --system        Install system dependencies"
-        echo "      -c, --configs       Install configs"
+        echo "      -c, --configs       Deploy configs"
         echo "      --nvim              Bootstrap Neovim"
         ;;
     *)
