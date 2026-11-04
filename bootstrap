@@ -36,7 +36,7 @@ case "${OPTION}" in
         cfg::deploy
         ;;
     -h | --help)
-        echo "Usage: ./bootstrap [option]"
+        echo "Usage: ./bootstrap <option>"
         echo "      -u, --userland      Provision userland"
         echo "      --nvim              Provision Neovim"
         echo "      -a, --all           Provision everything: userland + Neovim"
