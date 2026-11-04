@@ -18,29 +18,29 @@ source "$LIB_COMMON" || {
 OPTION="${1:-}"
 
 case "${OPTION}" in
-    -a | --all)
+    -b | --base)
         pkg::sync_refresh_upgrade
-        install::system
-        install::nvim
+        provision::userland
         cfg::deploy
         ;;
-    -s | --system)
+    -a | --all)
         pkg::sync_refresh_upgrade
-        install::system
+        provision::userland
+        provision::nvim
         cfg::deploy
         ;;
     --nvim)
-        install::nvim
+        provision::nvim
         ;;
     -c | --configs)
         cfg::deploy
         ;;
     -h | --help)
         echo "Usage: ./bootstrap [option]"
-        echo "      -a, --all           Install everything"
-        echo "      -s, --system        Install system dependencies"
+        echo "      -u, --userland      Provision userland"
+        echo "      --nvim              Provision Neovim"
+        echo "      -a, --all           Provision everything: userland + Neovim"
         echo "      -c, --configs       Deploy configs"
-        echo "      --nvim              Bootstrap Neovim"
         ;;
     *)
         echo "Invalid option. See --help."

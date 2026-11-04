@@ -9,7 +9,7 @@ _LIB_INSTALL_SOURCED=true
 ################################################################################
 
 # System Dependencies
-install::system() {
+provision::userland() {
     # noto-fonts-emoji                  : Noto Color Emoji for Waybar
     # ttf-jetbrains-mono-nerd           : JetBrainsMono Nerd Font for Neovim
     # wl-clipboard                      : Clipboard CLI tools for Wayland compositors
@@ -58,7 +58,7 @@ install::system() {
 }
 
 # Neovim
-install::nvim() {
+provision::nvim() {
     setup::java
     sudo archlinux-java set java-21-openjdk
 
