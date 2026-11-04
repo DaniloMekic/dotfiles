@@ -10,7 +10,7 @@ _LIB_SETUP_SOURCED=true
 
 # Official toolchain installer and manager for the Rust programming language
 # Arch Linux official rust package and rustup conflict because they both provide executables like cargo and rustc
-setup::rust() {
+toolchain::rust() {
     if ! command -v rustup &>/dev/null; then
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || {
             echo "Failed to fetch rustup installation script" >&2
@@ -22,7 +22,7 @@ setup::rust() {
 
 # https://wiki.archlinux.org/title/Java
 # Get JDK, documentation, and sources for multiple Java versions, including archlinux-java helper script
-setup::java() {
+toolchain::java() {
     sudo pacman -S --needed --noconfirm --disable-download-timeout \
         java-runtime-common \
         jdk8-openjdk openjdk8-doc openjdk8-src \
@@ -39,7 +39,7 @@ JAVA_HOME=/usr/lib/jvm/default
 EOF
 }
 
-setup::tex() {
+toolchain::tex() {
     # tesseract-data-eng                : Tesseract OCR data for English, needed for libmupdf dependency
     sudo pacman -S --needed --noconfirm --disable-download-timeout \
         biber \

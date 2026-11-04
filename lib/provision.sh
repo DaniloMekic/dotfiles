@@ -33,7 +33,7 @@ provision::userland() {
         pkg::get_aur_helper
     fi
 
-    setup::rust
+    toolchain::rust
 
     # Return early if it's WSL environment
     if sys::is_wsl; then
@@ -59,7 +59,7 @@ provision::userland() {
 
 # Neovim
 provision::nvim() {
-    setup::java
+    toolchain::java
     sudo archlinux-java set java-21-openjdk
 
     # bash-language-server              : Bash LSP server
@@ -139,14 +139,14 @@ provision::nvim() {
 
     sudo npm install -g npm-groovy-lint
 
-    setup::rust
+    toolchain::rust
 
     # Update Rust and install KDL LSP
     rustup update stable
     rustup component add rustfmt
     cargo install kdl-lsp
 
-    setup::tex
+    toolchain::tex
 
     cfg::link "Neovim" "$CONFIG_HOME/nvim"
 }

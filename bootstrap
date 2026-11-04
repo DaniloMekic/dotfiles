@@ -18,7 +18,7 @@ source "$LIB_COMMON" || {
 OPTION="${1:-}"
 
 case "${OPTION}" in
-    -b | --base)
+    -u | --userland)
         pkg::sync_refresh_upgrade
         provision::userland
         cfg::deploy
