@@ -13,7 +13,6 @@ vim.pack.add({
     { src = 'https://github.com/nvim-mini/mini.icons' },
     { src = 'https://github.com/nvim-mini/mini.move' },
     { src = 'https://github.com/nvim-mini/mini.surround' },
-    { src = 'https://github.com/nvim-mini/mini.ai' },
     { src = 'https://github.com/nvim-lualine/lualine.nvim' },
     { src = 'https://github.com/mfussenegger/nvim-lint' },
     { src = 'https://github.com/mfussenegger/nvim-dap' },

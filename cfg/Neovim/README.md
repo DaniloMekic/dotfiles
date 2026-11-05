@@ -90,40 +90,17 @@ Find source of a keybind with:
 | `]D` / `[D` | Jump to the last/first diagnostic |
 | `CTRL-W_d` | Show diagnostics in a floating window; mapped to `vim.diagnostic.open_float()` |
 
-### Text Objects & mini.ai Plugin
+### Text Objects
 
 - <https://neovim.io/doc/user/usr_04/#_text-objects>
 - <https://neovim.io/doc/user/vimindex/#_2.1-text-objects>
 - <https://neovim.io/doc/user/motion/#_5.-text-object-motions>
 - <https://neovim.io/doc/user/motion/#_6.-text-object-selection>
+- <https://neovim.io/doc/user/treesitter/#treesitter-defaults>
 
 `[count]` **operator** with a **modifier** (`a`/`i`), and an **object**.
 
 Modifiers specify whether surrounding delimiters and *trailing* whitespace is included (`a`), or if only content inside the object is operated on (`i`).
-
-[mini.ai](https://github.com/nvim-mini/mini.ai) plugin modifies how open brackets (`(`, `[`, `{`) differ from close brackets (`)`, `]`, `}`) by how they treat inner edge whitespace for `i` modifier – open ignores it, close includes. To move cursor to corresponding edge of `a` text object `X`, use `g[X` or `g]X`.
-
-`mini.ai` further expands modifiers with next/last prefixes. So, `anX` and `inX` refer to the next text object `X`.
-
-Consecutive application leads to incremental selection, without leaving visual *Visual* mode. For example, `i)` followed by `i}`, would select content enclosed by parenthesis inside braces (`{ ... ( ... ) ... }`).
-
-| Object | Description | Source |
-|---|---|---|
-| `w` | word | Vim |
-| `W` | WORD | Vim |
-| `s` | sentence | Vim |
-| `p` | paragraph | Vim |
-| `(`, `[`, `{` | balanced bracket, trims enclosing whitespace | mini.ai |
-| `)`, `]`, `}` | balanced bracket, keeps enclosing whitespace | mini.ai |
-| `b` | any bracket (alias for `)`, `]`, or `}`) | mini.ai (overrides Vim) |
-| `"`, `'`, `` ` `` | balanced quotes | mini.ai (overrides Vim) |
-| `q` | any quote | mini.ai |
-| `t` | `<tag>...</tag>`; in visual mode, repeat `at` or `it` to expand outwards through enclosing tags | mini.ai (overrides Vim) |
-| `f` | function call; `af` operates on function name, including parentheses and arguments, while `if` operates only on arguments | mini.ai |
-| `F` | function definition | mini.ai with Tree-sitter text objects |
-| `a` | argument of a function; `aa` includes whitespace and a comma (`,`) separator, while `ia` does not | mini.ai |
-| `?` | user prompt for left and right edge, strings that could be different | mini.ai |
-| any unassigned character | typed separator that does not have a dedicated text object | mini.ai |
 
 ### Plugin: mini.surround
 
