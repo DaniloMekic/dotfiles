@@ -1,4 +1,5 @@
 vim.pack.add({
+    { src = 'https://github.com/rebelot/kanagawa.nvim' },
     { src = 'https://github.com/sainnhe/gruvbox-material' },
     { src = 'https://github.com/nvim-neotest/nvim-nio' },
     { src = 'https://github.com/rafamadriz/friendly-snippets' },
@@ -38,7 +39,8 @@ require('keymap')
 require('diagnostics')
 require('autocommands')
 
-vim.cmd([[colorscheme gruvbox-material]])
+-- vim.cmd([[colorscheme gruvbox-material]])
+vim.cmd([[colorscheme kanagawa]])
 
 vim.lsp.enable({
     'basedpyright', -- Pyton
