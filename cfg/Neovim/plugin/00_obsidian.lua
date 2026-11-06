@@ -31,6 +31,7 @@ local opts = {
             map('<Leader>ob', '<cmd>Obsidian backlinks<CR>', 'Obsidian backlinks')
             map('<Leader>ol', '<cmd>Obsidian links<CR>', 'Obsidian links')
             map('<Leader>ot', '<cmd>Obsidian tags<CR>', 'Obsidian tags')
+            map('<Leader>oh', '<cmd>Obsidian toc<CR>', 'Obsidian toc')
         end,
     },
 }
