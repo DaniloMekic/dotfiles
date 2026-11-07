@@ -20,7 +20,7 @@ fi
 log_destination="$BOOTSTRAP_LOG_DESTINATION"
 : "${log_destination:?Variable log_destination is not set}"
 
-file_path_width=25
+file_path_width=20
 
 ################################################################################
 # LEVELS
