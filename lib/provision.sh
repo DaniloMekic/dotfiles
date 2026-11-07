@@ -33,7 +33,7 @@ provision::userland() {
         wl-clipboard
     )
     sudo pacman -S --needed --noconfirm --disable-download-timeout "${pacman_pkgs[@]}"
-    log::info "Userland packages from the Arch Linux official repositories installed ${pacman_pkgs[*]}"
+    log::info "Userland packages from the Arch Linux official repositories installed: ${pacman_pkgs[*]}"
 
     if ! command -v "$AUR_HELPER" &>/dev/null; then
         pkg::get_aur_helper
@@ -57,7 +57,7 @@ provision::userland() {
         wlogout
     )
     "$AUR_HELPER" -S "${AUR_HELPER_OPTS[@]}" "${aur_pkgs[@]}"
-    log::info "Userland packages from the Arch User Repository (AUR) installed ${aur_pkgs[*]}"
+    log::info "Userland packages from the Arch User Repository (AUR) installed: ${aur_pkgs[*]}"
 
     local response
     read -rp "Enable services? [Y/n] " response
