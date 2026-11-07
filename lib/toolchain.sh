@@ -29,14 +29,16 @@ toolchain::rust() {
 toolchain::java() {
     log::info "Installing Java toolchain"
 
-    sudo pacman -S --needed --noconfirm --disable-download-timeout \
-        java-runtime-common \
-        jdk8-openjdk openjdk8-doc openjdk8-src \
-        jdk11-openjdk openjdk11-doc openjdk11-src \
-        jdk17-openjdk openjdk17-doc openjdk17-src \
-        jdk21-openjdk openjdk21-doc openjdk21-src \
-        jdk25-openjdk openjdk25-doc openjdk25-src \
+    local -a pacman_pkgs=(
+        java-runtime-common
+        jdk8-openjdk openjdk8-doc openjdk8-src
+        jdk11-openjdk openjdk11-doc openjdk11-src
+        jdk17-openjdk openjdk17-doc openjdk17-src
+        jdk21-openjdk openjdk21-doc openjdk21-src
+        jdk25-openjdk openjdk25-doc openjdk25-src
         jdk-openjdk openjdk-doc openjdk-src
+    )
+    sudo pacman -S --needed --noconfirm --disable-download-timeout "${pacman_pkgs[@]}"
 
     mkdir -p ~/.config/environment.d
 
@@ -44,20 +46,22 @@ toolchain::java() {
 JAVA_HOME=/usr/lib/jvm/default
 EOF
 
-    log::info "Java toolchain installed"
+    log::info "Java toolchain installed: ${pacman_pkgs[*]}"
 }
 
 toolchain::tex() {
     log::info "Installing LaTeX toolchain"
 
     # tesseract-data-eng                : Tesseract OCR data for English, needed for libmupdf dependency
-    sudo pacman -S --needed --noconfirm --disable-download-timeout \
-        biber \
-        texlive-basic \
-        texlive-binextra \
-        texlive-latex \
-        texlive-latexrecommended \
+    local -a pacman_pkgs=(
+        biber
+        texlive-basic
+        texlive-binextra
+        texlive-latex
+        texlive-latexrecommended
         zathura zathura-pdf-mupdf tesseract-data-eng
+    )
+    sudo pacman -S --needed --noconfirm --disable-download-timeout "${pacman_pkgs[@]}"
 
-    log::info "LaTeX toolchain installed"
+    log::info "LaTeX toolchain installed: ${pacman_pkgs[*]}"
 }

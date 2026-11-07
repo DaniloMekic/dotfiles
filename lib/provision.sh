@@ -12,26 +12,28 @@ _LIB_INSTALL_SOURCED=true
 provision::userland() {
     log::info "Provisioning userland"
 
-    log::info "Installing packages from the Arch Linux official repositories"
+    log::info "Installing userland packages from the Arch Linux official repositories"
     # noto-fonts-emoji                  : Noto Color Emoji for Waybar
     # ttf-jetbrains-mono-nerd           : JetBrainsMono Nerd Font for Neovim
     # wl-clipboard                      : Clipboard CLI tools for Wayland compositors
-    sudo pacman -S --needed --noconfirm --disable-download-timeout \
-        7zip \
-        fastfetch \
-        ghostty \
-        git tig lazygit \
-        jq jless \
-        keyd \
-        mpv \
-        niri fuzzel mako \
-        noto-fonts-emoji \
-        ripgrep \
-        tmux \
-        ttf-jetbrains-mono-nerd \
-        vim neovim \
+    local -a pacman_pkgs=(
+        7zip
+        fastfetch
+        ghostty
+        git tig lazygit
+        jq jless
+        keyd
+        mpv
+        niri fuzzel mako
+        noto-fonts-emoji
+        ripgrep
+        tmux
+        ttf-jetbrains-mono-nerd
+        vim neovim
         wl-clipboard
-    log::info "Packages from the Arch Linux official repositories installed"
+    )
+    sudo pacman -S --needed --noconfirm --disable-download-timeout "${pacman_pkgs[@]}"
+    log::info "Userland packages from the Arch Linux official repositories installed ${pacman_pkgs[*]}"
 
     if ! command -v "$AUR_HELPER" &>/dev/null; then
         pkg::get_aur_helper
@@ -44,16 +46,18 @@ provision::userland() {
         return
     fi
 
-    log::info "Installing packages from the Arch User Repository (AUR)"
+    log::info "Installing userland packages from the Arch User Repository (AUR)"
     # AUR packages:
     #   logiops                         : Unofficial userspace driver for HID++ Logitech devices
     #   sourcegit-bin                   : Git GUI client
     #   wlogout                         : Wayland based logout menu
-    "$AUR_HELPER" -S "${AUR_HELPER_OPTS[@]}" \
-        logiops \
-        sourcegit-bin \
+    local -a aur_pkgs=(
+        logiops
+        sourcegit-bin
         wlogout
-    log::info "Packages from the Arch User Repository (AUR) installed"
+    )
+    "$AUR_HELPER" -S "${AUR_HELPER_OPTS[@]}" "${aur_pkgs[@]}"
+    log::info "Userland packages from the Arch User Repository (AUR) installed ${aur_pkgs[*]}"
 
     local response
     read -rp "Enable services? [Y/n] " response
@@ -72,7 +76,7 @@ provision::nvim() {
     toolchain::java
     sudo archlinux-java set java-21-openjdk
 
-    log::info "Installing packages from the Arch Linux official repositories"
+    log::info "Installing packages for Neovim from the Arch Linux official repositories"
     # bash-language-server              : Bash LSP server
     # eslint_d                          : JavaScript/TypeScript linter
     # harper                            : Grammar LSP server
@@ -89,49 +93,51 @@ provision::nvim() {
     # taplo-cli                         : TOML LSP server
     # texlab                            : LaTeX LSP server
     # wl-clipboard                      : Clipboard provider
-    sudo pacman -Syu --needed --noconfirm --disable-download-timeout \
-        bash-language-server \
-        eslint_d \
-        fzf \
-        gcc \
-        git \
-        go \
-        harper \
-        jq \
-        kdlfmt \
-        lua \
-        lua-language-server \
-        maven \
-        nodejs \
-        npm \
-        perl-tidy \
-        prettier \
-        python python-pip ruff python-isort python-black \
-        python-debugpy \
-        ripgrep \
-        rumdl \
-        rust-analyzer \
-        shellcheck \
-        shfmt \
-        stylua \
-        taplo-cli \
-        texlab \
-        tree-sitter-cli \
-        typescript-language-server \
-        unzip \
-        vscode-css-languageserver \
-        vscode-html-languageserver \
-        vscode-json-languageserver \
-        wl-clipboard \
-        yaml-language-server \
+    local -a pacman_pkgs=(
+        bash-language-server
+        eslint_d
+        fzf
+        gcc
+        git
+        go
+        harper
+        jq
+        kdlfmt
+        lua
+        lua-language-server
+        maven
+        nodejs
+        npm
+        perl-tidy
+        prettier
+        python python-pip ruff python-isort python-black
+        python-debugpy
+        ripgrep
+        rumdl
+        rust-analyzer
+        shellcheck
+        shfmt
+        stylua
+        taplo-cli
+        texlab
+        tree-sitter-cli
+        typescript-language-server
+        unzip
+        vscode-css-languageserver
+        vscode-html-languageserver
+        vscode-json-languageserver
+        wl-clipboard
+        yaml-language-server
         yazi
-    log::info "Packages from the Arch Linux official repositories installed"
+    )
+    sudo pacman -Syu --needed --noconfirm --disable-download-timeout "${pacman_pkgs[@]}"
+    log::info "Packages for Neovim from the Arch Linux official repositories installed: ${pacman_pkgs[*]}"
 
     if ! command -v "$AUR_HELPER" &>/dev/null; then
         pkg::get_aur_helper
     fi
 
-    log::info "Installing packages from the Arch User Repository (AUR)"
+    log::info "Installing packages for Neovim from the Arch User Repository (AUR)"
     # basedpyright-bin                  : Python LSP server
     # google-java-format                : Java code formatter
     # groovy-language-server-git        : Groovy LSP server
@@ -140,19 +146,23 @@ provision::nvim() {
     # powershell-editor-services-bin    : PowerShell LSP and DAP server
     # prettierd                         : Code formatter
     # sqls                              : SQL LSP server
-    "$AUR_HELPER" -S "${AUR_HELPER_OPTS[@]}" \
-        basedpyright-bin \
-        google-java-format \
-        groovy-language-server-git \
-        lemminx \
-        powershell-bin powershell-editor-services-bin \
-        prettierd \
-        sqls \
+    local -a aur_pkgs=(
+        basedpyright-bin
+        google-java-format
+        groovy-language-server-git
+        lemminx
+        powershell-bin powershell-editor-services-bin
+        prettierd
+        sqls
         vim-language-server
-    log::info "Packages from the Arch User Repository (AUR) installed"
+    )
+    "$AUR_HELPER" -S "${AUR_HELPER_OPTS[@]}" "${aur_pkgs[@]}"
+    log::info "Packages for Neovim from the Arch User Repository (AUR) installed: ${aur_pkgs[*]}"
 
-    log::info "Installing packages from the npm"
-    sudo npm install -g npm-groovy-lint
+    log::info "Installing packages for Neovim from the npm"
+    local -a npm_pkgs=(npm-groovy-lint)
+    sudo npm install -g "${npm_pkgs[@]}"
+    log::info "Packages for Neovim from the npm installed: ${npm_pkgs[*]}"
 
     toolchain::rust
 
