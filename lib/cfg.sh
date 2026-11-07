@@ -59,7 +59,7 @@ cfg::deploy() {
 
     # Terminal Emulators
     cfg::link "Alacritty/alacritty.toml" "$CONFIG_HOME/alacritty/alacritty.toml"
-    cfg::link "Ghostty/ghostty.conf" "$CONFIG_HOME/ghostty/config"
+    cfg::link "Ghostty/config.ghostty" "$CONFIG_HOME/ghostty/config.ghostty"
     cfg::link "foot/foot.ini" "$CONFIG_HOME/foot/foot.ini"
 
     # System configs
