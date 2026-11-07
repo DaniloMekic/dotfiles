@@ -11,8 +11,6 @@ _LIB_SYS_SOURCED=true
 # Function for detecting Windows Subsystem for Linux (WSL) environment
 sys::is_wsl() {
     [[ -n "${WSL_DISTRO_NAME:-}" ]] || grep -qi microsoft /proc/version 2>/dev/null
-
-    log::info "WSL environment detected"
 }
 
 sys::enable_services() {
