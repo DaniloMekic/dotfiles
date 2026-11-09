@@ -2,11 +2,10 @@
 require('conform').setup({
     ---@type conform.setupOpts
     formatters_by_ft = {
+        bash = { 'shfmt' },
         -- clangd LSP embeds clang-format, a code formatter for C/C++/C# and other languages
         -- Styling options can be controlled with .clang-format file
         -- https://clang.llvm.org/docs/ClangFormatStyleOptions.html
-        -- Since LSP formatting is disabled globally, clang-format needs to be added separately
-        bash = { 'shfmt' },
         c = { 'clang-format' },
         cpp = { 'clang-format' },
         groovy = { 'npm-groovy-lint' },
