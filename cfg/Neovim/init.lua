@@ -42,7 +42,7 @@ require('autocommands')
 vim.cmd([[colorscheme kanagawa]])
 
 vim.lsp.enable({
-    'basedpyright', -- Pyton
+    'basedpyright', -- Python
     'bashls',
     'clangd',
     'cssls',
