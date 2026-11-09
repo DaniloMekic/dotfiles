@@ -32,6 +32,7 @@ require('nvim-treesitter').install({
     'markdown_inline',
     'passwd',
     'perl',
+    'powershell',
     'properties', -- Java Properties File
     'python',
     'query',
@@ -72,6 +73,7 @@ vim.api.nvim_create_autocmd('FileType', {
         'lua',
         'markdown',
         'passwd',
+        'ps1',
         'python',
         'rust',
         'sql',
