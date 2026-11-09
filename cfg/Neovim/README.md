@@ -152,7 +152,7 @@ Surrounding is identified by a single character:
 | Keys | Action |
 |---|---|
 | `<Leader>on` | New note |
-| `<Leader>os` | Search |
+| `<Leader>or` | Rename |
 | `<Leader>ob` | Backlinks |
 | `<Leader>ol` | Links |
 | `<Leader>ot` | Tags |
