@@ -15,7 +15,7 @@ _LIB_CFG_SOURCED=true
 cfg::link() {
     local src="$DOTFILES_HOME/cfg/$1" dest="$2"
     local -a run=()
-    [[ "link_name" != "$HOME"/* ]] && run=(sudo)
+    [[ "$dest" != "$HOME"/* ]] && run=(sudo)
 
     "${run[@]}" mkdir -p "$(dirname "$dest")"
 
@@ -30,7 +30,7 @@ cfg::link() {
 cfg::copy() {
     local src="$DOTFILES_HOME/cfg/$1" dest="$2"
     local -a run=()
-    [[ "link_name" != "$HOME"/* ]] && run=(sudo)
+    [[ "$dest" != "$HOME"/* ]] && run=(sudo)
 
     log::info "Copying $src --> $dest"
     # install -D creates the parent directory, -mode=644 sets permission mode (as in chmod)
@@ -59,9 +59,6 @@ cfg::deploy() {
     # Return early if it's WSL environment
     if wsl::is_wsl; then
         log::info "WSL environment detected"
-
-        install --mode=755 "$DOTFILES_HOME/bin/cpw" "$HOME/.local/bin/cpw"
-        log::info "Installed cpw to $HOME/.local/bin"
 
         return
     fi
