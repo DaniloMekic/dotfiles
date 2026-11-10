@@ -20,7 +20,7 @@ cfg::link() {
     "${run[@]}" mkdir -p "$(dirname "$dest")"
 
     log::info "Linking $src --> $dest"
-    "${run[@]}" ln -sfv --no-dereference "$src" "$dest"
+    "${run[@]}" ln -sf --no-dereference "$src" "$dest"
 }
 
 # Copy a file from cfg/ to a full destination path
