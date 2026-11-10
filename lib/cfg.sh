@@ -60,6 +60,9 @@ cfg::deploy() {
     if wsl::is_wsl; then
         log::info "WSL environment detected"
 
+        install --mode=755 "$DOTFILES_HOME/bin/cpw" "$HOME/.local/bin/cpw"
+        log::info "Installed cpw to $HOME/.local/bin"
+
         return
     fi
 

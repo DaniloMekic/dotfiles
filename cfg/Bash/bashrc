@@ -36,37 +36,6 @@ man() {
         command man "$@"
 }
 
-# Copy file(s) between WSL and Windows download directory
-# Windows to WSL direction copies recently added files, with default being 1 minute
-cpw() {
-    if [[ -z "${USERPROFILE}" ]]; then
-        echo "ERROR: Variable USERPROFILE not set" >&2
-        return 1
-    fi
-
-    local downloads="$USERPROFILE/Downloads"
-
-    #################
-    # Windows --> WSL
-    #
-    # cpw . [MINUTES]                   : Copy from ~\Downloads (Windows) to working directory (WSL), in the last [MINUTES], with default being 1 minute
-    if [[ "$1" == "." ]]; then
-        find "$downloads" -type f -mmin -${2:-1} -exec cp --verbose -t "." {} +
-    # cpw [MINUTES]                     : Copy from ~\Downloads (Windows) to /tmp/ (WSL), in the last [MINUTES], with default being 1 minute
-    elif [[ -z "$1" || "$1" =~ ^[0-9]+$ ]]; then
-        find "$downloads" -type f -mmin -${1:-1} -exec cp --verbose -t "/tmp/" {} +
-    #################
-    # WSL --> Windows
-    #
-    # cpw FILE                          : Copy FILE (WSL) to ~\Downloads (Windows)
-    elif [[ -f "$1" ]]; then
-        cp --verbose -t "$downloads" "$1"
-    else
-        echo "ERROR: Failed to copy between WSL and Windows" >&2
-        return 1
-    fi
-}
-
 # Rust
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
