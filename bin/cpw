@@ -12,11 +12,11 @@ downloads="$USERPROFILE/Downloads"
 # Windows --> WSL
 #
 # cpw . [MINUTES]                   : Copy from ~\Downloads (Windows) to working directory (WSL), in the last [MINUTES], with default being 1 minute
-if [[ "$1" == "." ]]; then
-    find "$downloads" -type f -mmin -${2:-1} -exec cp --verbose -t "." {} +
+if [[ "$1" == "." && (-z "$2" || "$2" =~ ^[0-9]+$) ]]; then
+    find "$downloads" -type f -mmin -"${2:-1}" -exec cp --verbose -t "." {} +
 # cpw [MINUTES]                     : Copy from ~\Downloads (Windows) to /tmp/ (WSL), in the last [MINUTES], with default being 1 minute
 elif [[ -z "$1" || "$1" =~ ^[0-9]+$ ]]; then
-    find "$downloads" -type f -mmin -${1:-1} -exec cp --verbose -t "/tmp/" {} +
+    find "$downloads" -type f -mmin -"${1:-1}" -exec cp --verbose -t "/tmp/" {} +
 #################
 # WSL --> Windows
 #

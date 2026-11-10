@@ -25,3 +25,8 @@ wsl::set_wslenv() {
 
     log::info "Windows \$WSLENV variable is set. WSL restart is required."
 }
+
+wsl::deploy() {
+    mkdir -p "$HOME/.local/bin" && ln -sf "$DOTFILES_HOME/bin/cpw" "$HOME/.local/bin"
+    log::info "Linked $DOTFILES_HOME/bin/cpw --> $HOME/.local/bin/cpw"
+}

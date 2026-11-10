@@ -19,8 +19,8 @@ cfg::link() {
 
     "${run[@]}" mkdir -p "$(dirname "$dest")"
 
-    log::info "Linking $src --> $dest"
     "${run[@]}" ln -sf --no-dereference "$src" "$dest"
+    log::info "Linked $src --> $dest"
 }
 
 # Copy a file from cfg/ to a full destination path
@@ -32,9 +32,9 @@ cfg::copy() {
     local -a run=()
     [[ "$dest" != "$HOME"/* ]] && run=(sudo)
 
-    log::info "Copying $src --> $dest"
     # install -D creates the parent directory, -mode=644 sets permission mode (as in chmod)
     "${run[@]}" install -D --mode=644 --verbose "$src" "$dest"
+    log::info "Copied $src --> $dest"
 }
 
 cfg::deploy() {
@@ -59,6 +59,8 @@ cfg::deploy() {
     # Return early if it's WSL environment
     if wsl::is_wsl; then
         log::info "WSL environment detected"
+
+        wsl::deploy
 
         return
     fi
