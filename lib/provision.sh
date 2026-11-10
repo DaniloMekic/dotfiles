@@ -173,7 +173,6 @@ provision::nvim() {
 
     toolchain::tex
 
-    log::info "Linking Neovim config"
     cfg::link "Neovim" "$CONFIG_HOME/nvim"
 
     log::info "Neovim provisioned"

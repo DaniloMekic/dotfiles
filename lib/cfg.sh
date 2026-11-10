@@ -18,6 +18,8 @@ cfg::link() {
     [[ "link_name" != "$HOME"/* ]] && run=(sudo)
 
     "${run[@]}" mkdir -p "$(dirname "$dest")"
+
+    log::info "Linking $src --> $dest"
     "${run[@]}" ln -sfv --no-dereference "$src" "$dest"
 }
 
@@ -30,6 +32,7 @@ cfg::copy() {
     local -a run=()
     [[ "link_name" != "$HOME"/* ]] && run=(sudo)
 
+    log::info "Copying $src --> $dest"
     # install -D creates the parent directory, -mode=644 sets permission mode (as in chmod)
     "${run[@]}" install -D --mode=644 --verbose "$src" "$dest"
 }
@@ -50,7 +53,6 @@ cfg::deploy() {
     local src dest
     for src in "${!links[@]}"; do
         dest="${links[$src]}"
-        log::info "Linking $src --> $dest"
         cfg::link "$src" "$dest"
     done
 
@@ -76,12 +78,10 @@ cfg::deploy() {
 
     for src in "${!links[@]}"; do
         dest="${links[$src]}"
-        log::info "Linking $src --> $dest"
         cfg::link "$src" "$dest"
     done
 
     # iwd.service runs with ProtectHome=yes, so symlink can't be used
-    log::info "Copying iwd/main.conf --> /etc/iwd/main.conf"
     cfg::copy "iwd/main.conf" "/etc/iwd/main.conf"
 
     log::info "Configs deployed"
