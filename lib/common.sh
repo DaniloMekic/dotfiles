@@ -32,3 +32,8 @@ for lib_file in "${LIB_HOME}"/*.sh; do
     source "$lib_file"
 done
 unset lib_file
+
+# If WSL detected, set $WSLENV
+if wsl::is_wsl; then
+    wsl::set_wslenv
+fi

@@ -42,7 +42,7 @@ provision::userland() {
     toolchain::rust
 
     # Return early if it's WSL environment
-    if sys::is_wsl; then
+    if wsl::is_wsl; then
         return
     fi
 

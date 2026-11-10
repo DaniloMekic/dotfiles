@@ -57,7 +57,7 @@ cfg::deploy() {
     done
 
     # Return early if it's WSL environment
-    if sys::is_wsl; then
+    if wsl::is_wsl; then
         log::info "WSL environment detected"
 
         return
