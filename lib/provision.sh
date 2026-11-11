@@ -41,8 +41,10 @@ provision::userland() {
 
     toolchain::rust
 
-    # Return early if it's WSL environment
+    # If WSL environment, set WSLENV and return early
     if wsl::is_wsl; then
+        wsl::set_wslenv
+
         return
     fi
 
