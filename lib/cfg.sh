@@ -9,32 +9,13 @@ _LIB_CFG_SOURCED=true
 ################################################################################
 
 # Symlink a file from cfg/ to a full destination path
-# Creates the parent directory and uses sudo for paths outside $HOME
-# Option --no-dereference prevents following of an existing symlink if it points to a directory
-# Usage: cfg::link <path relative to cfg/> <destination path>
 cfg::link() {
-    local src="$DOTFILES_HOME/cfg/$1" dest="$2"
-    local -a run=()
-    [[ "$dest" != "$HOME"/* ]] && run=(sudo)
-
-    "${run[@]}" mkdir -p "$(dirname "$dest")"
-
-    "${run[@]}" ln -sf --no-dereference "$src" "$dest"
-    log::info "Linked $src --> $dest"
+    fs::symlink "$DOTFILES_HOME/cfg/$1" "$2"
 }
 
 # Copy a file from cfg/ to a full destination path
-# For configs that can't be symlinks, e.g. when the service can't read $HOME
-# Uses sudo for paths outside $HOME
-# Usage: cfg::copy <path relative to cfg/> <destination path>
 cfg::copy() {
-    local src="$DOTFILES_HOME/cfg/$1" dest="$2"
-    local -a run=()
-    [[ "$dest" != "$HOME"/* ]] && run=(sudo)
-
-    # install -D creates the parent directory, -mode=644 sets permission mode (as in chmod)
-    "${run[@]}" install -D --mode=644 --verbose "$src" "$dest"
-    log::info "Copied $src --> $dest"
+    fs::copy "$DOTFILES_HOME/cfg/$1" "$2"
 }
 
 cfg::deploy() {

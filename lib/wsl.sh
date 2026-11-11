@@ -27,6 +27,5 @@ wsl::set_wslenv() {
 }
 
 wsl::deploy() {
-    mkdir -p "$HOME/.local/bin" && ln -sf "$DOTFILES_HOME/bin/cpw" "$HOME/.local/bin"
-    log::info "Linked $DOTFILES_HOME/bin/cpw --> $HOME/.local/bin/cpw"
+    fs::symlink "$DOTFILES_HOME/bin/cpw" "$HOME/.local/bin/cpw"
 }
