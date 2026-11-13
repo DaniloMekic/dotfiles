@@ -29,6 +29,8 @@ vim.pack.update()
 
 ## Keybindings
 
+- [:help default-mappings](https://neovim.io/doc/user/vim_diff/#default-mappings)
+
 Find source of a keybind with:
 
 ```vimscript
@@ -37,8 +39,6 @@ Find source of a keybind with:
 :verbose imap <key>     " Insert mode
 :verbose xmap <key>     " Visual mode
 ```
-
-- [Default mappings](https://neovim.io/doc/user/vim_diff/#default-mappings)
 
 | Keys | Action |
 |---|---|
@@ -52,7 +52,10 @@ Find source of a keybind with:
 | `<` / `>` | In visual mode, indent/re-indent line and reselect |
 | `<Alt>` + `hjkl` | Move line(s) or, in visual mode, move selection |
 | `ga` | Get ASCII values—decimal, hexadecimal, octal—of the character under the cursor |
+| `gc{motion}` | Comment/uncomment line(s) covered by `{motion}` |
+| `gcc` | Comment/uncomment line(s) |
 | `gt` / `gT` | Tab next/previous |
+| `<Leader>rm` | Render markdown with [leaf](https://github.com/RivoLink/leaf) |
 
 ### Picker
 
@@ -72,6 +75,7 @@ Find source of a keybind with:
 | `K` | Display hover information about the symbol under the cursor in a floating window |
 | `gra` | Select code action available at cursor position |
 | `gri` | List all the implementations for the symbol under the cursor in the quickfix window |
+| `grr` | Lists all the references to the symbol under the cursor in the quickfix window |
 | `grn` | Rename all references to the symbol under the cursor |
 | `grt` | Jump to the definition of the *type* of the symbol under the cursor |
 | `grd` | Jump to the definition of the symbol under the cursor |

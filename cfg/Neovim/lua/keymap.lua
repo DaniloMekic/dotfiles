@@ -1,9 +1,5 @@
--- Explore `h: defaults`
--- Useful defaults:
----- Display hover info about symbol under the cursor: `:help K` and `:help vim.lsp.buf.hover()`
----- Go to definition: `:help gd`
----- Comment lines: `:help gc`
----- References: `:help grr`
+-- https://neovim.io/doc/user/map/
+-- https://neovim.io/doc/user/lua/#vim.keymap.set()
 
 vim.g.mapleader = ' '
 
@@ -83,3 +79,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', 'grD', vim.lsp.buf.declaration, bufopts)
     end,
 })
+
+-- Markdown rendering with `leaf`
+-- https://github.com/RivoLink/leaf
+vim.keymap.set(
+    'n',
+    '<Leader>rm',
+    '<Cmd>vertical botright terminal leaf -w %<CR>',
+    { desc = 'Render markdown with Leaf' }
+)
