@@ -52,7 +52,7 @@ Find source of a keybind with:
 | `<Leader>e` | Explore files ([mini.files](https://github.com/nvim-mini/mini.files)) |
 | `<` / `>` | In visual mode, indent/re-indent line and reselect |
 | `<Alt>` + `hjkl` | Move line(s) or, in visual mode, move selection |
-| `ga` | Get ASCII values—decimal, hexadecimal, octal—of the character under the cursor |
+| `ga` | Get [Unicode](https://codepoints.net/) values—decimal, hexadecimal, octal—of the character under the cursor |
 | `gc{motion}` | Comment/uncomment line(s) covered by `{motion}` |
 | `gcc` | Comment/uncomment line(s) |
 | `gt` / `gT` | Tab next/previous |
