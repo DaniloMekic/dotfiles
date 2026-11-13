@@ -21,7 +21,7 @@ vim.keymap.set('n', '<Leader>P', '"+P', { desc = 'Put from system clipboard befo
 vim.keymap.set('x', '<Leader>p', '"_d"+P', { desc = 'Put from system clipboard' })
 vim.keymap.set('x', '<Leader>P', '"_d"+P', { desc = 'Put from system clipboard' })
 -- In terminal mode, use <Esc> to enter normal mode, instead of c_CTRL-\_CTRL-N
-vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { desc = 'Enter normal mode' })
 
 -- Open jump list
 vim.keymap.set('n', '<Leader>j', '<cmd>jumps<CR>', { desc = 'Jump list' })
