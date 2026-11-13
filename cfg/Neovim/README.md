@@ -42,6 +42,7 @@ Find source of a keybind with:
 
 | Keys | Action |
 |---|---|
+| `CTRL-\_CTRL-N` | Enter normal mode from any other mode |
 | `<Leader>w` | Write buffer to the file |
 | `<Leader>q` | Toggle quickfix window |
 | `gq` | Format the lines that `{motion}` moves over, with `'formatexpr'` being set to the [Conform](https://github.com/stevearc/conform.nvim)'s function |
@@ -56,6 +57,7 @@ Find source of a keybind with:
 | `gcc` | Comment/uncomment line(s) |
 | `gt` / `gT` | Tab next/previous |
 | `<Leader>rm` | Render markdown with [leaf](https://github.com/RivoLink/leaf) |
+| `<Leader>t` | In normal mode, toggle terminal buffer in a new window below current one |
 
 ### Picker
 

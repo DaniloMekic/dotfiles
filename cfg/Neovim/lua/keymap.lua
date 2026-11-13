@@ -50,7 +50,7 @@ vim.keymap.set('n', '<Leader>uu', function()
     require('undotree').open()
 end, { desc = 'Toggle undo tree' })
 
--- QuickFix List
+-- Toggle QuickFix List
 -- See `:help default-mappings`; `:help [q`; `:help ]q`
 vim.keymap.set('n', '<Leader>q', function()
     if vim.fn.getqflist({ winid = 0 }).winid ~= 0 then
@@ -60,7 +60,7 @@ vim.keymap.set('n', '<Leader>q', function()
     end
 end, { desc = 'Toggle quickfix window' })
 
--- Location List
+-- Toggle Location List
 vim.keymap.set('n', '<Leader>l', function()
     if vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 then
         vim.cmd('lclose')
@@ -69,7 +69,45 @@ vim.keymap.set('n', '<Leader>l', function()
     end
 end, { desc = 'Toggle location list' })
 
---- Global LSP Configuration
+-- Toggle Terminal Window
+---- Preserved terminal's buffer ID between key presses
+local terminal_buffer
+vim.keymap.set('n', '<Leader>t', function()
+    -- Look for a window displaying terminal_buffer:
+    ---- If terminal_buffer is truthy—it contains a buffer ID—return window ID that displays terminal_buffer,
+    ---- or return -1 if terminal buffer is not displayed—in the current tab.
+    local terminal_window = terminal_buffer and vim.fn.bufwinid(terminal_buffer) or -1
+
+    -- If terminal_window is visible (value ≠ -1),
+    -- stop terminal input mode, and hide window displaying terminal buffer,
+    -- while preserving terminal_buffer and the shell.
+    if terminal_window ~= -1 then
+        vim.cmd('stopinsert')
+        vim.api.nvim_win_hide(terminal_window)
+
+        -- Return in order to prevent immediate reoping of the terminal_window
+        return
+    end
+
+    -- If no window displays terminal_buffer,
+    -- open new window in a horizontal split below current window.
+    vim.cmd('belowright split')
+    -- If saved terminal_buffer still exists, display it in the current window (0),
+    -- otherwise, launch new terminal and the shell, and preserve terminal_buffer
+    if terminal_buffer and vim.api.nvim_buf_is_valid(terminal_buffer) then
+        vim.api.nvim_win_set_buf(0, terminal_buffer)
+    else
+        vim.cmd('terminal')
+        terminal_buffer = vim.api.nvim_get_current_buf()
+    end
+
+    -- Set terminal window to 20% of Neovim's total height
+    vim.api.nvim_win_set_height(0, math.max(1, math.floor(vim.o.lines * 0.2)))
+    -- Enter input mode as soon terminal is launched
+    vim.cmd('startinsert')
+end, { desc = 'Toggle terminal split' })
+
+-- Global LSP Configuration
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(e)
