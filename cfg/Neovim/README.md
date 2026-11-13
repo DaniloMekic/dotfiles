@@ -46,11 +46,11 @@ Find source of a keybind with:
 | `<Leader>w` | Write buffer to the file |
 | `<Leader>q` | Toggle quickfix window |
 | `gq` | Format the lines that `{motion}` moves over, with `'formatexpr'` being set to the [Conform](https://github.com/stevearc/conform.nvim)'s function |
-| `<Leader>y` | Yank to system clipboard |
+| `v_<Leader>y` | Yank to system clipboard |
 | `<Leader>Y` | Yank line(s) to system clipboard |
 | `<Leader>p` / `<Leader>P` | Put from system clipboard before/after cursor |
 | `<Leader>e` | Explore files ([mini.files](https://github.com/nvim-mini/mini.files)) |
-| `<` / `>` | In visual mode, indent/re-indent line and reselect |
+| `v_<` / `v_>` | In visual mode, indent/re-indent line and reselect |
 | `<Alt>` + `hjkl` | Move line(s) or, in visual mode, move selection |
 | `ga` | Get [Unicode](https://codepoints.net/) values—decimal, hexadecimal, octal—of the character under the cursor |
 | `gc{motion}` | Comment/uncomment line(s) covered by `{motion}` |
@@ -58,6 +58,7 @@ Find source of a keybind with:
 | `gt` / `gT` | Tab next/previous |
 | `<Leader>rm` | Render markdown with [leaf](https://github.com/RivoLink/leaf) |
 | `<Leader>t` | In normal mode, toggle [terminal](https://neovim.io/doc/user/terminal/) buffer in a new window below current one |
+| `t_<Esc>` | In terminal mode, enter normal mode |
 
 ### Picker
 
