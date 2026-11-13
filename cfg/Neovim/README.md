@@ -57,7 +57,7 @@ Find source of a keybind with:
 | `gcc` | Comment/uncomment line(s) |
 | `gt` / `gT` | Tab next/previous |
 | `<Leader>rm` | Render markdown with [leaf](https://github.com/RivoLink/leaf) |
-| `<Leader>t` | In normal mode, toggle [terminal](https://neovim.io/doc/user/terminal/#terminal.txt) buffer in a new window below current one |
+| `<Leader>t` | In normal mode, toggle [terminal](https://neovim.io/doc/user/terminal/) buffer in a new window below current one |
 
 ### Picker
 
