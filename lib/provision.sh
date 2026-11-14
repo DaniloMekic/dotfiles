@@ -12,6 +12,8 @@ _LIB_INSTALL_SOURCED=true
 provision::userland() {
     log::info "Provisioning userland"
 
+    toolchain::git
+
     log::info "Installing userland packages from the Arch Linux official repositories"
     # noto-fonts-emoji                  : Noto Color Emoji for Waybar
     # ttf-jetbrains-mono-nerd           : JetBrainsMono Nerd Font for Neovim
@@ -20,7 +22,6 @@ provision::userland() {
         7zip
         fastfetch
         ghostty
-        git tig lazygit
         jq jless
         keyd
         mpv
@@ -51,11 +52,9 @@ provision::userland() {
     log::info "Installing userland packages from the Arch User Repository (AUR)"
     # AUR packages:
     #   logiops                         : Unofficial userspace driver for HID++ Logitech devices
-    #   sourcegit-bin                   : Git GUI client
     #   wlogout                         : Wayland based logout menu
     local -a aur_pkgs=(
         logiops
-        sourcegit-bin
         wlogout
     )
     "$AUR_HELPER" -S "${AUR_HELPER_OPTS[@]}" "${aur_pkgs[@]}"
@@ -74,6 +73,8 @@ provision::userland() {
 # Neovim
 provision::nvim() {
     log::info "Provisioning Neovim"
+
+    toolchain::git
 
     toolchain::java
     sudo archlinux-java set java-21-openjdk
@@ -100,7 +101,6 @@ provision::nvim() {
         eslint_d
         fzf
         gcc
-        git
         go
         harper
         jq
