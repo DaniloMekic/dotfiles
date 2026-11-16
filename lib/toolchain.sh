@@ -56,6 +56,11 @@ toolchain::rust() {
         . "$HOME/.cargo/env"
     fi
 
+    log::info "Update Rust and install KDL LSP"
+    rustup update stable
+    rustup component add rustfmt
+    cargo install kdl-lsp
+
     log::info "Rust toolchain installed"
 }
 

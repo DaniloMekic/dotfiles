@@ -77,6 +77,8 @@ provision::nvim() {
     toolchain::git
     toolchain::c
     toolchain::java && sudo archlinux-java set java-21-openjdk
+    toolchain::rust
+    toolchain::tex
 
     log::info "Installing packages for Neovim from the Arch Linux official repositories"
     # bash-language-server              : Bash LSP server
@@ -163,15 +165,6 @@ provision::nvim() {
     local -a npm_pkgs=(npm-groovy-lint)
     sudo npm install -g "${npm_pkgs[@]}"
     log::info "Packages for Neovim from the npm installed: ${npm_pkgs[*]}"
-
-    toolchain::rust
-
-    log::info "Update Rust and install KDL LSP"
-    rustup update stable
-    rustup component add rustfmt
-    cargo install kdl-lsp
-
-    toolchain::tex
 
     cfg::link "Neovim" "$CONFIG_HOME/nvim"
 
