@@ -34,7 +34,7 @@ pkg::get_aur_helper() {
     build_dir=$(mktemp -d)
 
     # Install required packages for the build
-    sudo pacman -S --needed --noconfirm --disable-download-timeout git base-devel || {
+    sudo pacman "${PACMAN_OPTS[@]}" git base-devel || {
         log::error "Failed to install packages: git, base-devel"
         return 1
     }

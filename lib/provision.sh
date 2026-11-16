@@ -33,7 +33,7 @@ provision::userland() {
         vim neovim
         wl-clipboard
     )
-    sudo pacman -S --needed --noconfirm --disable-download-timeout "${pacman_pkgs[@]}"
+    sudo pacman "${PACMAN_OPTS[@]}" "${pacman_pkgs[@]}"
     log::info "Userland packages from the Arch Linux official repositories installed: ${pacman_pkgs[*]}"
 
     if ! command -v "$AUR_HELPER" &>/dev/null; then

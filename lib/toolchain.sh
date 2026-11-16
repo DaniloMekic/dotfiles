@@ -16,7 +16,7 @@ toolchain::git() {
     local -a pacman_pkgs=(
         git tig lazygit
     )
-    sudo pacman -S --needed --noconfirm --disable-download-timeout "${pacman_pkgs[@]}"
+    sudo pacman "${PACMAN_OPTS[@]}" "${pacman_pkgs[@]}"
     log::info "Git and related packages from the Arch Linux official repositories installed: ${pacman_pkgs[*]}"
 
     # Arch User Repository (AUR)
@@ -60,7 +60,7 @@ toolchain::java() {
         jdk25-openjdk openjdk25-doc openjdk25-src
         jdk-openjdk openjdk-doc openjdk-src
     )
-    sudo pacman -S --needed --noconfirm --disable-download-timeout "${pacman_pkgs[@]}"
+    sudo pacman "${PACMAN_OPTS[@]}" "${pacman_pkgs[@]}"
 
     mkdir -p ~/.config/environment.d
 
@@ -83,7 +83,7 @@ toolchain::tex() {
         texlive-latexrecommended
         zathura zathura-pdf-mupdf tesseract-data-eng
     )
-    sudo pacman -S --needed --noconfirm --disable-download-timeout "${pacman_pkgs[@]}"
+    sudo pacman "${PACMAN_OPTS[@]}" "${pacman_pkgs[@]}"
 
     log::info "LaTeX toolchain installed: ${pacman_pkgs[*]}"
 }
