@@ -47,7 +47,7 @@ cfg::deploy() {
     fi
 
     links=(
-        ["Niri/niri/config.kdl"]="$CONFIG_HOME/niri/config.kdl"
+        ["Niri/config.kdl"]="$CONFIG_HOME/niri/config.kdl"
         ["mpv/input.conf"]="$CONFIG_HOME/mpv/input.conf"
         ["mpv/mpv.conf"]="$CONFIG_HOME/mpv/mpv.conf"
         ["Waybar/config.jsonc"]="$CONFIG_HOME/waybar/config.jsonc"
