@@ -75,9 +75,8 @@ provision::nvim() {
     log::info "Provisioning Neovim"
 
     toolchain::git
-
-    toolchain::java
-    sudo archlinux-java set java-21-openjdk
+    toolchain::c
+    toolchain::java && sudo archlinux-java set java-21-openjdk
 
     log::info "Installing packages for Neovim from the Arch Linux official repositories"
     # bash-language-server              : Bash LSP server
@@ -100,7 +99,6 @@ provision::nvim() {
         bash-language-server
         eslint_d
         fzf
-        gcc
         go
         harper
         jq
