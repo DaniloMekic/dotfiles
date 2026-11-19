@@ -22,6 +22,7 @@ cfg::deploy() {
     log::info "Deploying configs"
 
     local -A links=(
+        ["environment.d/10-path.conf"]="$CONFIG_HOME/environment.d/10-path.conf"
         ["Neovim"]="$CONFIG_HOME/nvim"
         ["Bash/bashrc"]="$HOME/.bashrc"
         ["Bash/bash_profile"]="$HOME/.bash_profile"

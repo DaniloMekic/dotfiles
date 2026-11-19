@@ -36,6 +36,8 @@ AUR_HELPER_OPTS=(--needed --noconfirm --answerdiff None --answerclean All --sudo
 DOTFILES_HOME="$(cd -- "$(dirname -- "${BASH_SOURCE[1]}")" &>/dev/null && pwd)"
 CONFIG_HOME="$HOME/.config"
 
+APPIMAGES_HOME="$HOME/AppImages"
+
 for lib_file in "${LIB_HOME}"/*.sh; do
     [[ "$lib_file" -ef "${BASH_SOURCE[0]}" ]] && continue # skips common.sh itself
     source "$lib_file"

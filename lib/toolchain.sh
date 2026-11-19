@@ -80,8 +80,6 @@ toolchain::java() {
     )
     sudo pacman "${PACMAN_OPTS[@]}" "${pacman_pkgs[@]}"
 
-    mkdir -p ~/.config/environment.d
-
     fs::symlink "$DOTFILES_HOME/cfg/environment.d/20-java.conf" "$CONFIG_HOME/environment.d/20-java.conf"
 
     log::info "Java toolchain installed: ${pacman_pkgs[*]}"

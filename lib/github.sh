@@ -52,7 +52,7 @@ github::download_tag_asset() {
     fi
 
     local asset_url
-    asset_url=$(curl "${GITHUB_CURL_OPTS[@]}" "${GITHUB_API_BASE_URL}/${path}" \
+    asset_url=$(curl "${GITHUB_CURL_OPTS[@]}" "${headers[@]}" "${GITHUB_API_BASE_URL}/${path}" \
         | jq --raw-output ".assets[] | select(.label == \"$asset_label\") | .browser_download_url")
 
     if [[ -z "$asset_url" ]]; then

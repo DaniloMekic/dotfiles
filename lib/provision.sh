@@ -15,6 +15,7 @@ provision::userland() {
     toolchain::git
 
     log::info "Installing userland packages from the Arch Linux official repositories"
+    # desktop-file-utils                : Utilities for working with desktop entries
     # noto-fonts-emoji                  : Noto Color Emoji for Waybar
     # ttf-jetbrains-mono-nerd           : JetBrainsMono Nerd Font for Neovim
     # wl-clipboard                      : Clipboard CLI tools for Wayland compositors
@@ -30,6 +31,7 @@ provision::userland() {
         ripgrep
         tmux
         ttf-jetbrains-mono-nerd
+        desktop-file-utils
         vim neovim
         wl-clipboard
     )
@@ -66,6 +68,8 @@ provision::userland() {
     if [[ -z "$response" || "${response,,}" == yes || "${response,,}" == y ]]; then
         sys::enable_services
     fi
+
+    appimage::qbittorrent
 
     log::info "Userland provisioned"
 }
