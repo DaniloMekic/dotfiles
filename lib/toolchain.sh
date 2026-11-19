@@ -82,9 +82,7 @@ toolchain::java() {
 
     mkdir -p ~/.config/environment.d
 
-    cat >~/.config/environment.d/java.conf <<EOF
-JAVA_HOME=/usr/lib/jvm/default
-EOF
+    fs::symlink "$DOTFILES_HOME/cfg/environment.d/20-java.conf" "$CONFIG_HOME/environment.d/20-java.conf"
 
     log::info "Java toolchain installed: ${pacman_pkgs[*]}"
 }
