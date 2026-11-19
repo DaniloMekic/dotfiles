@@ -24,8 +24,8 @@ cfg::deploy() {
     local -A links=(
         ["environment.d/10-path.conf"]="$CONFIG_HOME/environment.d/10-path.conf"
         ["Neovim"]="$CONFIG_HOME/nvim"
-        ["Bash/bashrc"]="$HOME/.bashrc"
-        ["Bash/bash_profile"]="$HOME/.bash_profile"
+        ["Bash/bashrc.sh"]="$HOME/.bashrc"
+        ["Bash/bash_profile.sh"]="$HOME/.bash_profile"
         ["Vim/config.vim"]="$HOME/.vimrc"
         ["curl/curlrc"]="$HOME/.curlrc"
         ["tmux/tmux.conf"]="$HOME/.tmux.conf"
