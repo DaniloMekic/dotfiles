@@ -8,11 +8,11 @@ _LIB_APPIMAGE_SOURCED=true
 
 ################################################################################
 
-# Usage: appimage::install <url> <appimage_file_name> <bin-name>
+# Usage: appimage::install <url> <bin-name>
 appimage::install() {
     local url="$1"
-    local appimage_file_path="$APPIMAGES_HOME/$2"
-    local bin_name="$3"
+    local appimage_file_path="$APPIMAGES_HOME/${url##*/}"
+    local bin_name="$2"
 
     net::download "$url" "$appimage_file_path"
     chmod +x -- "$appimage_file_path"
@@ -26,6 +26,5 @@ appimage::install() {
 appimage::qbittorrent() {
     appimage::install \
         "https://github.com/qbittorrent/qBittorrent/releases/download/release-5.2.4/qbittorrent-5.2.4_x86_64.AppImage" \
-        "qbittorrent-5.2.4_x86_64.AppImage" \
         "qbittorrent"
 }
