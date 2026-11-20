@@ -18,6 +18,19 @@ cfg::copy() {
     fs::copy "$DOTFILES_HOME/cfg/$1" "$2"
 }
 
+# https://wiki.archlinux.org/title/Desktop_entries
+# Usage: cfg::desktop <path-relative-to-cfg>
+cfg::desktop() {
+    local src="$DOTFILES_HOME/cfg/$1"
+
+    if ! desktop-file-validate "$src"; then
+        log::error "Desktop file $desktop_file_path is not valid"
+        return 1
+    fi
+
+    fs::symlink "$src" "$HOME/.local/share/applications/${src##*/}"
+}
+
 cfg::deploy() {
     log::info "Deploying configs"
 
@@ -67,6 +80,23 @@ cfg::deploy() {
 
     # iwd.service runs with ProtectHome=yes, so symlink can't be used
     cfg::copy "iwd/main.conf" "/etc/iwd/main.conf"
+
+    ########################################
+    # Desktop files
+    desktop_files=(
+        "qBittorrent/org.qbittorrent.qBittorrent.desktop"
+    )
+
+    for desktop_file in "${desktop_files[@]}"; do
+        cfg::desktop "$desktop_file"
+    done
+
+    if ! command -v update-desktop-database; then
+        log::error "Binary 'update-desktop-database' not available, install desktop-file-utils package"
+        return 1
+    fi
+
+    update-desktop-database "$HOME/.local/share/applications"
 
     log::info "Configs deployed"
 }
