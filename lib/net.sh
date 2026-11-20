@@ -8,7 +8,7 @@ _LIB_NET_SOURCED=true
 
 ################################################################################
 
-# Usage: appimage::download <url> <dest>
+# Usage: net::download <url> <dest>
 net::download() {
     local url="$1"
     local dest="${2:-"/tmp"}"
