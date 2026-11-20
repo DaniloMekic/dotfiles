@@ -34,6 +34,9 @@ cfg::desktop() {
 cfg::deploy() {
     log::info "Deploying configs"
 
+    # For `~/.config/environment.d/*.conf` files, see:
+    #   https://wiki.archlinux.org/title/Environment_variables#Per_user
+    #   https://wiki.archlinux.org/title/Systemd/User#Environment_variables
     local -A links=(
         ["environment.d/10-path.conf"]="$CONFIG_HOME/environment.d/10-path.conf"
         ["Neovim"]="$CONFIG_HOME/nvim"
