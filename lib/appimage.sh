@@ -19,6 +19,8 @@ appimage::install() {
     net::download "$url" "$appimage_file_path"
     chmod +x -- "$appimage_file_path"
 
+    icon::from_appimage "$appimage_file_path"
+
     fs::symlink "$appimage_file_path" "$HOME/.local/bin/$bin_name"
 
     log::info "AppImage deployed: $appimage_file_path"
