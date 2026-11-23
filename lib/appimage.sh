@@ -8,6 +8,8 @@ _LIB_APPIMAGE_SOURCED=true
 
 ################################################################################
 
+APPIMAGES_HOME="$HOME/AppImages"
+
 # Usage: appimage::install <url> <bin-name>
 appimage::install() {
     local url="$1"
