@@ -29,7 +29,8 @@ vim.pack.update()
 
 ## Keybindings
 
-- [:help default-mappings](https://neovim.io/doc/user/vim_diff/#default-mappings)
+- [Default-mappings](https://neovim.io/doc/user/vim_diff/#default-mappings)
+- [Various commands](https://neovim.io/doc/user/various/)
 
 Find source of a keybind with:
 
