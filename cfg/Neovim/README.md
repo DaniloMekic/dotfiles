@@ -59,6 +59,7 @@ Find source of a keybind with:
 | `<Leader>rm` | Render markdown with [leaf](https://github.com/RivoLink/leaf) |
 | `<Leader>t` | In normal mode, toggle [terminal](https://neovim.io/doc/user/terminal/) buffer in a new window below current one |
 | `t_<Esc>` | In terminal mode, enter normal mode |
+| `gx` | Opens the current filepath, URL (decided by <cfile>, 'isfname'), or LSP "documentLink" at cursor using the system default handler. |
 
 ### Picker
 
