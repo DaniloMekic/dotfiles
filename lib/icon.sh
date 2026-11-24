@@ -57,9 +57,16 @@ icon::from_appimage() {
     # sed options:
     #   -n                              : Supress automatic printing of input lines
     # sed commands:
+    #   s                               : Substitute "^Icon=" with empty string
     #   p                               : Print
     #   q                               : Quit after printing first match
-    icon_name="$(sed -n '/^Icon=/ { s/^Icon=//; p; q; }' "$root"/*.desktop)"
+    icon_name="$(
+        sed -n '/^Icon=/ {
+                            s/^Icon=//;
+                            p;
+                            q;
+                         }' "$root"/*.desktop
+    )"
     [[ -n "$icon_name" ]] || {
         log::error "No Icon= key in the .desktop file of $appimage"
         return 1
