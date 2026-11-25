@@ -1,20 +1,35 @@
 ################################################################################
 # include guard
 # https://en.wikipedia.org/wiki/include_guard
-if [[ -n "${_LIB_WSL_SOURCED:-}" ]]; then
+if [[ -n "${_MOD_WSL_SOURCED:-}" ]]; then
     return
 fi
-_LIB_WSL_SOURCED=true
+_MOD_WSL_SOURCED=true
 
 ################################################################################
+# Windows Subsystem for Linux (WSL)
 
-# Function for detecting Windows Subsystem for Linux (WSL) environment
+# Function for detecting WSL environment
+#
+# grep options:
+#   -q                                  : Quiet (silent) mode that with supressed output
+#   -i                                  : Case-insensitive search
 wsl::is_wsl() {
     [[ -n "${WSL_DISTRO_NAME:-}" ]] || grep -qi microsoft /proc/version 2>/dev/null
 }
 
+wsl::provision() {
+    log::info "Provisioning WSL"
+    wsl::set_wslenv
+}
+
+wsl::deploy() {
+    log::info "Deploying WSL configs"
+    fs::symlink "$DOTFILES_HOME/bin/cpw" "$HOME/.local/bin/cpw"
+}
+
 # https://devblogs.microsoft.com/commandline/share-environment-vars-between-wsl-and-windows/
-# WSLENV is a special Windows environment variable for sharing and translating environment variables between Windows (Win32) and the Windows Subsystem for Linux (WSL)
+# WSLENV is a special Windows environment variable for sharing and translating environment variables between Windows (Win32) and the WSL
 #
 # https://learn.microsoft.com/en-us/windows/deployment/usmt/usmt-recognized-environment-variables
 # Shared Windows environment variables:
@@ -24,8 +39,4 @@ wsl::set_wslenv() {
         "[Environment]::SetEnvironmentVariable('WSLENV','USERPROFILE/up','User')"
 
     log::info "Windows \$WSLENV variable is set. WSL restart is required."
-}
-
-wsl::deploy() {
-    fs::symlink "$DOTFILES_HOME/bin/cpw" "$HOME/.local/bin/cpw"
 }
