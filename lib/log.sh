@@ -27,6 +27,7 @@ file_path_width=20
 LEVEL_INFO=$(printf "%5s" "INFO")
 LEVEL_DEBUG=$(printf "%5s" "DEBUG")
 LEVEL_ERROR=$(printf "%5s" "ERROR")
+LEVEL_DRY=$(printf "%5s" "DRY")
 
 # Print "<path of calling file relative to bootstrap><line>", left-padded or truncated to $file_path_width
 # This helper function is meant to be called only within functions defined in this file
@@ -56,6 +57,10 @@ log::_caller() {
 
 ################################################################################
 # Print to stdout and append a log file
+log::dry() {
+    echo "[$(date '+%F %T')] [$(log::_caller)] $LEVEL_DRY: $1" | tee -a "${log_destination}"
+}
+
 log::info() {
     echo "[$(date '+%F %T')] [$(log::_caller)] $LEVEL_INFO: $1" | tee -a "${log_destination}"
 }
