@@ -42,7 +42,7 @@ cfg::desktop_entries() {
     local apps_dir="$DATA_HOME/applications"
 
     if ! command -v desktop-file-validate &>/dev/null; then
-        log::error "desktop-file-validate  is not available; install desktop-file-utils package"
+        log::error "desktop-file-validate is not available; install the desktop-file-utils package"
         return 1
     fi
 

@@ -12,7 +12,7 @@ _MOD_WSL_SOURCED=true
 # Function for detecting WSL environment
 #
 # grep options:
-#   -q                                  : Quiet (silent) mode that with supressed output
+#   -q                                  : Quiet (silent) mode: suppress output, only set the exit status
 #   -i                                  : Case-insensitive search
 wsl::is_wsl() {
     [[ -n "${WSL_DISTRO_NAME:-}" ]] || grep -qi microsoft /proc/version 2>/dev/null
@@ -29,7 +29,7 @@ wsl::deploy() {
 }
 
 # https://devblogs.microsoft.com/commandline/share-environment-vars-between-wsl-and-windows/
-# WSLENV is a special Windows environment variable for sharing and translating environment variables between Windows (Win32) and the WSL
+# WSLENV is a special Windows environment variable for sharing and translating environment variables between Windows (Win32) and WSL
 #
 # https://learn.microsoft.com/en-us/windows/deployment/usmt/usmt-recognized-environment-variables
 # Shared Windows environment variables:

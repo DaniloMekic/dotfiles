@@ -14,10 +14,10 @@ _LIB_XDG_SOURCED=true
 # https://specifications.freedesktop.org/basedir/latest/
 #
 # Usage:
-# xdg::desktop_icon_names <desktop-file>
+# xdg::desktop_icon_names <desktop-file>...
 #
 # Example:
-# [Desktop]                 [Desktop]
+# [Desktop Entry]           [Desktop Entry]
 # Name=GIMP                 Icon=gimp
 # Icon=gimp                 [Desktop Action new]
 #                           Icon=/usr/share/pixmaps/new.png
@@ -26,7 +26,7 @@ _LIB_XDG_SOURCED=true
 xdg::desktop_icon_names() {
     # sed                               : Print only lines that start with Icon=, without the key
     # grep                              : Drop absolute paths; `-v` inverts matches
-    #                                   : Due to `set -e`, `|| true` is used because no match is not an error
+    #                                   : Due to `set -e pipefail`, `|| true` is used because no match is not an error
     # sort -u                           : Remove duplicates
     sed -n 's/^Icon=//p' "$@" \
         | { grep -v '^/' || true; } \

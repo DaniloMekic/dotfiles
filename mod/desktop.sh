@@ -10,13 +10,13 @@ _MOD_DESKTOP_SOURCED=true
 # Niri Wayland session and graphical applications
 #
 # Everything here lives in $HOME
-# Root owned files belong in mod/host.sh
+# Root-owned files belong in mod/host.sh
 
 desktop::provision() {
     log::info "Provisioning desktop"
 
-    # Swaylock                          : Screen locker; see Niri/config.kdl
-    # Waybar                            : Status bar; see Niri/config.kdl
+    # swaylock                          : Screen locker; see Niri/config.kdl
+    # waybar                            : Status bar; see Niri/config.kdl
     # brightnessctl                     : Read and control device brightness
     # desktop-file-utils                : Utilities for working with desktop entries
     # noto-fonts-emoji                  : Noto Color Emoji for Waybar

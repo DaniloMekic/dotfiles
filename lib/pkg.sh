@@ -50,7 +50,7 @@ AUR_HELPER_OPTS=(--needed --noconfirm --answerdiff None --answerclean All --sudo
 
 # Install from the Arch User Repository (AUR)
 # Build AUR helper first if missing
-# Usage: pkg::aur() <pkg>
+# Usage: pkg::aur <pkg>...
 pkg::aur() {
     pkg::ensure_aur_helper
     log::info "$AUR_HELPER: installing $*"
@@ -77,7 +77,7 @@ pkg::get_aur_helper() {
     #   git                             : `git clone` below
     #   base-devel                      : makepkg
     #
-    # Use pkg::pacman, NOT toolchain::git, becauase toolchain::git installs
+    # Use pkg::pacman, NOT toolchain::git, because toolchain::git installs
     # an AUR package and would recurse back here
     pkg::pacman git base-devel
 
@@ -122,13 +122,13 @@ pkg::get_aur_helper() {
     log::info "$AUR_HELPER installed successfully"
 }
 
-# Print the path of a package archive in the pacman cache, <pkgname>.pkg.tar.zst.
+# Print the path of a package archive in the pacman cache, <pkgname>-<pkgver>-<pkgrel>-<arch>.pkg.tar.zst.
 # If file is not in the cache, download the package, without installing it.
 #
 # Usage:
-# pkg:: get_cached_archive_path <pkg>
+# pkg::get_cached_archive_path <pkg>
 #
-# The called captures the function's output
+# The caller captures the function's output
 # pkg_file="$(pkg::get_cached_archive_path "<pkg>")" || return 1
 #
 # https://wiki.archlinux.org/title/Creating_packages#Overview
@@ -146,8 +146,8 @@ pkg::get_cached_archive_path() {
         log::error "Package $pkg not found in the repositories"
         return 1
     }
-    # Remove everything up to the, and including last forward slash to get package name
-    local pkg_name="${uri##*/}"
+    # Remove everything up to and including the last forward slash, to get the file name
+    local pkg_file_name="${uri##*/}"
 
     # Download package into the cache, without installing it
     # If file is already in the cache, pacman does nothing
@@ -164,13 +164,13 @@ pkg::get_cached_archive_path() {
     while IFS= read -r cache_dir; do
         # Check if file actually exists
         # Print the path and return
-        if [[ -f "${cache_dir%/}/${pkg_name}" ]]; then
-            printf '%s\n' "${cache_dir%/}/${pkg_name}"
+        if [[ -f "${cache_dir%/}/${pkg_file_name}" ]]; then
+            printf '%s\n' "${cache_dir%/}/${pkg_file_name}"
             return
         fi
     done < <(pacman-conf CacheDir)
 
-    log::error "Package file ${pkg_name} not found in any cache directory"
+    log::error "Package file ${pkg_file_name} not found in any cache directory"
 
     return 1
 }

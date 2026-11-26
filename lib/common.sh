@@ -38,7 +38,7 @@ DRY_RUN="${DRY_RUN:-}"
 # https://wiki.archlinux.org/title/XDG_Base_Directory
 # https://specifications.freedesktop.org/basedir/latest/
 CONFIG_HOME="$HOME/.config"
-# Location for user-specific data (analogous to /usr/share
+# Location for user-specific data (analogous to /usr/share)
 DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 
 # Source lib/ first (mechanisms), then mod/ (policies)

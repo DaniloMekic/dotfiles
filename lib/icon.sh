@@ -10,7 +10,6 @@ _LIB_ICON_SOURCED=true
 # Docs:
 # https://wiki.archlinux.org/title/Icons
 # https://specifications.freedesktop.org/icon-theme/latest/
-ICONS_HOME="$HOME/.local/share/icons"
 
 # Copy icons into the user's icon directory
 # pkg::install_icons and appimage::install_icons extract an icon tree and pass it here
@@ -40,13 +39,13 @@ icon::install() {
 
         # find options:
         #   -L                          : Follow symlinks, since icon themes often alias names to each other
-        #                               : An absolute symlink inside the tree (/usr/share/...),
+        #                               : An absolute symlink inside the tree (/usr/share/...)
         #                               : resolves to a file on THIS system, not one in the archive
         while IFS= read -r -d '' icon_file; do
             rel="${icon_file#"$icons_dir"/}"
             # Check explicitly instead of relying on set -e
             # Bash turns errexit OFF for a whole function called as an if/&&/|| condition,
-            # and callers do call this on as a condition
+            # and callers do call this one as a condition
             if ! run::cmd install -D --mode=644 -- "$icon_file" "$ICONS_HOME/$rel"; then
                 log::error "Failed to copy $icon_file"
                 return 1

@@ -22,7 +22,7 @@ host::provision() {
 
     # keyd                              : Key remapping daemon
     pkg::pacman keyd
-    # LogiOps                           : Unofficial userspace driver for HID++ Logitech devices
+    # logiops                           : Unofficial userspace driver for HID++ Logitech devices
     pkg::aur logiops
 
     log::info "Host provisioned"
