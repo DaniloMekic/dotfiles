@@ -18,88 +18,43 @@ cfg::copy() {
     fs::copy "$DOTFILES_HOME/cfg/$1" "$2"
 }
 
-# https://wiki.archlinux.org/title/Desktop_entries
-# Usage: cfg::desktop <path-relative-to-cfg>
-cfg::desktop() {
-    local src="$DOTFILES_HOME/cfg/$1"
+# Link every entry of an associative array: [path-relative-to-cfg]=destination
+#
+# Usage:
+# cfg::link_map <name-of-associative-array>
+#
+# `local -n` makes _cfg_map a reference to the caller's array (nameref)
+cfg::link_map() {
+    local -n _cfg_map="$1"
+    local src
 
-    if ! desktop-file-validate "$src"; then
-        log::error "Desktop file $desktop_file_path is not valid"
-        return 1
-    fi
-
-    fs::symlink "$src" "$HOME/.local/share/applications/${src##*/}"
+    for src in "${!_cfg_map[@]}"; do
+        cfg::link "$src" "${_cfg_map[$src]}"
+    done
 }
 
-cfg::deploy() {
-    log::info "Deploying configs"
+# Validate and link desktop entries, then refresh the database once
+# https://wiki.archlinux.org/title/Desktop_entries
+#
+# Usage:
+# cfg::desktop_entries <path-relative-to-cfg>...
+cfg::desktop_entries() {
+    local apps_dir="$DATA_HOME/applications"
 
-    # For `~/.config/environment.d/*.conf` files, see:
-    #   https://wiki.archlinux.org/title/Environment_variables#Per_user
-    #   https://wiki.archlinux.org/title/Systemd/User#Environment_variables
-    local -A links=(
-        ["environment.d/10-path.conf"]="$CONFIG_HOME/environment.d/10-path.conf"
-        ["Neovim"]="$CONFIG_HOME/nvim"
-        ["Bash/bashrc.sh"]="$HOME/.bashrc"
-        ["Bash/bash_profile.sh"]="$HOME/.bash_profile"
-        ["Vim/config.vim"]="$HOME/.vimrc"
-        ["curl/curlrc"]="$HOME/.curlrc"
-        ["tmux/tmux.conf"]="$HOME/.tmux.conf"
-        ["Git/.gitconfig"]="$HOME/.gitconfig"
-    )
-
-    local src dest
-    for src in "${!links[@]}"; do
-        dest="${links[$src]}"
-        cfg::link "$src" "$dest"
-    done
-
-    # Return early if it's WSL environment
-    if wsl::is_wsl; then
-        log::info "WSL environment detected"
-
-        wsl::deploy
-
-        return
-    fi
-
-    links=(
-        ["Niri/config.kdl"]="$CONFIG_HOME/niri/config.kdl"
-        ["mpv/input.conf"]="$CONFIG_HOME/mpv/input.conf"
-        ["mpv/mpv.conf"]="$CONFIG_HOME/mpv/mpv.conf"
-        ["Waybar/config.jsonc"]="$CONFIG_HOME/waybar/config.jsonc"
-        ["Waybar/style.css"]="$CONFIG_HOME/waybar/style.css"
-        ["Alacritty/alacritty.toml"]="$CONFIG_HOME/alacritty/alacritty.toml"
-        ["Ghostty/config.ghostty"]="$CONFIG_HOME/ghostty/config.ghostty"
-        ["foot/foot.ini"]="$CONFIG_HOME/foot/foot.ini"
-        ["LogiOps/logid.cfg"]="/etc/logid.cfg"
-        ["keyd/default.conf"]="/etc/keyd/default.conf"
-    )
-
-    for src in "${!links[@]}"; do
-        dest="${links[$src]}"
-        cfg::link "$src" "$dest"
-    done
-
-    # iwd.service runs with ProtectHome=yes, so symlink can't be used
-    cfg::copy "iwd/main.conf" "/etc/iwd/main.conf"
-
-    ########################################
-    # Desktop files
-    desktop_files=(
-        "qBittorrent/org.qbittorrent.qBittorrent.desktop"
-    )
-
-    for desktop_file in "${desktop_files[@]}"; do
-        cfg::desktop "$desktop_file"
-    done
-
-    if ! command -v update-desktop-database; then
-        log::error "Binary 'update-desktop-database' not available, install desktop-file-utils package"
+    if ! command -v desktop-file-validate &>/dev/null; then
+        log::error "desktop-file-validate  is not available; install desktop-file-utils package"
         return 1
     fi
 
-    update-desktop-database "$HOME/.local/share/applications"
+    local rel src
+    for rel in "$@"; do
+        src="$DOTFILES_HOME/cfg/$rel"
+        if ! desktop-file-validate "$src"; then
+            log::error "Desktop file $src is not valid"
+            return 1
+        fi
+        fs::symlink "$src" "$apps_dir/${src##*/}"
+    done
 
-    log::info "Configs deployed"
+    run::cmd update-desktop-database "$apps_dir"
 }
