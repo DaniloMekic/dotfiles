@@ -17,7 +17,7 @@ base::provision() {
         7zip \
         fastfetch \
         jq jless \
-        ripgre \
+        ripgrep \
         tmux \
         vim
 
