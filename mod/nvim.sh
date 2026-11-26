@@ -93,7 +93,7 @@ nvim::provision() {
     # --prefix installs into ~/.local/bin, which is on PATH (environment.d/10-path.conf),
     # so sudo is not needed as nothing lands in /usr
     log::info "npm: installing npm-groovy-lint"
-    run::cmd npm --install --global --prefix "$HOME/.local" npm-groovy-lint
+    run::cmd npm install --global --prefix "$HOME/.local" npm-groovy-lint
 
     # kdl-lsp                           : KDL LSP server (Niri config)
     log::info "cargo: installing kdl-lsp"
