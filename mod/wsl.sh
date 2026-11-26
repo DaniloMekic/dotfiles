@@ -35,7 +35,7 @@ wsl::deploy() {
 # Shared Windows environment variables:
 #       USERPROFILE
 wsl::set_wslenv() {
-    powershell.exe -NoProfile -Command \
+    run::cmd powershell.exe -NoProfile -Command \
         "[Environment]::SetEnvironmentVariable('WSLENV','USERPROFILE/up','User')"
 
     log::info "Windows \$WSLENV variable is set. WSL restart is required."
