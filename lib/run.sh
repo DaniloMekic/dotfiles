@@ -30,7 +30,7 @@ run::is_dry() {
 # Commands that only read (command -v, pacman -Q, ...) don't need it
 # Usage: run::cmd <comamnd> [args]
 run::cmd() {
-    if run::dry; then
+    if run::is_dry; then
         log::dry "$*"
     else
         "$@"
