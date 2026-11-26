@@ -13,7 +13,7 @@ _MOD_DESKTOP_SOURCED=true
 # Root owned files belong in mod/host.sh
 
 desktop::provision() {
-    log::info "Provisioning userland"
+    log::info "Provisioning desktop"
 
     # Swaylock                          : Screen locker; see Niri/config.kdl
     # Waybar                            : Status bar; see Niri/config.kdl
