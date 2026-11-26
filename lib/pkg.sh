@@ -164,7 +164,7 @@ pkg::get_cached_archive_path() {
     while IFS= read -r cache_dir; do
         # Check if file actually exists
         # Print the path and return
-        if [[ -f "${cache_dir%/}${pkg_name}" ]]; then
+        if [[ -f "${cache_dir%/}/${pkg_name}" ]]; then
             printf '%s\n' "${cache_dir%/}/${pkg_name}"
             return
         fi
