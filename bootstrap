@@ -9,6 +9,7 @@ set -euo pipefail
 
 # Assign LIB_COMMON to a common library, and source it
 LIB_COMMON="$(dirname -- "${BASH_SOURCE[0]}")/lib/common.sh"
+# shellcheck source=lib/common.sh
 source "$LIB_COMMON" || {
     echo "ERROR: Failed to source $LIB_COMMON" >&2
     exit 1
@@ -17,32 +18,92 @@ source "$LIB_COMMON" || {
 # Set argument to an empty string, since nounset (-u) is enabled
 OPTION="${1:-}"
 
-log::info "Bootstrapping with $OPTION option"
+# Which platform modules this machine gets?
+# Modules themselves never check for WSL
+platform::provision() {
+    if wsl::is_wsl; then
+        wsl::provision
+    else
+        host::provision
+        desktop::provision
+    fi
+}
 
-case "${OPTION}" in
+platform::deplyo() {
+    if wsl::is_wsl; then
+        wsl::deploy
+    else
+        host::deploy
+        desktop::deploy
+    fi
+}
+
+confirm() {
+    local response
+    read -rp "$1 [Y/n] " response
+    # test -z option catches empty response (just pressing Enter)
+    [[ -z "$response" || "${response,,}" == y || "${response,,}" == yes ]]
+}
+
+# Services only exist on bare metal
+maybe_enable_services() {
+    if ! wsl::is_wsl && confirm "Enable services?"; then
+        host::enable_services
+    fi
+}
+
+log::info "Bootstrapping with $OPTION option"
+run::is_dry && log::dry "Nothing will be changed"
+
+case "$OPTION" in
     -u | --userland)
         pkg::sync_refresh_upgrade
-        provision::userland
-        cfg::deploy
+        base::provision
+        platform::provision
+        base::deploy
+        platform::deploy
+        maybe_enable_services
         ;;
     -a | --all)
         pkg::sync_refresh_upgrade
-        provision::userland
-        provision::nvim
-        cfg::deploy
+        base::provision
+        nvim::provision
+        platform::provision
+        base::deploy
+        nvim::deploy
+        platform::deploy
+        maybe_enable_services
         ;;
     --nvim)
-        provision::nvim
+        nvim::provision
+        nvim::deploy
+        ;;
+    -d | --desktop)
+        desktop::provision
+        desktop::deploy
+        ;;
+    --host)
+        host::provision
+        host::deploy
         ;;
     -c | --configs)
-        cfg::deploy
+        base::deploy
+        nvim::deploy
+        platform::deploy
         ;;
     -h | --help)
-        echo "Usage: ./bootstrap <option>"
-        echo "      -u, --userland      Provision userland"
-        echo "      --nvim              Provision Neovim"
-        echo "      -a, --all           Provision everything: userland + Neovim"
-        echo "      -c, --configs       Deploy configs"
+        cat <<'EOF'
+Usage: ./bootstrap <option>
+      -u, --userland      Base userland + platform (desktop & host, or WSL)
+      -a, --all           Everything: userland + Neovim
+      --nvim              Neovim only (packages + config)
+      -d, --desktop       Niri desktop only (packages + configs)
+      --host              Host-specific system config only (/etc, needs sudo)
+      -c, --configs       Deploy all configs, no installs
+
+Environment:
+      DRY_RUN=1           Print what would change, change nothing
+EOF
         ;;
     *)
         log::error "Invalid option. See --help."
