@@ -14,7 +14,8 @@ nvim::provision() {
 
     toolchain::git
     toolchain::c
-    toolchain::java && sudo archlinux-java set java-21-openjdk
+    toolchain::java
+    run::cmd sudo archlinux-java set java-21-openjdk
     toolchain::rust
     toolchain::tex
 
