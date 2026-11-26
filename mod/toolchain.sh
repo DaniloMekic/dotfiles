@@ -39,7 +39,7 @@ toolchain::rust() {
 
     if ! command -v rustup &>/dev/null; then
         if run::is_dry; then
-            log::info "Install rustup from https://sh.rustup.rs"
+            log::dry "Install rustup from https://sh.rustup.rs"
         else
             curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || {
                 log::error "Failed to install rustup"
