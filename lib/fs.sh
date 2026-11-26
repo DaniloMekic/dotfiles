@@ -7,21 +7,6 @@ fi
 _LIB_FS_SOURCED=true
 
 ################################################################################
-
-# True when $DRY_RUN is set (see lib/common.sh)
-# Usage: if fs::is_dry_run; then ...; fi
-fs::is_dry_run() {
-    [[ -n "${DRY_RUN:-}" ]]
-}
-
-fs::run() {
-    if fs::is_dry_run; then
-        log::dry "$*"
-    else
-        "$@"
-    fi
-}
-
 # Creates the parent directory and uses sudo for paths outside $HOME
 # Option --no-dereference prevents following of an existing symlink if it points to a directory
 # Usage: fs::symlink <source-path> <destination-path>
@@ -33,9 +18,9 @@ fs::symlink() {
     local -a run=()
     [[ "$dest" != "$HOME"/* ]] && run=(sudo)
 
-    "${run[@]}" mkdir -p "$(dirname "$dest")"
+    run::cmd "${run[@]}" mkdir -p "$(dirname "$dest")"
 
-    "${run[@]}" ln -sf --no-dereference "$src" "$dest"
+    run::cmd "${run[@]}" ln -sf --no-dereference "$src" "$dest"
     log::info "Linked $src --> $dest"
 }
 
@@ -51,6 +36,6 @@ fs::copy() {
     [[ "$dest" != "$HOME"/* ]] && run=(sudo)
 
     # install -D creates the parent directory, -mode=644 sets permission mode (as in chmod)
-    "${run[@]}" install -D --mode=644 "$src" "$dest"
+    run::cmd "${run[@]}" install -D --mode=644 "$src" "$dest"
     log::info "Copied $src --> $dest"
 }
