@@ -7,6 +7,7 @@ Repository follows the [separation of design and policy](https://en.wikipedia.or
 Mechanisms:
 
 - `run`: the dry-run boundary, proxy for `pacman`. Every command that changes the system goes through `run::cmd`, so `DRY_RUN=1` prints it instead of running it.
+- `platform`: detection of OS runtime environment.
 - `log`, `ansi`: timestamped, color-tagged logging to the terminal and the file (`/tmp/bootstrap.log`).
 - `fs`, `cfg`: symlink or copy files, link a map of `cfg/` paths, and validate and register desktop entries.
 - `pkg`, `net`, `appimage`: installation from Arch Linux official repositories and the AUR, HTTPS downloads, and AppImage installation into `~/.local/bin`.
@@ -25,6 +26,7 @@ Policies:
 .
 ├── bin/
 ├── cfg/
+│   ├── .archive/
 │   ├── Bash/
 │   ├── curl/
 │   ├── environment.d/
@@ -50,6 +52,7 @@ Policies:
 │   ├── log.sh
 │   ├── net.sh
 │   ├── pkg.sh
+│   ├── platform.sh
 │   ├── run.sh
 │   └── xdg.sh
 ├── mod/

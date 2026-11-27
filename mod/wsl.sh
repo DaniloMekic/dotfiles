@@ -19,8 +19,8 @@ wsl::provision() {
     log::info "Provisioning WSL"
     run::cmd powershell.exe -NoProfile -Command \
         "[Environment]::SetEnvironmentVariable('WSLENV','USERPROFILE/up','User')"
-
     log::info "WSL provisioned"
+
     log::info "Windows \$WSLENV variable is set. WSL restart is required."
 }
 
