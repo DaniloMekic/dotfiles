@@ -10,6 +10,10 @@ _LIB_PLATFORM_SOURCED=true
 
 # Function for detecting WSL environment
 #
+# In sanitized environment with `env -i`,
+# WSL_INTEROP and WSL_DISTRO_NAME disappear,
+# but /proc/sys/kernel/osrelease check still works.
+#
 # grep options:
 #   -q                                  : Quiet (silent) mode: suppress output, only set the exit status
 #   -i                                  : Case-insensitive search
