@@ -7,6 +7,44 @@ fi
 _LIB_PKG_SOURCED=true
 
 ################################################################################
+# DESCRIPTION
+#
+# Library for stuff related to system packages
+# The pacman databases are normally located at `/var/lib/pacman/sync`.
+# For each repository specified in `/etc/pacman.conf`, there will be a corresponding database file located there.
+# Database files are gzipped tar archives containing one directory for each package.
+
+################################################################################
+# REFERENCES
+#
+# https://wiki.archlinux.org/title/Arch_package_guidelines
+# https://wiki.archlinux.org/title/Pacman
+
+################################################################################
+# VARIABLES
+
+# https://wiki.archlinux.org/title/Pacman
+# https://man.archlinux.org/man/pacman.8
+# pacman options:
+#   -S                                  : Synchronize packages
+#   --needed                            : Do not reinstall the targets that are already up-to-date
+#   --noconfirm                         : Bypass any and all "Are you sure?" messages
+#   --disable-download-timeout          : Disable defaults for low speed limit and timeout on downloads
+PACMAN_OPTS=(-S --needed --noconfirm --disable-download-timeout)
+
+# https://wiki.archlinux.org/title/AUR_helpers
+AUR_HELPER="yay"
+# https://jguer.github.io/yay/man.html
+# yay options:
+#   --needed                            : Only install packages that are not already installed
+#   --noconfirm                         : Automatically answer "yes" to all confirmation prompts
+#   --answerdiff None                   : Suppress the prompt to view the changes (diff) between the current PKGBUILD and the previously cached one
+#   --answerclean All                   : Clean build files from Yay's cache
+#   --sudoloop                          : Prevent sudo from timing out during long builds
+AUR_HELPER_OPTS=(--needed --noconfirm --answerdiff None --answerclean All --sudoloop)
+
+################################################################################
+# FUNCTIONS
 
 # Sync repository databases and upgrade the system
 # https://man.archlinux.org/man/pacman.8.en.html#SYNC_OPTIONS_(APPLY_TO_-S)
@@ -18,47 +56,35 @@ pkg::sync_refresh_upgrade() {
     # -u                                : Upgrade ALL packages that are out-of-date
     run::cmd sudo pacman -Syu --disable-download-timeout
 
-    log::info "Full system upgrade finished"
+    log::info "FULL system upgrade finished"
     log::info "**************************************************"
 }
 
-# https://wiki.archlinux.org/title/Pacman
-# https://man.archlinux.org/man/pacman.8
-# pacman options:
-#   -S                                  : Synchronize packages
-#   --needed                            : Do not reinstall the targets that are already up-to-date
-#   --noconfirm                         : Bypass any and all "Are you sure?" messages
-#   --disable-download-timeout          : Disable defaults for low speed limit and timeout on downloads
-PACMAN_OPTS=(-S --needed --noconfirm --disable-download-timeout)
-
 # Install from the Arch Linux official repositories
-# Usage: pkg::pacman <pkg> ...
+#
+# USAGE:
+# pkg::pacman <pkg> ...
 pkg::pacman() {
     log::info "pacman: installing $*"
     run::cmd sudo pacman "${PACMAN_OPTS[@]}" "$@"
 }
 
-AUR_HELPER="yay"
-# https://jguer.github.io/yay/man.html
-# yay options:
-#   --needed                            : Only install packages that are not already installed
-#   --noconfirm                         : Automatically answer "yes" to all confirmation prompts
-#   --answerdiff None                   : Suppress the prompt to view the changes (diff) between the current PKGBUILD and the previously cached one
-#   --answerclean All                   : Clean build files from Yay's cache
-#   --sudoloop                          : prevent sudo from timing out during long builds
-AUR_HELPER_OPTS=(--needed --noconfirm --answerdiff None --answerclean All --sudoloop)
-
 # Install from the Arch User Repository (AUR)
 # Build AUR helper first if missing
-# Usage: pkg::aur <pkg>...
+#
+# USAGE:
+# pkg::aur <pkg>...
 pkg::aur() {
-    pkg::ensure_aur_helper
+    pkg::_ensure_aur_helper
     log::info "$AUR_HELPER: installing $*"
     run::cmd "$AUR_HELPER" -S "${AUR_HELPER_OPTS[@]}" "$@"
 }
 
+################################################################################
+# HELPERS
+
 # Build the AUR helper, unless it's already on PATH
-pkg::ensure_aur_helper() {
+pkg::_ensure_aur_helper() {
     command -v "$AUR_HELPER" &>/dev/null && return
 
     if run::is_dry; then
@@ -66,11 +92,11 @@ pkg::ensure_aur_helper() {
         return
     fi
 
-    pkg::get_aur_helper
+    pkg::_get_aur_helper
 }
 
 # https://wiki.archlinux.org/title/AUR_helpers
-pkg::get_aur_helper() {
+pkg::_get_aur_helper() {
     log::info "Installing AUR helper: $AUR_HELPER"
 
     # Build requirements, installed here so the caller does not have to:
@@ -122,19 +148,23 @@ pkg::get_aur_helper() {
     log::info "$AUR_HELPER installed successfully"
 }
 
-# Print the path of a package archive in the pacman cache, <pkgname>-<pkgver>-<pkgrel>-<arch>.pkg.tar.zst.
+# Function prints the path of a package archive in the pacman cache, <pkgname>-<pkgver>-<pkgrel>-<arch>.pkg.tar.zst.
+# For example: `file:///var/cache/pacman/pkg/neovim-0.12.6-1-x86_64.pkg.tar.zst`
+# Pacman stores its downloaded packages in /var/cache/pacman/pkg/
+# https://wiki.archlinux.org/title/Pacman
+#
 # If file is not in the cache, download the package, without installing it.
 #
-# Usage:
-# pkg::get_cached_archive_path <pkg>
-#
 # The caller captures the function's output
-# pkg_file="$(pkg::get_cached_archive_path "<pkg>")" || return 1
+# pkg_file="$(pkg::_get_cached_archive_path "<pkg>")" || return 1
 #
 # https://wiki.archlinux.org/title/Creating_packages#Overview
-pkg::get_cached_archive_path() {
+#
+# USAGE:
+# pkg::_get_cached_archive_path <pkg>
+pkg::_get_cached_archive_path() {
     local pkg="$1"
-    # pkg URI, either URL, or file URI scheme
+    # pkg URI, either URL, or `file` URI scheme
     local uri
 
     # pacman options:
@@ -146,7 +176,8 @@ pkg::get_cached_archive_path() {
         log::error "Package $pkg not found in the repositories"
         return 1
     }
-    # Remove everything up to and including the last forward slash, to get the file name
+    # Remove everything up to and including the last forward slash, to get the package file name
+    # For example: file:///var/cache/pacman/pkg/neovim-0.12.6-1-x86_64.pkg.tar.zst --> neovim-0.12.6-1-x86_64.pkg.tar.zst
     local pkg_file_name="${uri##*/}"
 
     # Download package into the cache, without installing it
@@ -171,19 +202,18 @@ pkg::get_cached_archive_path() {
     done < <(pacman-conf CacheDir)
 
     log::error "Package file ${pkg_file_name} not found in any cache directory"
-
     return 1
 }
 
 # Install icons from an Arch package, without installing the package
 #
-# Usage:
-# pkg::install_icons <pkg>|<archive>
+# USAGE:
+# pkg::_install_icons <pkg>|<archive>
 #
 # Body in ( ... ) instead of { ... }: it runs in a subshell, so shopt and the
 # EXIT trap are local to this function. The trap fires on every way out,
 # including a set -e abort
-pkg::install_icons() {
+pkg::_install_icons() {
     local pkg="$1"
     local pkg_file
 
@@ -199,7 +229,7 @@ pkg::install_icons() {
         log::dry "Install icons from package $pkg"
         return
     else
-        pkg_file="$(pkg::get_cached_archive_path "$pkg")" || return 1
+        pkg_file="$(pkg::_get_cached_archive_path "$pkg")" || return 1
     fi
 
     local tmp

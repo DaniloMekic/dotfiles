@@ -32,7 +32,7 @@ ICONS_HOME="$DATA_HOME"/icons
 # FUNCTIONS
 
 # Copy icons into the user's icon directory (ICONS_HOME)
-# pkg::install_icons and appimage::install_icons extract an icon tree and pass it here
+# pkg::_install_icons and appimage::install_icons extract an icon tree and pass it here
 #
 # Copy every <icon-name> from an extracted usr/share/icons tree,
 # keeping the <theme>/<size>/<context> layout, then refresh each theme it changed
