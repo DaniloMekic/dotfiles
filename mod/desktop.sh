@@ -21,7 +21,6 @@ desktop::provision() {
     # desktop-file-utils                : Utilities for working with desktop entries
     # noto-fonts-emoji                  : Noto Color Emoji for Waybar
     # playerctl                         : For controlling MPRIS-enabled media players
-    # ttf-jetbrains-mono-nerd           : JetBrainsMono Nerd Font for Neovim
     # wl-clipboard                      : Clipboard CLI tools for Wayland compositors
     pkg::pacman \
         niri \
@@ -32,7 +31,6 @@ desktop::provision() {
         ghostty \
         mpv \
         noto-fonts-emoji \
-        ttf-jetbrains-mono-nerd \
         wl-clipboard \
         desktop-file-utils \
         playerctl \

@@ -34,6 +34,7 @@ nvim::provision() {
     # stylua                            : Lua code formatter
     # taplo-cli                         : TOML LSP server
     # texlab                            : LaTeX LSP server
+    # ttf-jetbrains-mono-nerd           : JetBrainsMono Nerd Font for Neovim
     # wl-clipboard                      : Clipboard provider
     pkg::pacman \
         neovim \
@@ -62,6 +63,7 @@ nvim::provision() {
         taplo-cli \
         texlab \
         tree-sitter-cli \
+        ttf-jetbrains-mono-nerd \
         typescript-language-server \
         unzip \
         vscode-css-languageserver \
