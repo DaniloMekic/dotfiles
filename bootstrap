@@ -18,24 +18,28 @@ source "$LIB_COMMON" || {
 # Set argument to an empty string, since nounset (-u) is enabled
 OPTION="${1:-}"
 
-# Which platform modules this machine gets?
+# Modules this machine gets, on top of base module
 # Modules themselves never check for WSL
-platform::provision() {
-    if platform::is_wsl; then
-        wsl::provision
-    else
-        host::provision
-        desktop::provision
-    fi
+platform_modules=(base)
+if platform::is_wsl; then
+    platform_modules+=(wsl)
+else
+    platform_modules+=(host desktop)
+fi
+
+# Run <module>::provision / <module>::deploy for each module, in order
+provision() {
+    local mod
+    for mod in "$@"; do
+        "$mod"::provision
+    done
 }
 
-platform::deploy() {
-    if platform::is_wsl; then
-        wsl::deploy
-    else
-        host::deploy
-        desktop::deploy
-    fi
+deploy() {
+    local mod
+    for mod in "$@"; do
+        "$mod"::deploy
+    done
 }
 
 confirm() {
@@ -46,7 +50,7 @@ confirm() {
 }
 
 # Services only exist on bare metal
-maybe_enable_services() {
+prompt_to_enable_services() {
     if ! platform::is_wsl && confirm "Enable services?"; then
         host::enable_services
     fi
@@ -58,21 +62,16 @@ run::is_dry && log::dry "Nothing will be changed"
 case "$OPTION" in
     -u | --userland)
         pkg::sync_refresh_upgrade
-        base::provision
-        platform::provision
-        base::deploy
-        platform::deploy
-        maybe_enable_services
+        provision "${platform_modules[@]}"
+        deploy "${platform_modules[@]}"
+        prompt_to_enable_services
         ;;
     -a | --all)
         pkg::sync_refresh_upgrade
-        base::provision
-        nvim::provision
-        platform::provision
-        base::deploy
-        nvim::deploy
-        platform::deploy
-        maybe_enable_services
+        platform_modules+=(nvim)
+        provision "${platform_modules[@]}"
+        deploy "${platform_modules[@]}"
+        prompt_to_enable_services
         ;;
     --nvim)
         nvim::provision
@@ -87,9 +86,8 @@ case "$OPTION" in
         host::deploy
         ;;
     -c | --configs)
-        base::deploy
-        nvim::deploy
-        platform::deploy
+        platform_modules+=(nvim)
+        deploy "${platform_modules[@]}"
         ;;
     -h | --help)
         cat <<'EOF'
