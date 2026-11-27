@@ -14,5 +14,7 @@ _LIB_PLATFORM_SOURCED=true
 #   -q                                  : Quiet (silent) mode: suppress output, only set the exit status
 #   -i                                  : Case-insensitive search
 platform::is_wsl() {
-    [[ -n "${WSL_DISTRO_NAME:-}" ]] || grep -qi microsoft /proc/version 2>/dev/null
+    [[ -n "${WSL_DISTRO_NAME:-}" ]] \
+        || [[ -n "${WSL_INTEROP:-}" ]] \
+        || grep -qi microsoft /proc/sys/kernel/osrelease 2>/dev/null
 }
