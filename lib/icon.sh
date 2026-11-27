@@ -7,13 +7,22 @@ fi
 _LIB_ICON_SOURCED=true
 
 ################################################################################
+# DESCRIPTION
+#
 # Library for stuff related to system icons and freedesktop.org "Icon Theme Specification"
 #
-# References:
+################################################################################
+# REFERENCES
+#
 # https://wiki.archlinux.org/title/Icons
 # https://specifications.freedesktop.org/icon-theme/latest/
 
 ################################################################################
+# VARIABLES
+ICONS_HOME="$DATA_HOME"/icons
+
+################################################################################
+# FUNCTIONS
 
 # Copy icons into the user's icon directory
 # pkg::install_icons and appimage::install_icons extract an icon tree and pass it here
