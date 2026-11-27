@@ -9,15 +9,6 @@ _MOD_WSL_SOURCED=true
 ################################################################################
 # Windows Subsystem for Linux (WSL)
 
-# Function for detecting WSL environment
-#
-# grep options:
-#   -q                                  : Quiet (silent) mode: suppress output, only set the exit status
-#   -i                                  : Case-insensitive search
-wsl::is_wsl() {
-    [[ -n "${WSL_DISTRO_NAME:-}" ]] || grep -qi microsoft /proc/version 2>/dev/null
-}
-
 wsl::provision() {
     log::info "Provisioning WSL"
     wsl::set_wslenv

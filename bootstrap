@@ -21,7 +21,7 @@ OPTION="${1:-}"
 # Which platform modules this machine gets?
 # Modules themselves never check for WSL
 platform::provision() {
-    if wsl::is_wsl; then
+    if platform::is_wsl; then
         wsl::provision
     else
         host::provision
@@ -30,7 +30,7 @@ platform::provision() {
 }
 
 platform::deploy() {
-    if wsl::is_wsl; then
+    if platform::is_wsl; then
         wsl::deploy
     else
         host::deploy
@@ -47,7 +47,7 @@ confirm() {
 
 # Services only exist on bare metal
 maybe_enable_services() {
-    if ! wsl::is_wsl && confirm "Enable services?"; then
+    if ! platform::is_wsl && confirm "Enable services?"; then
         host::enable_services
     fi
 }
