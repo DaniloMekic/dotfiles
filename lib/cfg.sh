@@ -1,5 +1,5 @@
 ################################################################################
-# include guard
+# Include guard
 # https://en.wikipedia.org/wiki/include_guard
 if [[ -n "${_LIB_CFG_SOURCED:-}" ]]; then
     return

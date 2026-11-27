@@ -1,5 +1,5 @@
 ################################################################################
-# include guard
+# Include guard
 # https://en.wikipedia.org/wiki/include_guard
 if [[ -n "${_LIB_ICON_SOURCED:-}" ]]; then
     return
@@ -7,9 +7,13 @@ fi
 _LIB_ICON_SOURCED=true
 
 ################################################################################
-# Docs:
+# Library for stuff related to system icons and freedesktop.org "Icon Theme Specification"
+#
+# References:
 # https://wiki.archlinux.org/title/Icons
 # https://specifications.freedesktop.org/icon-theme/latest/
+
+################################################################################
 
 # Copy icons into the user's icon directory
 # pkg::install_icons and appimage::install_icons extract an icon tree and pass it here

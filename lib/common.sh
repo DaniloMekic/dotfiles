@@ -3,7 +3,7 @@
 # shellcheck disable=SC2034
 
 ################################################################################
-# include guard
+# Include guard
 # https://en.wikipedia.org/wiki/include_guard
 if [[ -n "${_LIB_COMMON_SOURCED:-}" ]]; then
     return

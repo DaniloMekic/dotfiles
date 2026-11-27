@@ -1,5 +1,5 @@
 ################################################################################
-# include guard
+# Include guard
 # https://en.wikipedia.org/wiki/include_guard
 if [[ -n "${_MOD_BASE_SOURCED:-}" ]]; then
     return

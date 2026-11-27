@@ -1,7 +1,7 @@
 # https://en.wikipedia.org/wiki/ANSI_escape_code
 
 ################################################################################
-# include guard
+# Include guard
 # https://en.wikipedia.org/wiki/include_guard
 if [[ -n "${_LIB_ANSI_SOURCED:-}" ]]; then
     return
