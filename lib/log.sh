@@ -37,8 +37,15 @@ LEVEL_DRY=$(printf "%5s" "DRY")
 #       [1] log::info       (defined here)
 #       [2] <caller>        (defined elsewhere)
 log::_caller() {
-    local src="${BASH_SOURCE[2]}"
-    local line="${BASH_LINENO[1]}"
+    # https://www.gnu.org/software/bash/manual/html_node/Bash-Variables.html
+    local -i call_stack_frame=2
+    # Skip function wrappers, so the column shows who asked for the command, and not the wrapper
+    while [[ "${FUNCNAME[call_stack_frame]:-}" =~ ^(run::cmd|fs::symlink|fs::copy|cfg::link|cfg::copy|cfg::link_map|pkg::pacman|pkg::aur)$ ]]; do
+        call_stack_frame+=1
+    done
+
+    local src="${BASH_SOURCE[call_stack_frame]}"
+    local line="${BASH_LINENO[call_stack_frame - 1]}"
     local path
 
     # Canonicalize path
