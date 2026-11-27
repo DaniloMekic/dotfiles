@@ -29,7 +29,7 @@ platform::provision() {
     fi
 }
 
-platform::deplyo() {
+platform::deploy() {
     if wsl::is_wsl; then
         wsl::deploy
     else
